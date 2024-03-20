@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package HospitalSystem.Controllers;
+package HospitalSystem.Layouts;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -35,10 +35,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-/**
- *
- * @author WINDOWS 10
- */
 public class FXMLDocumentController implements Initializable {
 
     @FXML
