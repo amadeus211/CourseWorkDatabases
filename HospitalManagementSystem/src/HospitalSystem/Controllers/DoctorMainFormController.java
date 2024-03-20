@@ -579,7 +579,7 @@ public class DoctorMainFormController implements Initializable {
     public void patientRecordBtn() {
         try {
             // LINK THE NAME OF YOUR FXML FOR RECORD PAGE
-            Parent root = FXMLLoader.load(getClass().getResource("Layouts/RecordPageForm.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/RecordPageForm.fxml"));
             Stage stage = new Stage();
 
             stage.setTitle("Hospital Management System | Record of Patients");
@@ -1183,7 +1183,7 @@ public class DoctorMainFormController implements Initializable {
             if (alert.confirmationMessage("Are you sure you want to logout?")) {
                 Data.doctor_id = "";
                 Data.doctor_name = "";
-                Parent root = FXMLLoader.load(getClass().getResource("Layouts/DoctorPage.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/DoctorPage.fxml"));
                 Stage stage = new Stage();
 
                 stage.setScene(new Scene(root));

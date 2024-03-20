@@ -771,7 +771,7 @@ public class PatientMainFormController implements Initializable {
 
         try {
             if (alert.confirmationMessage("Are you sure you want to logout?")) {
-                Parent root = FXMLLoader.load(getClass().getResource("Layouts/PatientPage.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/PatientPage.fxml"));
                 Stage stage = new Stage();
 
                 stage.setScene(new Scene(root));

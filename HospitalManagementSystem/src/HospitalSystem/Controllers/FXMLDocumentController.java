@@ -88,7 +88,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Hyperlink register_loginHere;
 
-//    DATABASE TOOLS
+    //    DATABASE TOOLS
     private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;
@@ -177,7 +177,7 @@ public class FXMLDocumentController implements Initializable {
             alert.errorMessage("Please fill all blank fields");
         } else {
 
-            // WE WILL CHECK IF THE USERNAME THAT USER ENTERED IS ALREADY EXIST TO OUR DATABASE 
+            // WE WILL CHECK IF THE USERNAME THAT USER ENTERED IS ALREADY EXIST TO OUR DATABASE
             String checkUsername = "SELECT * FROM admin WHERE username = '"
                     + register_username.getText() + "'";
 
@@ -303,27 +303,7 @@ public class FXMLDocumentController implements Initializable {
                 e.printStackTrace();
             }
 
-        } else if (login_user.getSelectionModel().getSelectedItem() == "Patient Portal") {
-
-            try {
-
-                Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/PatientPage.fxml"));
-                Stage stage = new Stage();
-
-                stage.setTitle("Hospital Management System");
-
-                stage.setMinWidth(340);
-                stage.setMinHeight(580);
-
-                stage.setScene(new Scene(root));
-                stage.show();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
         }
-
         login_user.getScene().getWindow().hide();
 
     }

@@ -16,6 +16,15 @@ public class PatientsData {
     private Long mobileNumber;
     private String address;
     private String image;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getDiagnosis() {
+        return diagnosis;
+    }
+
     private String description;
     private String diagnosis;
     private String treatment;

@@ -607,7 +607,7 @@ public class AdminMainFormController implements Initializable {
                                 Data.temp_doctorImagePath = pData.getImage();
 
                                 // NOW LETS CREATE FXML FOR EDIT PATIENT FORM
-                                Parent root = FXMLLoader.load(getClass().getResource("Layouts/EditDoctorForm.fxml"));
+                                Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/EditDoctorForm.fxml"));
                                 Stage stage = new Stage();
 
                                 stage.setScene(new Scene(root));
@@ -770,7 +770,7 @@ public class AdminMainFormController implements Initializable {
                                 Data.temp_status = pData.getStatus();
 
                                 // NOW LETS CREATE FXML FOR EDIT PATIENT FORM
-                                Parent root = FXMLLoader.load(getClass().getResource("Layouts/EditPatientForm.fxml"));
+                                Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/EditPatientForm.fxml"));
                                 Stage stage = new Stage();
 
                                 stage.setScene(new Scene(root));
@@ -933,7 +933,7 @@ public class AdminMainFormController implements Initializable {
                                 Data.temp_appStatus = aData.getStatus();
 
                                 // NOW LETS CREATE FXML FOR EDIT APPOINTMENT FORM
-                                Parent root = FXMLLoader.load(getClass().getResource("Layouts/EditAppointmentForm.fxml"));
+                                Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/EditAppointmentForm.fxml"));
                                 Stage stage = new Stage();
 
                                 stage.setScene(new Scene(root));
@@ -1067,7 +1067,7 @@ public class AdminMainFormController implements Initializable {
     public void paymentCheckOutBtn() {
 
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Layouts/CheckOutPatient.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/CheckOutPatient.fxml"));
             Stage stage = new Stage();
 
             stage.setTitle("Hospital Management System | Check-Out");

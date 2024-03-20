@@ -120,18 +120,7 @@ public class DoctorPageController implements Initializable {
                     }
                 }
 
-                // CHECK IF THE STATUS OF THE DOCTOR IS CONFIRM 
-                String checkStatus = "SELECT status FROM doctor WHERE doctor_id = '"
-                        + login_doctorID.getText() + "' AND password = '"
-                        + login_password.getText() + "' AND status = 'Confirm'";
 
-                prepare = connect.prepareStatement(checkStatus);
-                result = prepare.executeQuery();
-
-                if (result.next()) {
-
-                    alert.errorMessage("Need the confimation of the Admin!");
-                } else {
                     prepare = connect.prepareStatement(sql);
                     prepare.setString(1, login_doctorID.getText());
                     prepare.setString(2, login_password.getText());
@@ -159,7 +148,7 @@ public class DoctorPageController implements Initializable {
                     } else {
                         alert.errorMessage("Incorrect Doctor ID/Password");
                     }
-                }
+                
 
             } catch (Exception e) {
                 e.printStackTrace();
