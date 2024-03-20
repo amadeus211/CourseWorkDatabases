@@ -16,10 +16,6 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
-/**
- *
- * @author WINDOWS 10
- */
 public class DoctorCardController implements Initializable {
 
     @FXML

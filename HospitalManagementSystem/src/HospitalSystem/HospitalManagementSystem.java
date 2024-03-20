@@ -16,7 +16,7 @@ public class HospitalManagementSystem extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Layouts/FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/FXMLDocument.fxml"));
         
         Scene scene = new Scene(root);
         

@@ -34,10 +34,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
-/**
- *
- * @author WINDOWS 10
- */
 public class EditDoctorFormController implements Initializable {
 
     @FXML

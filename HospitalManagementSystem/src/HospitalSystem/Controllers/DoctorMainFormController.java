@@ -53,10 +53,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
-/**
- *
- * @author WINDOWS 10
- */
 public class DoctorMainFormController implements Initializable {
 
     @FXML

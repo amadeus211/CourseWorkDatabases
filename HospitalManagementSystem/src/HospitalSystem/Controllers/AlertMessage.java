@@ -10,10 +10,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 
-/**
- *
- * @author WINDOWS 10
- */
 public class AlertMessage {
 
     private Alert alert;

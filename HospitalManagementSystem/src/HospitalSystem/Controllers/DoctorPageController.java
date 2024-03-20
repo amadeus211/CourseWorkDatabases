@@ -34,10 +34,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-/**
- *
- * @author WINDOWS 10
- */
 public class DoctorPageController implements Initializable {
 
     @FXML
@@ -150,7 +146,7 @@ public class DoctorPageController implements Initializable {
                         alert.successMessage("Login Successfully!");
                         
                         // LINK YOUR DOCTOR MAIN FORM
-                        Parent root = FXMLLoader.load(getClass().getResource("Layouts/DoctorMainForm.fxml"));
+                        Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/DoctorMainForm.fxml"));
                         Stage stage = new Stage();
                         
                         stage.setTitle("Hospital Management System | Doctor Main Form");
@@ -318,7 +314,7 @@ public class DoctorPageController implements Initializable {
 
             try {
 
-                Parent root = FXMLLoader.load(getClass().getResource("Layouts/FXMLDocument.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/FXMLDocument.fxml"));
                 Stage stage = new Stage();
 
                 stage.setTitle("Hospital Management System");
@@ -337,7 +333,7 @@ public class DoctorPageController implements Initializable {
 
             try {
 
-                Parent root = FXMLLoader.load(getClass().getResource("Layouts/DoctorPage.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/DoctorPage.fxml"));
                 Stage stage = new Stage();
 
                 stage.setTitle("Hospital Management System");
@@ -356,7 +352,7 @@ public class DoctorPageController implements Initializable {
 
             try {
 
-                Parent root = FXMLLoader.load(getClass().getResource("Layouts/PatientPage.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/PatientPage.fxml"));
                 Stage stage = new Stage();
 
                 stage.setTitle("Hospital Management System");

@@ -1,10 +1,6 @@
 package HospitalSystem.Controllers;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- p---------------------- in the editor.P?+''''''''''''''p
-package hospitalmanagementsystem;*/
+
 import java.io.File;
 import java.net.URL;
 import java.nio.file.Files;
@@ -53,10 +49,6 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-/**
- *
- * @author WINDOWS 10
- */
 public class AdminMainFormController implements Initializable {
 
     // GIVE NAME OF ALL COMPONENTS
@@ -1340,7 +1332,7 @@ public class AdminMainFormController implements Initializable {
 
         try {
             if (alert.confirmationMessage("Are you sure you want to logout?")) {
-                Parent root = FXMLLoader.load(getClass().getResource("Layouts/FXMLDocument.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/FXMLDocument.fxml"));
                 Stage stage = new Stage();
 
                 stage.setScene(new Scene(root));

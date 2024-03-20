@@ -7,10 +7,6 @@ package HospitalSystem.Data;
 
 import java.sql.Date;
 
-/**
- *
- * @author WINDOWS 10
- */
 public class AppointmentData {
 
     private Integer id;

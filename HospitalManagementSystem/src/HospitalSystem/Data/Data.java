@@ -5,10 +5,6 @@
  */
 package HospitalSystem.Data;
 
-/**
- *
- * @author WINDOWS 10
- */
 public class Data {
 
     public static Integer admin_id;

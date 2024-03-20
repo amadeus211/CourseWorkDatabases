@@ -5,10 +5,6 @@
  */
 package HospitalSystem.Data;
 
-/**
- *
- * @author WINDOWS 10
- */
 public class Users {
 
     public static String[] user = {"Admin Portal", "Doctor Portal", "Patient Portal"};

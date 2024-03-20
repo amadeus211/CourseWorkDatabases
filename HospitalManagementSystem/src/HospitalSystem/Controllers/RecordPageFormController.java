@@ -36,10 +36,6 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-/**
- *
- * @author WINDOWS 10
- */
 public class RecordPageFormController implements Initializable {
 
     @FXML

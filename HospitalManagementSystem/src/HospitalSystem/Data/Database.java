@@ -8,10 +8,6 @@ package HospitalSystem.Data;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-/**
- *
- * @author WINDOWS 10
- */
 public class Database {
 
     public static Connection connectDB() {

@@ -25,10 +25,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-/**
- *
- * @author WINDOWS 10
- */
 public class EditAppointmentFormController implements Initializable{
 
     @FXML
