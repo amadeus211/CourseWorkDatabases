@@ -36,13 +36,12 @@ public class PatientsData {
     private Date dateDelete;
     private String status;
     
-    public PatientsData(Integer id, Integer patientID, String password, String fullName, Long mobileNumber
+    public PatientsData(Integer id, Integer patientID,String fullName, Long mobileNumber
             , String gender, String address, String image, String description, String diagnosis, String treatment
             , String doctor, String specialized, Date date, Date dateModify
             , Date dateDelete, String status){
         this.id = id;
         this.patientID = patientID;
-        this.password = password;
         this.fullName = fullName;
         this.mobileNumber = mobileNumber;
         this.gender = gender;

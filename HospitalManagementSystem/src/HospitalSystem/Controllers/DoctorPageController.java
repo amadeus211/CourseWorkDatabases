@@ -120,7 +120,18 @@ public class DoctorPageController implements Initializable {
                     }
                 }
 
+                // CHECK IF THE STATUS OF THE DOCTOR IS CONFIRM
+                String checkStatus = "SELECT status FROM doctor WHERE doctor_id = '"
+                        + login_doctorID.getText() + "' AND password = '"
+                        + login_password.getText() + "' AND status = 'Confirm'";
 
+                prepare = connect.prepareStatement(checkStatus);
+                result = prepare.executeQuery();
+
+                if (result.next()) {
+
+                    alert.errorMessage("Need the confimation of the Admin!");
+                } else {
                     prepare = connect.prepareStatement(sql);
                     prepare.setString(1, login_doctorID.getText());
                     prepare.setString(2, login_password.getText());
@@ -128,27 +139,27 @@ public class DoctorPageController implements Initializable {
                     result = prepare.executeQuery();
 
                     if (result.next()) {
-                        
+
                         Data.doctor_id = result.getString("doctor_id");
                         Data.doctor_name = result.getString("full_name");
-                        
+
                         alert.successMessage("Login Successfully!");
-                        
+
                         // LINK YOUR DOCTOR MAIN FORM
                         Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/DoctorMainForm.fxml"));
                         Stage stage = new Stage();
-                        
+
                         stage.setTitle("Hospital Management System | Doctor Main Form");
                         stage.setScene(new Scene(root));
                         stage.show();
-                        
+
                         // TO HIDE YOUR DOCTOR PAGE
                         login_loginBtn.getScene().getWindow().hide();
-                        
+
                     } else {
                         alert.errorMessage("Incorrect Doctor ID/Password");
                     }
-                
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -157,7 +168,6 @@ public class DoctorPageController implements Initializable {
         }
 
     }
-
     @FXML
     void loginShowPassword() {
 
@@ -337,26 +347,9 @@ public class DoctorPageController implements Initializable {
                 e.printStackTrace();
             }
 
-        } else if (login_user.getSelectionModel().getSelectedItem() == "Patient Portal") {
-
-            try {
-
-                Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/PatientPage.fxml"));
-                Stage stage = new Stage();
-
-                stage.setTitle("Hospital Management System");
-
-                stage.setMinWidth(340);
-                stage.setMinHeight(580);
-
-                stage.setScene(new Scene(root));
-                stage.show();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
         }
+
+
 
         login_user.getScene().getWindow().hide();
 

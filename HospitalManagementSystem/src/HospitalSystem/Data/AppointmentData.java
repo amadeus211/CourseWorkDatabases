@@ -11,7 +11,7 @@ public class AppointmentData {
 
     private Integer id;
     private Integer appointmentID;
-    private Integer patientID;
+    private Long patientID;
     private String name;
     private String gender;
     private String description;
@@ -27,12 +27,13 @@ public class AppointmentData {
     private String specialized;
     private Date schedule;
 
-    public AppointmentData(Integer id, Integer appointmentID, String name, String gender,
+    public AppointmentData(Integer id, Integer appointmentID, Long patientID, String name, String gender,
             Long mobileNumber, String description, String diagnosis, String treatment, String address,
             String doctorID, String specialized,
             Date date, Date dateModify, Date dateDelete, String status, Date schedule) {
         this.id = id;
         this.appointmentID = appointmentID;
+        this.patientID = patientID;
         this.name = name;
         this.gender = gender;
         this.mobileNumber = mobileNumber;
@@ -50,11 +51,12 @@ public class AppointmentData {
 
     }
 
-    public AppointmentData(Integer appointmentID, String name, String gender,
+    public AppointmentData(Integer appointmentID, Long patientID, String name, String gender,
             Long mobileNumber, String description, String diagnosis, String treatment, String address,
             Date date, Date dateModify, Date dateDelete, String status, Date schedule) {
 
         this.appointmentID = appointmentID;
+        this.patientID = patientID;
         this.name = name;
         this.gender = gender;
         this.mobileNumber = mobileNumber;
@@ -70,8 +72,12 @@ public class AppointmentData {
 
     }
 
+    public Long getPatientID() {
+        return patientID;
+    }
+
     public AppointmentData(Integer appointmentID, String name,
-            String description, Date date, String status) {
+                           String description, Date date, String status) {
         this.appointmentID = appointmentID;
         this.name = name;
         this.description = description;

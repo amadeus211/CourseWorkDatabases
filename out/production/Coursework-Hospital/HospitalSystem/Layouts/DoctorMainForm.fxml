@@ -22,7 +22,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HospitalSystem.Controllers.DoctorMainFormController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HospitalSystem.Controllers.DoctorMainFormController">
    <children>
       <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -296,8 +296,6 @@
                                     <ComboBox fx:id="patients_gender" layoutX="26.0" layoutY="185.0" prefHeight="25.0" prefWidth="355.0" promptText="Select your Gender" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="185.0" />
                                     <Label layoutX="25.0" layoutY="225.0" text="Mobile Number:" />
                                     <TextField fx:id="patients_mobileNumber" layoutX="25.0" layoutY="242.0" prefHeight="25.0" prefWidth="357.0" promptText="ex. 951234512341" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="128.0" AnchorPane.topAnchor="242.0" />
-                                    <Label layoutX="25.0" layoutY="284.0" text="Password:" />
-                                    <TextField fx:id="patients_password" layoutX="25.0" layoutY="301.0" prefHeight="25.0" prefWidth="439.0" promptText="at least 8 characters needed" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="301.0" />
                                     <Label layoutX="25.0" layoutY="340.0" text="Address:" />
                                     <TextArea fx:id="patients_address" layoutX="25.0" layoutY="357.0" prefHeight="89.0" prefWidth="439.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="357.0" />
                                     <Button fx:id="patients_confirmBtn" layoutX="98.0" layoutY="480.0" mnemonicParsing="false" onAction="#patientConfirmBtn" prefHeight="40.0" prefWidth="293.0" styleClass="btn-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Confirm" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="119.0" />
@@ -317,8 +315,6 @@
                                     </Label>
                                     <Label layoutX="39.0" layoutY="73.0" text="Patient ID:" />
                                     <Label fx:id="patients_PA_patientID" layoutX="102.0" layoutY="73.0" prefHeight="17.0" prefWidth="98.0" />
-                                    <Label layoutX="39.0" layoutY="102.0" text="Password:" />
-                                    <Label fx:id="patients_PA_password" layoutX="102.0" layoutY="102.0" prefHeight="17.0" prefWidth="98.0" />
                                     <Label layoutX="21.0" layoutY="138.0" text="Date Created:" />
                                     <Label fx:id="patients_PA_dateCreated" layoutX="102.0" layoutY="138.0" prefHeight="17.0" prefWidth="98.0" />
                                     <FontAwesomeIcon fill="#d738c7" glyphName="USER" layoutX="224.0" layoutY="144.0" opacity="0.31" size="10em" />
@@ -376,6 +372,7 @@
                                     <TableView fx:id="appointments_tableView" layoutX="13.0" layoutY="56.0" onMouseClicked="#appointmentSelect" prefHeight="225.0" prefWidth="843.0" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="56.0">
                                        <columns>
                                           <TableColumn fx:id="appointments_col_appointmentID" prefWidth="65.0" text="Appointment ID" />
+                                          <TableColumn fx:id="appointments_col_patientID" prefWidth="70.0" text="PatientID" />
                                           <TableColumn fx:id="appointments_col_name" prefWidth="110.0" text="Name" />
                                           <TableColumn fx:id="appointments_col_gender" prefWidth="70.0" text="Gender" />
                                           <TableColumn fx:id="appointments_col_contactNumber" prefWidth="85.0" text="Contact" />
@@ -422,6 +419,8 @@
                                     <Button fx:id="appointment_deleteBtn" layoutX="549.0" layoutY="171.0" mnemonicParsing="false" onAction="#appointmentDeleteBtn" prefHeight="36.0" prefWidth="100.0" styleClass="btn-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Delete" />
                                     <DatePicker fx:id="appointment_schedule" layoutX="671.0" layoutY="121.0" />
                                     <Label layoutX="612.0" layoutY="125.0" text="Schedule:" />
+                                    <Label layoutX="344.0" layoutY="125.0" text="Patient_ID:" />
+                                    <TextField fx:id="appointment_patientID" layoutX="409.0" layoutY="121.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
                                  </children>
                               </AnchorPane>
                            </children>
