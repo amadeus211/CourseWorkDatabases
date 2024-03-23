@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="886.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HospitalSystem.Controllers.RecordPageFormController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="886.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HospitalSystem.Controllers.RecordPageFormController">
    <children>
       <AnchorPane fx:id="recordpage_mainForm" prefHeight="200.0" prefWidth="850.0" styleClass="white-bg" stylesheets="@../../Design/DoctorMainFormDesign.css">
          <children>
@@ -22,15 +22,15 @@
             <FontAwesomeIcon fill="#515151" glyphName="SEARCH" layoutX="575.0" layoutY="35.0" size="1.5em" AnchorPane.rightAnchor="208.2857151031494" AnchorPane.topAnchor="19.571428298950195" />
             <TableView fx:id="recordpage_tableView" layoutX="14.0" layoutY="73.0" prefHeight="413.0" prefWidth="772.0" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="73.0">
               <columns>
-                <TableColumn fx:id="recordpage_col_patientID" prefWidth="68.0" text="Patient ID" />
-                <TableColumn fx:id="recordpage_col_name" prefWidth="103.0" text="Name" />
-                  <TableColumn fx:id="recordpage_col_gender" prefWidth="103.0" text="Gender" />
-                  <TableColumn fx:id="recordpage_col_mobileNumber" prefWidth="95.0" text="Mobile Number" />
-                  <TableColumn fx:id="recordpage_col_address" prefWidth="83.0" text="Address" />
-                  <TableColumn fx:id="recordpage_col_dateCreated" prefWidth="83.0" text="Date Created" />
-                  <TableColumn fx:id="recordpage_col_dateModiftied" prefWidth="90.0" text="Date Modified" />
-                  <TableColumn fx:id="recordpage_col_dateDeleted" prefWidth="92.0" text="Date Deleted" />
-                  <TableColumn fx:id="recordpage_col_action" prefWidth="140.0" text="Action" />
+                <TableColumn fx:id="recordpage_col_patientID" prefWidth="44.0" text=" ID" />
+                <TableColumn fx:id="recordpage_col_name" prefWidth="75.0" text="Ім'я" />
+                  <TableColumn fx:id="recordpage_col_gender" prefWidth="83.0" text="Стать" />
+                  <TableColumn fx:id="recordpage_col_mobileNumber" prefWidth="130.0" text="Номер телефону" />
+                  <TableColumn fx:id="recordpage_col_address" prefWidth="86.0" text="Адреса" />
+                  <TableColumn fx:id="recordpage_col_dateCreated" prefWidth="101.0" text="Дата створення" />
+                  <TableColumn fx:id="recordpage_col_dateModiftied" prefWidth="93.0" text="Дата зміни" />
+                  <TableColumn fx:id="recordpage_col_dateDeleted" prefWidth="102.0" text="Дата видалення" />
+                  <TableColumn fx:id="recordpage_col_action" prefWidth="142.0" text="Дія" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

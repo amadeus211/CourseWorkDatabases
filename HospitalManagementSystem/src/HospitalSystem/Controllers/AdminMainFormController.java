@@ -1369,7 +1369,7 @@ public class AdminMainFormController implements Initializable {
             dashboardTA();
             dashboardGetDoctorDisplayData();
 
-            current_form.setText("Dashboard Form");
+            current_form.setText("Вікно статистики");
         } else if (event.getSource() == doctors_btn) {
             dashboard_form.setVisible(false);
             doctors_form.setVisible(true);
@@ -1383,7 +1383,7 @@ public class AdminMainFormController implements Initializable {
             doctorDisplayData();
             doctorActionButton();
 
-            current_form.setText("Doctor's Form");
+            current_form.setText("Вікно лікарів");
         } else if (event.getSource() == patients_btn) {
             dashboard_form.setVisible(false);
             doctors_form.setVisible(false);
@@ -1396,7 +1396,7 @@ public class AdminMainFormController implements Initializable {
             // TO DISPLAY IMMEDIATELY THE DATA OF PATIENTS IN TABLEVIEW
             patientDisplayData();
             patientActionButton();
-            current_form.setText("Patient's Form");
+            current_form.setText("Вікно пацієнтів");
         } else if (event.getSource() == appointments_btn) {
             dashboard_form.setVisible(false);
             doctors_form.setVisible(false);
@@ -1409,7 +1409,7 @@ public class AdminMainFormController implements Initializable {
             // TO DISPLAY IMMEDIATELY THE DATA OF APPOINTMENTS IN TABLEVIEW
             appointmentDisplayData();
 
-            current_form.setText("Appointment's Form");
+            current_form.setText("Вікно призначень");
         } else if (event.getSource() == add_patient) {
             dashboard_form.setVisible(false);
             doctors_form.setVisible(false);
@@ -1421,7 +1421,7 @@ public class AdminMainFormController implements Initializable {
             // TO DISPLAY IMMEDIATELY THE DATA OF APPOINTMENTS IN TABLEVIEW
             appointmentDisplayData();
 
-            current_form.setText("Appointment's Form");
+            current_form.setText("Вікно додавання пацієнтів");
         }
 
         else if (event.getSource() == profile_btn) {

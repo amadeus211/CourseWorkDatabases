@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HospitalSystem.Controllers.EditAppointmentFormController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HospitalSystem.Controllers.EditAppointmentFormController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -21,79 +21,79 @@
                   <String fx:value="shadow" />
                </styleClass>
                <children>
-                  <Label layoutX="14.0" layoutY="14.0" styleClass="header-1" stylesheets="@../../Design/MainFormDesign.css" text="Appointment's Information">
+                  <Label layoutX="14.0" layoutY="14.0" styleClass="header-1" stylesheets="@../../Design/MainFormDesign.css" text="Призначення">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="29.0" layoutY="74.0" text="Appointment ID:">
+                  <Label layoutX="30.0" layoutY="74.0" text="Призначення ID:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
                   <TextField fx:id="editApp_appointmentID" layoutX="137.0" layoutY="71.0" prefHeight="25.0" prefWidth="112.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                  <Label layoutX="68.0" layoutY="111.0" text="Full Name:">
+                  <Label layoutX="103.0" layoutY="113.0" text="Ім'я:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
                   <TextField fx:id="editApp_fullName" layoutX="137.0" layoutY="108.0" prefHeight="25.0" prefWidth="144.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                  <Label layoutX="77.0" layoutY="153.0" text="Gender:">
+                  <Label layoutX="93.0" layoutY="153.0" text="Стать:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="editApp_gender" layoutX="135.0" layoutY="150.0" prefWidth="150.0" promptText="Choose..." styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                  <Label layoutX="29.0" layoutY="195.0" text="Mobile Number:">
+                  <ComboBox fx:id="editApp_gender" layoutX="135.0" layoutY="150.0" prefWidth="150.0" promptText="Вибрати" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
+                  <Label layoutX="24.0" layoutY="195.0" text="Номер телефону:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
                   <TextField fx:id="editApp_mobileNumber" layoutX="137.0" layoutY="192.0" prefHeight="25.0" prefWidth="144.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                  <Label layoutX="81.0" layoutY="232.0" text="Address:">
+                  <Label layoutX="78.0" layoutY="232.0" text="Адреса:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
                   <TextArea fx:id="editApp_address" layoutX="134.0" layoutY="228.0" prefHeight="58.0" prefWidth="172.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                  <Button fx:id="editApp_updateBtn" layoutX="201.0" layoutY="363.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="94.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Update" />
-                  <Button fx:id="editApp_cancelBtn" layoutX="328.0" layoutY="363.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="94.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Cancel" />
-                  <Label layoutX="361.0" layoutY="68.0" text="Description:">
+                  <Button fx:id="editApp_updateBtn" layoutX="201.0" layoutY="363.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="94.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Оновити" />
+                  <Button fx:id="editApp_cancelBtn" layoutX="328.0" layoutY="363.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="94.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Відміна" />
+                  <Label layoutX="404.0" layoutY="68.0" text="Опис:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="editApp_description" layoutX="436.0" layoutY="64.0" prefHeight="58.0" prefWidth="172.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                  <Label layoutX="375.0" layoutY="141.0" text="Diagnosis:">
+                  <TextArea fx:id="editApp_description" layoutX="444.0" layoutY="64.0" prefHeight="58.0" prefWidth="172.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
+                  <Label layoutX="388.0" layoutY="141.0" text="Діагноз:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
                   <TextField fx:id="editApp_diagnosis" layoutX="444.0" layoutY="138.0" prefHeight="25.0" prefWidth="144.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                  <Label layoutX="375.0" layoutY="183.0" text="Treatment:">
+                  <Label layoutX="374.0" layoutY="183.0" text="Лікування:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
                   <TextField fx:id="editApp_treatment" layoutX="444.0" layoutY="180.0" prefHeight="25.0" prefWidth="144.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                  <Label layoutX="396.0" layoutY="223.0" text="Doctor:">
+                  <Label layoutX="400.0" layoutY="223.0" text="Лікар:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="editApp_doctor" layoutX="444.0" layoutY="220.0" onAction="#doctorList" prefWidth="150.0" promptText="Choose..." styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                  <Label layoutX="371.0" layoutY="260.0" text="Specialized:">
+                  <ComboBox fx:id="editApp_doctor" layoutX="444.0" layoutY="220.0" onAction="#doctorList" prefWidth="150.0" promptText="Вибрати" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
+                  <Label layoutX="354.0" layoutY="259.0" text="Спеціалізація:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="editApp_specialized" layoutX="444.0" layoutY="257.0" prefWidth="150.0" promptText="Choose..." styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                  <Label layoutX="396.0" layoutY="295.0" text="Status:">
+                  <ComboBox fx:id="editApp_specialized" layoutX="444.0" layoutY="257.0" prefWidth="150.0" promptText="Вибрати" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
+                  <Label layoutX="395.0" layoutY="295.0" text="Статус:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="editApp_status" layoutX="444.0" layoutY="292.0" prefWidth="150.0" promptText="Choose..." styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
+                  <ComboBox fx:id="editApp_status" layoutX="444.0" layoutY="292.0" prefWidth="150.0" promptText="Вибрати" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
                </children>
             </AnchorPane>
          </children>

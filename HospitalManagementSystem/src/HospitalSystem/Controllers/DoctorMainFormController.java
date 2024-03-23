@@ -1168,21 +1168,25 @@ public class DoctorMainFormController implements Initializable {
             dashbboardDisplayTP();
             dashbboardDisplayAP();
             dashbboardDisplayTA();
+            current_form.setText("Вікно статистики");
         } else if (event.getSource() == patients_btn) {
             dashboard_form.setVisible(false);
             patients_form.setVisible(true);
             appointments_form.setVisible(false);
             profile_form.setVisible(false);
+            current_form.setText("Вікно пацієнтів");
         } else if (event.getSource() == appointments_btn) {
             dashboard_form.setVisible(false);
             patients_form.setVisible(false);
             appointments_form.setVisible(true);
             profile_form.setVisible(false);
+            current_form.setText("Вікно призначень");
         } else if (event.getSource() == profile_btn) {
             dashboard_form.setVisible(false);
             patients_form.setVisible(false);
             appointments_form.setVisible(false);
             profile_form.setVisible(true);
+            current_form.setText("Вікно налаштувань");
         }
     }
 

@@ -16,7 +16,7 @@ public class AlertMessage {
 
     public void errorMessage(String message) {
         alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Error Messaage");
+        alert.setTitle("Помилка");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
@@ -24,7 +24,7 @@ public class AlertMessage {
 
     public void successMessage(String message) {
         alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Information Message");
+        alert.setTitle("Інформація");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
@@ -33,7 +33,7 @@ public class AlertMessage {
     public boolean confirmationMessage(String message) {
 
         alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Message");
+        alert.setTitle("Підтвердження");
         alert.setHeaderText(null);
         alert.setContentText(message);
         Optional<ButtonType> option = alert.showAndWait();

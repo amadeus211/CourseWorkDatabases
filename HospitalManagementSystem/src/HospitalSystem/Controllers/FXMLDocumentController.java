@@ -265,7 +265,7 @@ public class FXMLDocumentController implements Initializable {
 
     public void switchPage() {
 
-        if (login_user.getSelectionModel().getSelectedItem() == "Admin Portal") {
+        if (login_user.getSelectionModel().getSelectedItem() == "Адміністратор") {
 
             try {
 
@@ -284,7 +284,7 @@ public class FXMLDocumentController implements Initializable {
                 e.printStackTrace();
             }
 
-        } else if (login_user.getSelectionModel().getSelectedItem() == "Doctor Portal") {
+        } else if (login_user.getSelectionModel().getSelectedItem() == "Лікар") {
 
             try {
 

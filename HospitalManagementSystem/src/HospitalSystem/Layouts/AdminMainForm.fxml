@@ -31,29 +31,28 @@
                      <children>
                         <AnchorPane layoutX="-58.0" layoutY="-86.0" prefHeight="40.0" prefWidth="214.0" styleClass="bg-color-1" stylesheets="@../../Design/MainFormDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label layoutX="21.0" layoutY="11.0" text="Hospital Management System" textFill="WHITE">
+                              <Label layoutX="71.0" layoutY="10.0" text="Реєстратура" textFill="WHITE">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
                               </Label>
                            </children>
                         </AnchorPane>
-                        <Circle fx:id="top_profile" fill="DODGERBLUE" layoutX="1012.0" layoutY="22.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.rightAnchor="75.0" />
-                        <Label layoutX="1036.0" layoutY="13.0" text="Active" AnchorPane.rightAnchor="31.0" />
+                        <Circle fx:id="top_profile" fill="DODGERBLUE" layoutX="1007.0" layoutY="22.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.rightAnchor="80.0" />
+                        <Label layoutX="1036.0" layoutY="13.0" text="Онлайн" AnchorPane.rightAnchor="31.0" />
                         <Circle fill="#24c756" layoutX="1081.0" layoutY="22.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" AnchorPane.rightAnchor="14.0" />
-                        <Label layoutX="687.0" layoutY="12.0" text="Welcome," AnchorPane.rightAnchor="360.0" />
                         <Label fx:id="top_username" layoutX="747.0" layoutY="11.0" prefHeight="17.0" prefWidth="138.0" AnchorPane.rightAnchor="215.0">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Label>
                         <Label fx:id="date_time" alignment="CENTER_RIGHT" layoutX="470.0" layoutY="12.0" prefHeight="17.0" prefWidth="187.0" text="MM:DD:YYYY" AnchorPane.rightAnchor="443.0" />
-                        <Label fx:id="current_form" layoutX="233.0" layoutY="11.0" prefHeight="17.0" prefWidth="325.0" styleClass="header-1" stylesheets="@../../Design/MainFormDesign.css" text="Dashboard Form" AnchorPane.leftAnchor="233.0" AnchorPane.topAnchor="11.0">
+                        <Label fx:id="current_form" layoutX="233.0" layoutY="11.0" prefHeight="17.0" prefWidth="325.0" styleClass="header-1" stylesheets="@../../Design/MainFormDesign.css" text="Вікно статистики" AnchorPane.leftAnchor="233.0" AnchorPane.topAnchor="11.0">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button fx:id="logout_btn" layoutX="879.0" layoutY="4.0" mnemonicParsing="false" onAction="#logoutBtn" prefHeight="25.0" prefWidth="79.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Logout" AnchorPane.rightAnchor="142.0" AnchorPane.topAnchor="4.0" />
+                        <Button fx:id="logout_btn" layoutX="879.0" layoutY="4.0" mnemonicParsing="false" onAction="#logoutBtn" prefHeight="25.0" prefWidth="79.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Вийти" AnchorPane.rightAnchor="142.0" AnchorPane.topAnchor="4.0" />
                      </children>
                      <styleClass>
                         <String fx:value="white-bg" />
@@ -65,48 +64,48 @@
                   <AnchorPane prefHeight="560.0" prefWidth="214.0" styleClass="bg-color-1" stylesheets="@../../Design/MainFormDesign.css" BorderPane.alignment="CENTER">
                      <children>
                         <FontAwesomeIcon fill="WHITE" glyphName="USER" layoutX="83.0" layoutY="65.0" size="5em" />
-                        <Label layoutX="23.0" layoutY="85.0" text="Admin ID:" textFill="WHITE" />
-                        <Label fx:id="nav_adminID" layoutX="83.0" layoutY="84.0" prefHeight="17.0" prefWidth="117.0" textFill="WHITE">
+                        <Label layoutX="29.0" layoutY="85.0" text="ID:" textFill="WHITE" />
+                        <Label fx:id="nav_adminID" layoutX="48.0" layoutY="84.0" prefHeight="17.0" prefWidth="117.0" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Label>
-                        <Label layoutX="21.0" layoutY="110.0" text="Username:" textFill="WHITE" />
-                        <Label fx:id="nav_username" layoutX="83.0" layoutY="109.0" prefHeight="17.0" prefWidth="117.0" textFill="WHITE">
+                        <Label layoutX="21.0" layoutY="110.0" text="Ім'я:" textFill="WHITE" />
+                        <Label fx:id="nav_username" layoutX="48.0" layoutY="109.0" prefHeight="17.0" prefWidth="117.0" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Label>
                         <Line endX="88.0" layoutX="113.0" layoutY="152.0" startX="-100.0" stroke="WHITE" />
                         <FontAwesomeIcon fill="#6593c7" glyphName="HOSPITAL_ALT" layoutX="60.0" layoutY="522.0" size="10em" AnchorPane.bottomAnchor="20.857139587402344" AnchorPane.leftAnchor="60.0" />
-                        <Label layoutX="13.0" layoutY="162.0" text="Feature" textFill="WHITE" />
-                        <Button fx:id="dashboard_btn" layoutX="7.0" layoutY="187.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="200.0" styleClass="nav-btn-1" stylesheets="@../../Design/MainFormDesign.css" text="Dashboard">
+                        <Label layoutX="13.0" layoutY="162.0" text="Опції" textFill="WHITE" />
+                        <Button fx:id="dashboard_btn" layoutX="7.0" layoutY="187.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="200.0" styleClass="nav-btn-1" stylesheets="@../../Design/MainFormDesign.css" text="Стаститика">
                            <graphic>
                               <FontAwesomeIcon glyphName="DASHBOARD" size="1.5em" />
                            </graphic>
                         </Button>
-                        <Button fx:id="doctors_btn" layoutX="7.0" layoutY="237.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="200.0" styleClass="nav-btn-1" stylesheets="@../../Design/MainFormDesign.css" text="Doctors">
+                        <Button fx:id="doctors_btn" layoutX="7.0" layoutY="237.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="200.0" styleClass="nav-btn-1" stylesheets="@../../Design/MainFormDesign.css" text="Лікарі">
                            <graphic>
                               <FontAwesomeIcon glyphName="USER_MD" size="1.5em" />
                            </graphic>
                         </Button>
-                        <Button fx:id="patients_btn" layoutX="7.0" layoutY="285.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="200.0" styleClass="nav-btn-1" stylesheets="@../../Design/MainFormDesign.css" text="Patients">
+                        <Button fx:id="patients_btn" layoutX="7.0" layoutY="285.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="200.0" styleClass="nav-btn-1" stylesheets="@../../Design/MainFormDesign.css" text="Пацієнти">
                            <graphic>
                               <FontAwesomeIcon glyphName="USER" size="1.5em" />
                            </graphic>
                         </Button>
-                        <Button fx:id="appointments_btn" layoutX="7.0" layoutY="335.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="200.0" styleClass="nav-btn-1" stylesheets="@../../Design/MainFormDesign.css" text="Appointments">
+                        <Button fx:id="appointments_btn" layoutX="7.0" layoutY="380.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="200.0" styleClass="nav-btn-1" stylesheets="@../../Design/MainFormDesign.css" text="Призначення">
                            <graphic>
                               <FontAwesomeIcon glyphName="CLIPBOARD" size="1.5em" />
                            </graphic>
                         </Button>
-                        <Label layoutX="13.0" layoutY="435.0" text="Profile" textFill="WHITE" />
-                        <Button fx:id="profile_btn" layoutX="7.0" layoutY="460.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="200.0" styleClass="nav-btn-1" stylesheets="@../../Design/MainFormDesign.css" text="Profile Setting">
+                        <Label layoutX="13.0" layoutY="435.0" text="Профіль" textFill="WHITE" />
+                        <Button fx:id="profile_btn" layoutX="7.0" layoutY="460.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="200.0" styleClass="nav-btn-1" stylesheets="@../../Design/MainFormDesign.css" text="Налаштування">
                            <graphic>
                               <FontAwesomeIcon glyphName="COGS" size="1.5em" />
                            </graphic>
                         </Button>
-                        <Button fx:id="add_patient" layoutX="7.0" layoutY="388.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="200.0" styleClass="nav-btn-1" stylesheets="@../../Design/MainFormDesign.css" text="Додати пацієнта">
+                        <Button fx:id="add_patient" layoutX="7.0" layoutY="333.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="200.0" styleClass="nav-btn-1" stylesheets="@../../Design/MainFormDesign.css" text="Додати пацієнта">
                            <graphic>
                               <FontAwesomeIcon glyphName="USER" size="1.5em" />
                            </graphic>
@@ -116,7 +115,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="dashboard_form" layoutX="161.0" layoutY="112.0" prefHeight="560.0" prefWidth="886.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="dashboard_form" layoutX="161.0" layoutY="112.0" prefHeight="560.0" prefWidth="886.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="13.0" layoutY="14.0" prefHeight="156.0" prefWidth="860.0" stylesheets="@../../Design/MainFormDesign.css" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
@@ -141,7 +140,7 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="CENTER" layoutX="75.0" layoutY="77.0" prefHeight="17.0" prefWidth="134.0" text="Active Doctor" textFill="WHITE">
+                                                      <Label alignment="CENTER" layoutX="75.0" layoutY="77.0" prefHeight="17.0" prefWidth="134.0" text="Активні лікарі" textFill="WHITE">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -160,7 +159,7 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="CENTER" layoutX="75.0" layoutY="77.0" prefHeight="17.0" prefWidth="134.0" text="Total Patients" textFill="WHITE">
+                                                      <Label alignment="CENTER" layoutX="75.0" layoutY="77.0" prefHeight="17.0" prefWidth="134.0" text="Всього пацієнтів" textFill="WHITE">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -179,7 +178,7 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="CENTER" layoutX="75.0" layoutY="77.0" prefHeight="17.0" prefWidth="134.0" text="Active Patients" textFill="WHITE">
+                                                      <Label alignment="CENTER" layoutX="75.0" layoutY="77.0" prefHeight="17.0" prefWidth="134.0" text="Активні пацієнти" textFill="WHITE">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -198,7 +197,7 @@
                                                             <Font size="14.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="CENTER" layoutX="75.0" layoutY="77.0" prefHeight="17.0" prefWidth="134.0" text="Total Appointments" textFill="WHITE">
+                                                      <Label alignment="CENTER" layoutX="75.0" layoutY="77.0" prefHeight="17.0" prefWidth="134.0" text="Всього призначень" textFill="WHITE">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -225,7 +224,7 @@
                                           <String fx:value="radius" />
                                        </styleClass>
                                        <children>
-                                          <AreaChart fx:id="dashboad_chart_PD" layoutX="-98.0" layoutY="-1.0" prefHeight="163.0" prefWidth="383.0" title="Patient's Data" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <AreaChart fx:id="dashboad_chart_PD" layoutX="-98.0" layoutY="-1.0" prefHeight="163.0" prefWidth="383.0" title="Пацієнти" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <xAxis>
                                               <CategoryAxis side="BOTTOM" />
                                             </xAxis>
@@ -242,7 +241,7 @@
                                           <String fx:value="radius" />
                                        </styleClass>
                                        <children>
-                                          <BarChart fx:id="dashboad_chart_DD" layoutX="-49.0" layoutY="-129.0" prefHeight="271.0" prefWidth="451.0" title="Doctor's Data" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <BarChart fx:id="dashboad_chart_DD" layoutX="-49.0" layoutY="-129.0" prefHeight="271.0" prefWidth="451.0" title="Лікарі" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <xAxis>
                                               <CategoryAxis side="BOTTOM" />
                                             </xAxis>
@@ -261,16 +260,16 @@
                                        <children>
                                           <TableView fx:id="dashboad_tableView" layoutX="13.0" layoutY="41.0" prefHeight="273.0" prefWidth="407.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="41.0">
                                             <columns>
-                                              <TableColumn fx:id="dashboad_col_doctorID" prefWidth="81.0" text="Doctor ID" />
-                                              <TableColumn fx:id="dashboad_col_name" prefWidth="117.0" text="Name" />
-                                                <TableColumn fx:id="dashboad_col_specialized" prefWidth="119.0" text="Specialized" />
-                                                <TableColumn fx:id="dashboad_col_status" prefWidth="89.0" text="Status" />
+                                              <TableColumn fx:id="dashboad_col_doctorID" prefWidth="81.0" text="Лікар ID" />
+                                              <TableColumn fx:id="dashboad_col_name" prefWidth="117.0" text="Ім'я" />
+                                                <TableColumn fx:id="dashboad_col_specialized" prefWidth="119.0" text="Спеціалізація" />
+                                                <TableColumn fx:id="dashboad_col_status" prefWidth="89.0" text="Статус" />
                                             </columns>
                                              <columnResizePolicy>
                                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                              </columnResizePolicy>
                                           </TableView>
-                                          <Label layoutX="13.0" layoutY="14.0" styleClass="header-1" stylesheets="@../../Design/MainFormDesign.css" text="Doctor Information">
+                                          <Label layoutX="13.0" layoutY="14.0" styleClass="header-1" stylesheets="@../../Design/MainFormDesign.css" text="Інформація про лікарів">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -290,28 +289,28 @@
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-1" stylesheets="@../../Design/MainFormDesign.css" text="Doctors">
+                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-1" stylesheets="@../../Design/MainFormDesign.css" text="Лікарі">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
                                     <TableView fx:id="doctors_tableView" layoutX="13.0" layoutY="56.0" prefHeight="467.0" prefWidth="843.0" stylesheets="@../../Design/MainFormDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="56.0">
                                       <columns>
-                                        <TableColumn fx:id="doctors_col_doctorID" prefWidth="75.0" text="Doctor ID" />
-                                        <TableColumn fx:id="doctors_col_name" prefWidth="75.0" text="Name" />
-                                          <TableColumn fx:id="doctors_col_gender" prefWidth="75.0" text="Gender" />
-                                          <TableColumn fx:id="doctors_col_contactNumber" prefWidth="114.0" text="Contact Number" />
-                                          <TableColumn fx:id="doctors_col_email" prefWidth="100.0" text="Email Address" />
-                                          <TableColumn fx:id="doctors_col_specialization" prefWidth="110.0" text="Specialization" />
-                                          <TableColumn fx:id="doctors_col_address" prefWidth="109.0" text="Address" />
-                                          <TableColumn fx:id="doctors_col_status" prefWidth="101.0" text="Status" />
-                                          <TableColumn fx:id="doctors_col_action" prefWidth="100.0" text="Action" />
+                                        <TableColumn fx:id="doctors_col_doctorID" prefWidth="75.0" text="Лікар ID" />
+                                        <TableColumn fx:id="doctors_col_name" prefWidth="75.0" text="Ім'я" />
+                                          <TableColumn fx:id="doctors_col_gender" prefWidth="75.0" text="Стать" />
+                                          <TableColumn fx:id="doctors_col_contactNumber" prefWidth="114.0" text="Номер телефону" />
+                                          <TableColumn fx:id="doctors_col_email" prefWidth="100.0" text="Email" />
+                                          <TableColumn fx:id="doctors_col_specialization" prefWidth="110.0" text="Спеціалізація" />
+                                          <TableColumn fx:id="doctors_col_address" prefWidth="109.0" text="Адреса" />
+                                          <TableColumn fx:id="doctors_col_status" prefWidth="101.0" text="Статус" />
+                                          <TableColumn fx:id="doctors_col_action" prefWidth="100.0" text="Дія" />
                                       </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                        </columnResizePolicy>
                                     </TableView>
-                                    <Button fx:id="add_doctor_btn" layoutX="761.0" layoutY="15.0" mnemonicParsing="false" onAction="#add_doctor" prefHeight="25.0" prefWidth="79.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="ADD" />
+                                    <Button fx:id="add_doctor_btn" layoutX="714.0" layoutY="15.0" mnemonicParsing="false" onAction="#add_doctor" prefHeight="26.0" prefWidth="126.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Додати лікаря" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -325,22 +324,22 @@
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-1" stylesheets="@../../Design/MainFormDesign.css" text="Patients">
+                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-1" stylesheets="@../../Design/MainFormDesign.css" text="Пацієнти">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
                                     <TableView fx:id="patients_tableView" layoutX="13.0" layoutY="56.0" prefHeight="467.0" prefWidth="843.0" stylesheets="@../../Design/MainFormDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="56.0">
                                        <columns>
-                                          <TableColumn fx:id="patients_col_patientID" prefWidth="75.0" text="Patient ID" />
-                                          <TableColumn fx:id="patients_col_name" prefWidth="75.0" text="Name" />
-                                          <TableColumn fx:id="patients_col_gender" prefWidth="75.0" text="Gender" />
-                                          <TableColumn fx:id="patients_col_contactNumber" prefWidth="105.0" text="Contact Number" />
-                                          <TableColumn fx:id="patients_col_date" prefWidth="73.0" text="Date" />
-                                          <TableColumn fx:id="patients_col_dateModify" prefWidth="92.0" text="Date Modify" />
-                                          <TableColumn fx:id="patients_col_dateDelete" prefWidth="76.0" text="Date Delete" />
-                                          <TableColumn fx:id="patients_col_status" prefWidth="69.0" text="Status" />
-                                          <TableColumn fx:id="patients_col_action" prefWidth="93.0" text="Action" />
+                                          <TableColumn fx:id="patients_col_patientID" prefWidth="75.0" text="Пацієнт ID" />
+                                          <TableColumn fx:id="patients_col_name" prefWidth="75.0" text="Ім'я" />
+                                          <TableColumn fx:id="patients_col_gender" prefWidth="75.0" text="Стать" />
+                                          <TableColumn fx:id="patients_col_contactNumber" prefWidth="105.0" text="Номер телефону" />
+                                          <TableColumn fx:id="patients_col_date" prefWidth="79.0" text="Дата" />
+                                          <TableColumn fx:id="patients_col_dateModify" prefWidth="105.0" text="Дата зміни" />
+                                          <TableColumn fx:id="patients_col_dateDelete" prefWidth="102.0" text="Дата видалення" />
+                                          <TableColumn fx:id="patients_col_status" prefWidth="69.0" text="Статус" />
+                                          <TableColumn fx:id="patients_col_action" prefWidth="93.0" text="Дія" />
                                        </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -359,24 +358,24 @@
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-1" stylesheets="@../../Design/MainFormDesign.css" text="Appointments">
+                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-1" stylesheets="@../../Design/MainFormDesign.css" text="Призначення">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
                                     <TableView fx:id="appointments_tableView" layoutX="13.0" layoutY="56.0" prefHeight="467.0" prefWidth="843.0" stylesheets="@../../Design/MainFormDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="56.0">
                                        <columns>
-                                          <TableColumn fx:id="appointments_appointmentID" prefWidth="65.0" text="Appointment ID" />
-                                          <TableColumn fx:id="appointments_patientID" prefWidth="110.0" text="PatientID" />
-                                          <TableColumn fx:id="appointments_name" prefWidth="110.0" text="Name" />
-                                          <TableColumn fx:id="appointments_gender" prefWidth="70.0" text="Gender" />
-                                          <TableColumn fx:id="appointments_contactNumber" prefWidth="85.0" text="Contact" />
-                                          <TableColumn fx:id="appointments_description" prefWidth="109.0" text="Description" />
-                                          <TableColumn fx:id="appointments_date" prefWidth="73.0" text="Date" />
-                                          <TableColumn fx:id="appointments_dateModify" prefWidth="92.0" text="Date Modify" />
-                                          <TableColumn fx:id="appointments_dateDelete" prefWidth="76.0" text="Date Delete" />
-                                          <TableColumn fx:id="appointments_status" prefWidth="81.0" text="Status" />
-                                          <TableColumn fx:id="appointments_action" prefWidth="81.0" text="Action" />
+                                          <TableColumn fx:id="appointments_appointmentID" prefWidth="65.0" text="ID" />
+                                          <TableColumn fx:id="appointments_patientID" prefWidth="110.0" text="ПацієнтID" />
+                                          <TableColumn fx:id="appointments_name" prefWidth="110.0" text="Ім'я" />
+                                          <TableColumn fx:id="appointments_gender" prefWidth="70.0" text="Стать" />
+                                          <TableColumn fx:id="appointments_contactNumber" prefWidth="85.0" text="Номер тел." />
+                                          <TableColumn fx:id="appointments_description" prefWidth="109.0" text="Опис" />
+                                          <TableColumn fx:id="appointments_date" prefWidth="73.0" text="Дата" />
+                                          <TableColumn fx:id="appointments_dateModify" prefWidth="92.0" text="Дата зміни" />
+                                          <TableColumn fx:id="appointments_dateDelete" prefWidth="76.0" text="Дата вид." />
+                                          <TableColumn fx:id="appointments_status" prefWidth="81.0" text="Статус" />
+                                          <TableColumn fx:id="appointments_action" prefWidth="81.0" text="Дія" />
                                        </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -396,43 +395,43 @@
                                  </styleClass>
                                  <children>
                                     <Circle fx:id="profile_circle" fill="#3c434a" layoutX="137.0" layoutY="95.0" radius="81.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Button fx:id="profile_importBtn" layoutX="62.0" layoutY="184.0" mnemonicParsing="false" onAction="#profileInsertImage" prefHeight="30.0" prefWidth="150.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Import" />
-                                    <Label layoutX="62.0" layoutY="254.0" text="Admin ID:">
+                                    <Button fx:id="profile_importBtn" layoutX="62.0" layoutY="184.0" mnemonicParsing="false" onAction="#profileInsertImage" prefHeight="30.0" prefWidth="150.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Завантажити" />
+                                    <Label layoutX="93.0" layoutY="254.0" text="ID:">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="profile_label_adminIO" layoutX="126.0" layoutY="254.0" prefHeight="19.0" prefWidth="135.0" text="Admin ID:">
+                                    <Label fx:id="profile_label_adminIO" layoutX="126.0" layoutY="254.0" prefHeight="19.0" prefWidth="135.0">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="60.0" layoutY="282.0" text="Username:">
+                                    <Label layoutX="82.0" layoutY="282.0" text="Ім'я:">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="profile_label_name" layoutX="126.0" layoutY="282.0" prefHeight="19.0" prefWidth="135.0" text="Admin ID:">
+                                    <Label fx:id="profile_label_name" layoutX="126.0" layoutY="282.0" prefHeight="19.0" prefWidth="135.0">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="35.0" layoutY="312.0" text="Email Address:">
+                                    <Label layoutX="76.0" layoutY="312.0" text="Email:">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="profile_label_email" layoutX="126.0" layoutY="312.0" prefHeight="19.0" prefWidth="135.0" text="Admin ID:">
+                                    <Label fx:id="profile_label_email" layoutX="126.0" layoutY="312.0" prefHeight="19.0" prefWidth="135.0">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="38.0" layoutY="340.0" text="Date Created:">
+                                    <Label layoutX="14.0" layoutY="340.0" text="Дата створення:">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="profile_label_dateCreated" layoutX="126.0" layoutY="340.0" prefHeight="19.0" prefWidth="135.0" text="Admin ID:">
+                                    <Label fx:id="profile_label_dateCreated" layoutX="126.0" layoutY="340.0" prefHeight="19.0" prefWidth="135.0">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
@@ -446,42 +445,42 @@
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-1" stylesheets="@../../Design/PageDesign.css" text="Edit Profile">
+                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-1" stylesheets="@../../Design/PageDesign.css" text="Редагування">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
                                     </Label>
-                                    <FontAwesomeIcon glyphName="EDIT" layoutX="124.0" layoutY="37.0" size="2em" />
-                                    <Label layoutX="115.0" layoutY="98.0" text="Admin ID:">
+                                    <FontAwesomeIcon glyphName="EDIT" layoutX="143.0" layoutY="39.0" size="2em" text="" />
+                                    <Label layoutX="158.0" layoutY="98.0" text="ID:">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="profile_adminID" layoutX="189.0" layoutY="96.0" prefHeight="25.0" prefWidth="183.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="193.0" AnchorPane.topAnchor="96.0" />
-                                    <Label layoutX="113.0" layoutY="138.0" text="Username:">
+                                    <TextField fx:id="profile_adminID" disable="true" layoutX="189.0" layoutY="96.0" prefHeight="25.0" prefWidth="183.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="193.0" AnchorPane.topAnchor="96.0" />
+                                    <Label layoutX="146.0" layoutY="138.0" text="Ім'я:">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
                                     <TextField fx:id="profile_username" layoutX="189.0" layoutY="136.0" prefHeight="25.0" prefWidth="306.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="136.0" />
-                                    <Label layoutX="88.0" layoutY="176.0" text="Email Address:">
+                                    <Label layoutX="136.0" layoutY="176.0" text="Email:">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
                                     <TextField fx:id="profile_email" layoutX="189.0" layoutY="174.0" prefHeight="25.0" prefWidth="307.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="174.0" />
-                                    <Label layoutX="129.0" layoutY="212.0" text="Gender:">
+                                    <Label layoutX="138.0" layoutY="211.0" text="Стать:">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="profile_status" layoutX="189.0" layoutY="210.0" prefWidth="150.0" promptText="Choose..." styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="226.0" AnchorPane.topAnchor="210.0" />
+                                    <ComboBox fx:id="profile_status" layoutX="189.0" layoutY="210.0" prefWidth="150.0" promptText="Вибрати" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="226.0" AnchorPane.topAnchor="210.0" />
                                     <FontAwesomeIcon glyphName="COGS" layoutX="293.0" layoutY="478.0" opacity="0.23" size="20em" AnchorPane.bottomAnchor="14.714279174804688" AnchorPane.rightAnchor="14.857147216796875" />
-                                    <Button fx:id="profile_updateBtn" layoutX="215.0" layoutY="292.0" mnemonicParsing="false" onAction="#profileUpdateBtn" prefHeight="40.0" prefWidth="156.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Update" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="194.0" AnchorPane.topAnchor="292.0" />
+                                    <Button fx:id="profile_updateBtn" layoutX="215.0" layoutY="292.0" mnemonicParsing="false" onAction="#profileUpdateBtn" prefHeight="40.0" prefWidth="156.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Оновити" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="194.0" AnchorPane.topAnchor="292.0" />
                                  </children>
                               </AnchorPane>
                            </children></AnchorPane>
-                        <AnchorPane fx:id="add_patient_form" prefHeight="560.0" prefWidth="886.0">
+                        <AnchorPane fx:id="add_patient_form" prefHeight="560.0" prefWidth="886.0" visible="false">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="13.0" prefHeight="534.0" prefWidth="510.0" stylesheets="@../../Design/PageDesign.css" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="362.0" AnchorPane.topAnchor="13.0">
                                  <styleClass>
@@ -490,25 +489,25 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Patient Information">
+                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Інформація про пацієнта">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="25.0" layoutY="56.0" text="Patient ID:" />
+                                    <Label layoutX="25.0" layoutY="56.0" text="Пацієнт ID:" />
                                     <TextField fx:id="patients_patientID" layoutX="25.0" layoutY="73.0" prefHeight="25.0" prefWidth="439.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="73.0" />
-                                    <Label layoutX="25.0" layoutY="112.0" text="Patient's Name:" />
+                                    <Label layoutX="25.0" layoutY="112.0" text="Ім'я пацієнта:" />
                                     <TextField fx:id="patients_patientName" layoutX="25.0" layoutY="129.0" prefHeight="25.0" prefWidth="439.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="129.0" />
                                     <Label layoutX="26.0" layoutY="168.0" text="Gender:" />
-                                    <ComboBox fx:id="patients_gender" layoutX="26.0" layoutY="185.0" prefHeight="25.0" prefWidth="355.0" promptText="Select your Gender" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="185.0" />
-                                    <Label layoutX="25.0" layoutY="225.0" text="Mobile Number:" />
+                                    <ComboBox fx:id="patients_gender" layoutX="26.0" layoutY="185.0" prefHeight="25.0" prefWidth="355.0" promptText="Вибрати" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="185.0" />
+                                    <Label layoutX="25.0" layoutY="225.0" text="Номер телефону:" />
                                     <TextField fx:id="patients_mobileNumber" layoutX="25.0" layoutY="242.0" prefHeight="25.0" prefWidth="357.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="128.0" AnchorPane.topAnchor="242.0" />
-                                    <Label layoutX="25.0" layoutY="340.0" text="Address:" />
+                                    <Label layoutX="25.0" layoutY="340.0" text="Адреса:" />
                                     <TextArea fx:id="patients_address" layoutX="25.0" layoutY="357.0" prefHeight="89.0" prefWidth="439.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="357.0" />
                                     <Button fx:id="patients_confirmBtn" layoutX="98.0" layoutY="480.0" mnemonicParsing="false" onAction="#patientConfirmBtn" prefHeight="40.0" prefWidth="293.0" styleClass="btn-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Confirm" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="119.0" />
                                     <TextField fx:id="patients_doctorID" layoutX="27.0" layoutY="300.0" prefHeight="25.0" prefWidth="357.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
-                                    <Label layoutX="28.0" layoutY="277.0" text="Doctor ID" />
-                                    <Button fx:id="patients_confirmBtn1" layoutX="98.0" layoutY="480.0" mnemonicParsing="false" onAction="#patientConfirmBtn" prefHeight="40.0" prefWidth="293.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Confirm" />
+                                    <Label layoutX="28.0" layoutY="277.0" text="Лікар ID:" />
+                                    <Button fx:id="patients_confirmBtn1" layoutX="98.0" layoutY="480.0" mnemonicParsing="false" onAction="#patientConfirmBtn" prefHeight="40.0" prefWidth="293.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Підтвердити" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="539.0" layoutY="14.0" prefHeight="203.0" prefWidth="333.0" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
@@ -518,15 +517,15 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Patient Account">
+                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Акаунт пацієнта">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="39.0" layoutY="73.0" text="Patient ID:" />
+                                    <Label layoutX="39.0" layoutY="73.0" text="Пацієнт ID:" />
                                     <Label fx:id="patients_PA_patientID" layoutX="102.0" layoutY="73.0" prefHeight="17.0" prefWidth="98.0" />
-                                    <Label layoutX="21.0" layoutY="121.0" text="Date Created:" />
-                                    <Label fx:id="patients_PA_dateCreated" layoutX="102.0" layoutY="121.0" prefHeight="17.0" prefWidth="98.0" />
+                                    <Label layoutX="8.0" layoutY="102.0" text="Дата створення:" />
+                                    <Label fx:id="patients_PA_dateCreated" layoutX="102.0" layoutY="102.0" prefHeight="17.0" prefWidth="98.0" />
                                     <FontAwesomeIcon fill="#306090" glyphName="USER" layoutX="224.0" layoutY="144.0" opacity="0.31" size="10em" />
                                  </children>
                               </AnchorPane>
@@ -537,28 +536,28 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Patient Information">
+                                    <Label layoutX="14.0" layoutY="14.0" styleClass="header-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Інформація пацієнта">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="37.0" layoutY="64.0" text="Patient Name:" />
+                                    <Label layoutX="84.0" layoutY="64.0" text="Ім'я:" />
                                     <Label fx:id="patients_PI_patientName" layoutX="117.0" layoutY="64.0" prefHeight="17.0" prefWidth="98.0" />
-                                    <Label layoutX="70.0" layoutY="93.0" text="Gender:" />
+                                    <Label layoutX="76.0" layoutY="93.0" text="Стать:" />
                                     <Label fx:id="patients_PI_gender" layoutX="117.0" layoutY="93.0" prefHeight="17.0" prefWidth="98.0" />
-                                    <Label layoutX="27.0" layoutY="126.0" text="Mobile Number:" />
+                                    <Label layoutX="15.0" layoutY="126.0" prefHeight="17.0" prefWidth="102.0" text="Номер телефону:" />
                                     <Label fx:id="patients_PI_mobileNumber" layoutX="117.0" layoutY="126.0" prefHeight="17.0" prefWidth="98.0" />
-                                    <Label layoutX="68.0" layoutY="155.0" text="Address:" />
+                                    <Label layoutX="68.0" layoutY="155.0" text="Адреса:" />
                                     <Label fx:id="patients_PI_address" layoutX="117.0" layoutY="155.0" prefHeight="17.0" prefWidth="98.0" />
                                     <FontAwesomeIcon fill="#306090" glyphName="CLIPBOARD" layoutX="199.0" layoutY="275.0" opacity="0.3" size="10em" strokeWidth="0.0" AnchorPane.bottomAnchor="19.857139587402344" AnchorPane.rightAnchor="14.0" />
-                                    <Button fx:id="patients_PI_addBtn" layoutX="44.0" layoutY="262.0" mnemonicParsing="false" onAction="#patientAddBtn" prefHeight="36.0" prefWidth="97.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Add" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="44.0">
+                                    <Button fx:id="patients_PI_addBtn" layoutX="44.0" layoutY="262.0" mnemonicParsing="false" onAction="#patientAddBtn" prefHeight="36.0" prefWidth="97.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Додати" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="44.0">
                                        <graphic>
                                           <FontAwesomeIcon fill="WHITE" glyphName="PLUS" />
                                        </graphic>
                                     </Button>
-                                    <Label layoutX="58.0" layoutY="187.0" text="Doctor ID:" />
+                                    <Label layoutX="61.0" layoutY="187.0" text="Лікар ID:" />
                                     <Label fx:id="patients_PI_doctorID" layoutX="118.0" layoutY="187.0" prefHeight="17.0" prefWidth="98.0" />
-                                    <Label fx:id="patients_PI_doctorID" layoutX="129.0" layoutY="187.0" prefHeight="17.0" prefWidth="98.0" />
+                                    <Label fx:id="patients_PI_doctorID" layoutX="118.0" layoutY="187.0" prefHeight="17.0" prefWidth="98.0" />
                                  </children>
                               </AnchorPane>
                            </children>

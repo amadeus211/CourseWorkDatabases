@@ -7,6 +7,6 @@ package HospitalSystem.Data;
 
 public class Users {
 
-    public static String[] user = {"Admin Portal", "Doctor Portal"};
+    public static String[] user = {"Адміністратор", "Лікар"};
 
 }
