@@ -45,11 +45,6 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class AdminMainFormController implements Initializable {
-
-    // GIVE NAME OF ALL COMPONENTS
-    @FXML
-    private AnchorPane main_form;
-
     @FXML
     private Label patients_PA_dateCreated;
 
@@ -57,13 +52,7 @@ public class AdminMainFormController implements Initializable {
     private Label patients_PI_doctorID;
 
     @FXML
-    private Label patients_PA_password;
-
-    @FXML
     private Label patients_PA_patientID;
-
-    @FXML
-    private Button patients_PI_addBtn;
 
     @FXML
     private Label patients_PI_address;
@@ -76,9 +65,6 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     private Label patients_PI_patientName;
-
-    @FXML
-    private Button patients_PI_recordBtn;
 
     @FXML
     private Circle top_profile;
@@ -105,9 +91,6 @@ public class AdminMainFormController implements Initializable {
     private Button add_patient;
 
     @FXML
-    private Button add_doctor_btn;
-
-    @FXML
     private Button doctors_btn;
 
     @FXML
@@ -117,16 +100,10 @@ public class AdminMainFormController implements Initializable {
     private Button appointments_btn;
 
     @FXML
-    private Button payment_btn;
-
-    @FXML
     private Button profile_btn;
 
     @FXML
     private AnchorPane dashboard_form;
-
-    @FXML
-    private Button patients_confirmBtn;
 
     @FXML
     private AnchorPane patients_form;
@@ -135,13 +112,13 @@ public class AdminMainFormController implements Initializable {
     private ComboBox<?> patients_gender;
 
     @FXML
+    private ComboBox<?> patients_doctor;
+
+    @FXML
     private TextField patients_mobileNumber;
 
     @FXML
     private TextField patients_doctorID;
-
-    @FXML
-    private TextField patients_password;
 
     @FXML
     private TextField patients_patientID;
@@ -149,9 +126,6 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     private Button logout_btn;
-
-    @FXML
-    private Label dashboard_IP;
 
     @FXML
     private Label dashboard_TP;
@@ -172,16 +146,7 @@ public class AdminMainFormController implements Initializable {
     private TableView<DoctorData> dashboad_tableView;
 
     @FXML
-    private TableColumn<AppointmentData, String> dashboad_col_appointmentID;
-
-    @FXML
     private TableColumn<AppointmentData, String> dashboad_col_name;
-
-    @FXML
-    private TableColumn<AppointmentData, String> dashboad_col_description;
-
-    @FXML
-    private TableColumn<AppointmentData, String> dashboad_col_appointmentDate;
 
     @FXML
     private TableColumn<AppointmentData, String> dashboad_col_status;
@@ -201,88 +166,10 @@ public class AdminMainFormController implements Initializable {
     private TableView<AppointmentData> appointments_tableView;
 
     @FXML
-    private TableColumn<AppointmentData, String> appointments_col_appointmentID;
-
-    @FXML
-    private TableColumn<AppointmentData, String> appointments_col_name;
-
-    @FXML
-    private TableColumn<AppointmentData, String> appointments_col_gender;
-
-    @FXML
-    private TableColumn<AppointmentData, String> appointments_col_contactNumber;
-
-    @FXML
-    private TableColumn<AppointmentData, String> appointments_col_description;
-
-    @FXML
-    private TableColumn<AppointmentData, String> appointments_col_date;
-
-    @FXML
-    private TableColumn<AppointmentData, String> appointments_col_dateModify;
-
-    @FXML
-    private TableColumn<AppointmentData, String> appointments_col_dateDelete;
-
-    @FXML
-    private TableColumn<AppointmentData, String> appointments_col_status;
-
-    @FXML
-    private TableColumn<AppointmentData, String> appointments_col_action;
-
-    @FXML
-    private TextField appointment_appointmentID;
-
-    @FXML
-    private TextField appointment_name;
-
-    @FXML
-    private ComboBox<String> appointment_gender;
-
-    @FXML
-    private TextField appointment_description;
-
-    @FXML
-    private TextField appointment_diagnosis;
-
-    @FXML
-    private TextField appointment_treatment;
-
-    @FXML
-    private TextField appointment_mobileNumber;
-
-    @FXML
-    private TextArea appointment_address;
-
-    @FXML
-    private ComboBox<String> appointment_status;
-
-    @FXML
-    private DatePicker appointment_schedule;
-
-    @FXML
-    private Button appointment_insertBtn;
-
-    @FXML
-    private Button appointment_updateBtn;
-
-    @FXML
-    private Button appointment_clearBtn;
-
-    @FXML
-    private Button appointment_deleteBtn;
-
-    @FXML
     private AnchorPane profile_form;
 
     @FXML
-    private Circle profile_circleImage;
-
-    @FXML
     private Button profile_importBtn;
-
-    @FXML
-    private Label profile_label_doctorID;
 
     @FXML
     private Label profile_label_name;
@@ -294,32 +181,10 @@ public class AdminMainFormController implements Initializable {
     private Label profile_label_dateCreated;
 
     @FXML
-    private TextField profile_doctorID;
-
-    @FXML
-    private TextField profile_name;
-
-    @FXML
     private TextField profile_email;
 
     @FXML
-    private ComboBox<String> profile_gender;
-
-    @FXML
-    private TextField profile_mobileNumber;
-
-    @FXML
-    private TextArea profile_address;
-
-    @FXML
-    private ComboBox<String> profile_specialized;
-
-    @FXML
     private ComboBox<String> profile_status;
-
-    @FXML
-    private Button profile_updateBtn;
-
 
     @FXML
     private TableView<PatientsData> patients_tableView;
@@ -336,8 +201,6 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     private TableColumn<DoctorData, String> dashboad_col_specialized;
-
-
 
     @FXML
     private AnchorPane doctors_form;
@@ -383,9 +246,6 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     private TableColumn<PatientsData, String> patients_col_contactNumber;
-
-    @FXML
-    private TableColumn<PatientsData, String> patients_col_description;
 
     @FXML
     private TableColumn<PatientsData, String> patients_col_date;
@@ -435,60 +295,17 @@ public class AdminMainFormController implements Initializable {
     @FXML
     private TableColumn<AppointmentData, String> appointments_action;
 
-
     @FXML
     private Circle profile_circle;
 
     @FXML
     private Label profile_label_adminIO;
 
-
     @FXML
     private TextField profile_adminID;
 
     @FXML
     private TextField profile_username;
-
-    @FXML
-    private TableView<PatientsData> payment_tableView;
-
-    @FXML
-    private TableColumn<PatientsData, String> payment_col_patientID;
-
-    @FXML
-    private TableColumn<PatientsData, String> payment_col_name;
-
-    @FXML
-    private TableColumn<PatientsData, String> payment_col_gender;
-
-    @FXML
-    private TableColumn<PatientsData, String> payment_col_diagnosis;
-
-    @FXML
-    private TableColumn<PatientsData, String> payment_col_doctor;
-
-    @FXML
-    private TableColumn<PatientsData, String> payment_col_date;
-
-    @FXML
-    private Circle payment_circle;
-
-    @FXML
-    private Button payment_checkoutBtn;
-
-    @FXML
-    private Label payment_patientID;
-
-    @FXML
-    private Label payment_name;
-
-    @FXML
-    private Label payment_doctor;
-
-    @FXML
-    private Label payment_date;
-
-//    DATABASE TOOLS
     private Connection connect;
     private PreparedStatement prepare;
     private Statement statement;
@@ -500,7 +317,7 @@ public class AdminMainFormController implements Initializable {
 
     public void dashboardAD() {
 
-        String sql = "SELECT COUNT(id) FROM doctor WHERE status = 'Active' AND delete_date IS NULL";
+        String sql = "SELECT COUNT(id) FROM doctor WHERE status = 'Активний' AND delete_date IS NULL";
 
         connect = Database.connectDB();
 
@@ -546,7 +363,7 @@ public class AdminMainFormController implements Initializable {
 
     public void dashboardAP() {
 
-        String sql = "SELECT COUNT(id) FROM patient WHERE date_delete IS NULL AND status = 'Active'";
+        String sql = "SELECT COUNT(id) FROM patient WHERE date_delete IS NULL AND status = 'Активний'";
 
         connect = Database.connectDB();
 
@@ -605,7 +422,6 @@ public class AdminMainFormController implements Initializable {
             DoctorData dData;
 
             while (result.next()) {
-//                DoctorData(String doctorID, String fullName, String specialized, String status)
                 dData = new DoctorData(result.getString("doctor_id"),
                         result.getString("full_name"), result.getString("specialized"),
                         result.getString("status"));
@@ -693,9 +509,6 @@ public class AdminMainFormController implements Initializable {
             result = prepare.executeQuery();
             DoctorData dData;
             while (result.next()) {
-//                DoctorData(Integer id, String doctorID, String password, String fullName,
-//            String email, String gender, Long mobileNumber, String specialized, String address,
-//            String image, Date date, Date dateModify, Date dateDelete, String status)
                 dData = new DoctorData(result.getInt("id"), result.getString("doctor_id"),
                         result.getString("password"), result.getString("full_name"),
                         result.getString("email"), result.getString("gender"),
@@ -753,8 +566,8 @@ public class AdminMainFormController implements Initializable {
                         setGraphic(null);
                         setText(null);
                     } else {
-                        Button editButton = new Button("Edit");
-                        Button removeButton = new Button("Delete");
+                        Button editButton = new Button("Редагувати");
+                        Button removeButton = new Button("Видалити");
 
                         editButton.setStyle("-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);\n"
                                 + "    -fx-cursor: hand;\n"
@@ -775,7 +588,7 @@ public class AdminMainFormController implements Initializable {
                                 int num = doctors_tableView.getSelectionModel().getSelectedIndex();
 
                                 if ((num - 1) < -1) {
-                                    alert.errorMessage("Please select item first");
+                                    alert.errorMessage("Будь ласка, спочатку виберіть запис");
                                     return;
                                 }
 
@@ -790,7 +603,6 @@ public class AdminMainFormController implements Initializable {
                                 Data.temp_doctorStatus = pData.getStatus();
                                 Data.temp_doctorImagePath = pData.getImage();
 
-                                // NOW LETS CREATE FXML FOR EDIT PATIENT FORM
                                 Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/EditDoctorForm.fxml"));
                                 Stage stage = new Stage();
 
@@ -807,15 +619,15 @@ public class AdminMainFormController implements Initializable {
                             int num = doctors_tableView.getSelectionModel().getSelectedIndex();
 
                             if ((num - 1) < -1) {
-                                alert.errorMessage("Please select item first");
+                                alert.errorMessage("Будь ласка, спочатку виберіть запис");
                                 return;
                             }
 
-                            String deleteData = "UPDATE doctor SET delete_date = ?, status = 'Inactive' WHERE doctor_id = '"
+                            String deleteData = "UPDATE doctor SET delete_date = ?, status = 'Неактивний' WHERE doctor_id = '"
                                     + pData.getDoctorID() + "'";
 
                             try {
-                                if (alert.confirmationMessage("Are you sure you want to delete Doctor ID: " + pData.getDoctorID() + "?")) {
+                                if (alert.confirmationMessage("Ви впевнені, що хочете видалити лікаря з ID: " + pData.getDoctorID() + "?")) {
                                     prepare = connect.prepareStatement(deleteData);
                                     Date date = new Date();
                                     java.sql.Date sqlDate = new java.sql.Date(date.getTime());
@@ -824,7 +636,7 @@ public class AdminMainFormController implements Initializable {
                                     prepare.executeUpdate();
 
                                     doctorGetData();
-                                    alert.successMessage("Deleted Successfully!");
+                                    alert.successMessage("Видалення успішне!");
 
                                 }
                             } catch (Exception e) {
@@ -864,17 +676,12 @@ public class AdminMainFormController implements Initializable {
             PatientsData pData;
 
             while (result.next()) {
-//                PatientsData(Integer id, Integer patientID, String password, String fullName, Long mobileNumber
-//            , String address, String image, String description, String diagnosis, String treatment
-//            , String doctor, String specialized, Date date, Date dateModify
-//            , Date dateDelete, String status)
                 pData = new PatientsData(result.getInt("id"), result.getInt("patient_id"),
                         result.getString("full_name"),
                         result.getLong("mobile_number"), result.getString("gender"),
                         result.getString("address"),
-                        result.getString("image"), result.getString("description"),
-                        result.getString("diagnosis"),
-                        result.getString("treatment"), result.getString("doctor"),
+                        result.getString("image"),
+                        result.getString("doctor"),
                         result.getString("specialized"), result.getDate("date"),
                         result.getDate("date_modify"), result.getDate("date_delete"),
                         result.getString("status"));
@@ -919,8 +726,8 @@ public class AdminMainFormController implements Initializable {
                         setGraphic(null);
                         setText(null);
                     } else {
-                        Button editButton = new Button("Edit");
-                        Button removeButton = new Button("Delete");
+                        Button editButton = new Button("Редагувати");
+                        Button removeButton = new Button("Видалити");
 
                         editButton.setStyle("-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);\n"
                                 + "    -fx-cursor: hand;\n"
@@ -941,7 +748,7 @@ public class AdminMainFormController implements Initializable {
                                 int num = patients_tableView.getSelectionModel().getSelectedIndex();
 
                                 if ((num - 1) < -1) {
-                                    alert.errorMessage("Please select item first");
+                                    alert.errorMessage("Будь ласка, спочатку виберіть запис");
                                     return;
                                 }
 
@@ -952,7 +759,6 @@ public class AdminMainFormController implements Initializable {
                                 Data.temp_number = pData.getMobileNumber();
                                 Data.temp_status = pData.getStatus();
 
-                                // NOW LETS CREATE FXML FOR EDIT PATIENT FORM
                                 Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/EditPatientForm.fxml"));
                                 Stage stage = new Stage();
 
@@ -969,15 +775,15 @@ public class AdminMainFormController implements Initializable {
                             int num = patients_tableView.getSelectionModel().getSelectedIndex();
 
                             if ((num - 1) < -1) {
-                                alert.errorMessage("Please select item first");
+                                alert.errorMessage("Будь ласка, спочатку виберіть запис");
                                 return;
                             }
 
-                            String deleteData = "UPDATE patient SET date_delete = ?, status = 'Inactive' WHERE patient_id = '"
+                            String deleteData = "UPDATE patient SET date_delete = ?, status = 'Неактивний' WHERE patient_id = '"
                                     + pData.getPatientID() + "'";
 
                             try {
-                                if (alert.confirmationMessage("Are you sure you want to delete Patient ID: " + pData.getPatientID() + "?")) {
+                                if (alert.confirmationMessage("Ви впевнені, що хочете видалити пацієнта з ID: " + pData.getPatientID() + "?")) {
                                     prepare = connect.prepareStatement(deleteData);
                                     Date date = new Date();
                                     java.sql.Date sqlDate = new java.sql.Date(date.getTime());
@@ -986,7 +792,7 @@ public class AdminMainFormController implements Initializable {
                                     prepare.executeUpdate();
 
                                     doctorGetData();
-                                    alert.successMessage("Deleted Successfully!");
+                                    alert.successMessage("Видалення успішне!");
 
                                 }
                             } catch (Exception e) {
@@ -1025,9 +831,6 @@ public class AdminMainFormController implements Initializable {
 
             AppointmentData aData;
             while (result.next()) {
-//            AppointmentData(Integer id, Integer appointmentID, String name, String gender,
-//            Long mobileNumber, String description, String diagnosis, String treatment, String address,
-//            Date date, Date dateModify, Date dateDelete, String status, Date schedule)
                 aData = new AppointmentData(result.getInt("id"), result.getInt("appointment_id"), result.getLong("patient_id"),
                         result.getString("name"), result.getString("gender"), result.getLong("mobile_number"),
                         result.getString("description"), result.getString("diagnosis"),
@@ -1079,8 +882,8 @@ public class AdminMainFormController implements Initializable {
                         setGraphic(null);
                         setText(null);
                     } else {
-                        Button editButton = new Button("Edit");
-                        Button removeButton = new Button("Delete");
+                        Button editButton = new Button("Редагувати");
+                        Button removeButton = new Button("Видалити");
 
                         editButton.setStyle("-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);\n"
                                 + "    -fx-cursor: hand;\n"
@@ -1101,7 +904,7 @@ public class AdminMainFormController implements Initializable {
                                 int num = appointments_tableView.getSelectionModel().getSelectedIndex();
 
                                 if ((num - 1) < -1) {
-                                    alert.errorMessage("Please select item first");
+                                    alert.errorMessage("Будь ласка, спочатку виберіть запис");
                                     return;
                                 }
 
@@ -1117,7 +920,6 @@ public class AdminMainFormController implements Initializable {
                                 Data.temp_appSpecialized = aData.getSpecialized();
                                 Data.temp_appStatus = aData.getStatus();
 
-                                // NOW LETS CREATE FXML FOR EDIT APPOINTMENT FORM
                                 Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/EditAppointmentForm.fxml"));
                                 Stage stage = new Stage();
 
@@ -1134,7 +936,7 @@ public class AdminMainFormController implements Initializable {
                             int num = appointments_tableView.getSelectionModel().getSelectedIndex();
 
                             if ((num - 1) < -1) {
-                                alert.errorMessage("Please select item first");
+                                alert.errorMessage("Будь ласка, спочатку виберіть запис");
                                 return;
                             }
 
@@ -1142,7 +944,7 @@ public class AdminMainFormController implements Initializable {
                                     + aData.getAppointmentID() + "'";
 
                             try {
-                                if (alert.confirmationMessage("Are you sure you want to delete Appointment ID: " + aData.getAppointmentID() + "?")) {
+                                if (alert.confirmationMessage("Ви впевнені, що хочете видалити призначення з ID: " + aData.getAppointmentID() + "?")) {
                                     prepare = connect.prepareStatement(deleteData);
                                     Date date = new Date();
                                     java.sql.Date sqlDate = new java.sql.Date(date.getTime());
@@ -1151,7 +953,7 @@ public class AdminMainFormController implements Initializable {
                                     prepare.executeUpdate();
 
                                     doctorGetData();
-                                    alert.successMessage("Deleted Successfully!");
+                                    alert.successMessage("Видалення успішне!");
 
                                 }
                             } catch (Exception e) {
@@ -1189,9 +991,7 @@ public class AdminMainFormController implements Initializable {
 
             PatientsData pData;
             while (result.next()) {
-//                (Integer id, Integer patientID, String fullName, String gender
-//            , String description, String diagnosis, String treatment
-//            , String doctor, String image, Date date)
+
                 pData = new PatientsData(result.getInt("id"),
                         result.getInt("patient_id"), result.getString("full_name"),
                         result.getString("gender"), result.getString("description"),
@@ -1206,18 +1006,13 @@ public class AdminMainFormController implements Initializable {
         return listData;
     }
 
-
-
-
-
-
     public void profileUpdateBtn() {
         connect = Database.connectDB();
         if (profile_adminID.getText().isEmpty()
                 || profile_username.getText().isEmpty()
                 || profile_email.getText().isEmpty()
                 || profile_status.getSelectionModel().getSelectedItem() == null) {
-            alert.errorMessage("Please fill all blank fields");
+            alert.errorMessage("Будь ласка, заповніть усі порожні поля");
         } else {
             if (Data.path == null || "".equals(Data.path)) {
                 String updateData = "UPDATE admin SET username = ?, email = ?, gender = ? "
@@ -1233,7 +1028,7 @@ public class AdminMainFormController implements Initializable {
 
                     profileDisplayInfo();
 
-                    alert.successMessage("Updated Successfully");
+                    alert.successMessage("Оновлення успішне!");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -1260,7 +1055,7 @@ public class AdminMainFormController implements Initializable {
                     prepare.executeUpdate();
                     profileDisplayInfo();
                     profileDisplayImages();
-                    alert.successMessage("Updated Successfully!");
+                    alert.successMessage("Оновлення успішне!");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -1351,7 +1146,6 @@ public class AdminMainFormController implements Initializable {
         profile_status.setItems(listData);
     }
 
-    // MAKE SURE THAT THE ID OF EVERY COMPONENTS TO THE OTHER IS DIFFERENT
     public void switchForm(ActionEvent event) {
 
         if (event.getSource() == dashboard_btn) {
@@ -1378,8 +1172,6 @@ public class AdminMainFormController implements Initializable {
             profile_form.setVisible(false);
             add_patient_form.setVisible(false);
 
-
-            // TO DISPLAY IMMEDIATELY THE DATA OF DOCTORS IN TABLEVIEW
             doctorDisplayData();
             doctorActionButton();
 
@@ -1392,8 +1184,6 @@ public class AdminMainFormController implements Initializable {
             profile_form.setVisible(false);
             add_patient_form.setVisible(false);
 
-
-            // TO DISPLAY IMMEDIATELY THE DATA OF PATIENTS IN TABLEVIEW
             patientDisplayData();
             patientActionButton();
             current_form.setText("Вікно пацієнтів");
@@ -1405,8 +1195,6 @@ public class AdminMainFormController implements Initializable {
             profile_form.setVisible(false);
             add_patient_form.setVisible(false);
 
-
-            // TO DISPLAY IMMEDIATELY THE DATA OF APPOINTMENTS IN TABLEVIEW
             appointmentDisplayData();
 
             current_form.setText("Вікно призначень");
@@ -1418,7 +1206,6 @@ public class AdminMainFormController implements Initializable {
             profile_form.setVisible(false);
             add_patient_form.setVisible(true);
 
-            // TO DISPLAY IMMEDIATELY THE DATA OF APPOINTMENTS IN TABLEVIEW
             appointmentDisplayData();
 
             current_form.setText("Вікно додавання пацієнтів");
@@ -1437,31 +1224,28 @@ public class AdminMainFormController implements Initializable {
             profileDisplayInfo();
             profileDisplayImages();
 
-            current_form.setText("Profile Form");
+            current_form.setText("Вікно налаштувань");
         }
 
     }
 
     public void patientConfirmBtn() {
 
-        // CHECK IF SOME OR ALL FIELDS ARE EMPTY
         if (patients_patientID.getText().isEmpty()
-                || patients_doctorID.getText().isEmpty()
+                || patients_doctor.getSelectionModel().getSelectedItem() == null
                 || patients_patientName.getText().isEmpty()
                 || patients_gender.getSelectionModel().getSelectedItem() == null
                 || patients_mobileNumber.getText().isEmpty()
                 || patients_address.getText().isEmpty()) {
-            alert.errorMessage("Please fill all blank fields");
+            alert.errorMessage("Будь ласка, заповніть усі порожні поля");
         } else {
             Date date = new Date();
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-            // TO DISPLAY THE DATA FROM PERSONAL ACCOUNT
             patients_PA_patientID.setText(patients_patientID.getText());
             patients_PA_dateCreated.setText(String.valueOf(sqlDate));
 
-            // TO DISPLAY THE DATA FROM PERSONAL INFORMATION
-            patients_PI_doctorID.setText(patients_doctorID.getText());
+            patients_PI_doctorID.setText((String) patients_doctor.getSelectionModel().getSelectedItem());
             patients_PI_patientName.setText(patients_patientName.getText());
             patients_PI_gender.setText((String) patients_gender.getSelectionModel().getSelectedItem());
             patients_PI_mobileNumber.setText(patients_mobileNumber.getText());
@@ -1479,7 +1263,7 @@ public class AdminMainFormController implements Initializable {
                 || patients_PI_gender.getText().isEmpty()
                 || patients_PI_mobileNumber.getText().isEmpty()
                 || patients_PI_address.getText().isEmpty()) {
-            alert.errorMessage("Something wenr wrong");
+            alert.errorMessage("Щось пішло не так");
         } else {
 
             Database.connectDB();
@@ -1496,13 +1280,12 @@ public class AdminMainFormController implements Initializable {
                 if (result.next()) {
                     doctorSpecialized = result.getString("specialized");
                 }
-                // CHECK IF THE PATIENT ID THAT THE DOCTORS WANT TO INSERT/ADD IS EXISTING ALREADY
                 String checkPatientID = "SELECT * FROM patient WHERE patient_id = '"
                         + patients_PA_patientID.getText() + "'";
                 statement = connect.createStatement();
                 result = statement.executeQuery(checkPatientID);
                 if (result.next()) {
-                    alert.errorMessage(patients_PA_patientID.getText() + " is already exist");
+                    alert.errorMessage(patients_PA_patientID.getText() + " вже існує");
                 } else {
                     String insertData = "INSERT INTO patient (patient_id, full_name, mobile_number, "
                             + "address, doctor, specialized, date, gender, "
@@ -1519,19 +1302,17 @@ public class AdminMainFormController implements Initializable {
                     prepare.setString(6, doctorSpecialized);
                     prepare.setString(7, "" + sqlDate);
                     prepare.setString(8, (String) patients_gender.getSelectionModel().getSelectedItem());
-                    prepare.setString(9, "Active");
+                    prepare.setString(9, "Активний");
 
                     prepare.executeUpdate();
 
-                    alert.successMessage("Added successfully!");
-                    // TO CLEAR ALL FIELDS AND SOME LABELS
+                    alert.successMessage("Додавання успішне!");
                     patientClearFields();
                 }
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
-// NOW, LETS TRY
         }
     }
 
@@ -1565,6 +1346,24 @@ public class AdminMainFormController implements Initializable {
 
     }
 
+    public void doctorList(){
+        String sql = "SELECT * FROM doctor WHERE delete_date IS NULL";
+
+        connect = Database.connectDB();
+
+        try{
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+            ObservableList listData = FXCollections.observableArrayList();
+            while(result.next()){
+                listData.add(result.getString("doctor_id"));
+            }
+
+            patients_doctor.setItems(listData);
+            //specializedList();
+        }catch(Exception e){e.printStackTrace();}
+    }
+
     public void displayAdminIDUsername() {
 
         String sql = "SELECT * FROM admin WHERE username = '"
@@ -1580,7 +1379,7 @@ public class AdminMainFormController implements Initializable {
             if (result.next()) {
                 nav_adminID.setText(result.getString("admin_id"));
                 String tempUsername = result.getString("username");
-                tempUsername = tempUsername.substring(0, 1).toUpperCase() + tempUsername.substring(1); // TO SET THE FIRST LETTER TO UPPER CASE
+                tempUsername = tempUsername.substring(0, 1).toUpperCase() + tempUsername.substring(1);
                 nav_username.setText(tempUsername);
                 top_username.setText(tempUsername);
             }
@@ -1594,14 +1393,13 @@ public class AdminMainFormController implements Initializable {
     public void logoutBtn() {
 
         try {
-            if (alert.confirmationMessage("Are you sure you want to logout?")) {
+            if (alert.confirmationMessage("Ви впевнені, що бажаєте вийти?")) {
                 Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/FXMLDocument.fxml"));
                 Stage stage = new Stage();
 
                 stage.setScene(new Scene(root));
                 stage.show();
 
-                // TO HIDE YOUR MAIN FORM
                 logout_btn.getScene().getWindow().hide();
             }
         } catch (Exception e) {
@@ -1619,7 +1417,7 @@ public class AdminMainFormController implements Initializable {
                 while (true) {
                     try {
 
-                        Thread.sleep(1000); // 1000 ms = 1s
+                        Thread.sleep(1000);
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -1639,7 +1437,6 @@ public class AdminMainFormController implements Initializable {
         runTime();
         displayAdminIDUsername();
 
-//        DASHBOARD
         dashboardAD();
         dashboardTP();
         dashboardAP();
@@ -1648,22 +1445,17 @@ public class AdminMainFormController implements Initializable {
         dashboardPatientDataChart();
         dashboardDoctorDataChart();
 
-        // TO DISPLAY IMMEDIATELY THE DATA OF DOCTORS IN TABLEVIEW
         doctorDisplayData();
         doctorActionButton();
 
-        // TO DISPLAY IMMEDIATELY THE DATA OF PATIENTS IN TABLEVIEW
         patientDisplayData();
         patientActionButton();
 
-        // TO DISPLAY IMMEDIATELY THE DATA OF APPOINTMENTS IN TABLEVIEW
         appointmentDisplayData();
         appointmentActionButton();
 
         patientGenderList();
-
-
-        // TO DISPLAY IMMEDIATELY THE DATA OF PAYMENT IN TABLEVIEW
+        doctorList();
 
         profileStatusList();
         profileDisplayInfo();
@@ -1671,8 +1463,3 @@ public class AdminMainFormController implements Initializable {
     }
 
 }
-
-
-// THATS IT FOR THESE VIDEOS, THANKS FOR WATCHING
-// SUBSCRIBE OUR CHANNEL FOR THE SUPPORT
-// THANK YOU!! :)))))))

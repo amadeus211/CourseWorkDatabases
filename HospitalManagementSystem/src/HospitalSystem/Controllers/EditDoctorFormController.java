@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package HospitalSystem.Controllers;
 
 import java.io.File;
@@ -68,12 +63,6 @@ public class EditDoctorFormController implements Initializable {
 
     @FXML
     private ComboBox<String> editDoctor_status;
-
-    @FXML
-    private Button editDoctor_updateBtn;
-
-    @FXML
-    private Button editDoctor_cancelBtn;
 
     private AlertMessage alert = new AlertMessage();
 
@@ -142,7 +131,7 @@ public class EditDoctorFormController implements Initializable {
                 || editDoctor_mobileNumber.getText().isEmpty()
                 || editDoctor_address.getText().isEmpty()
                 || editDoctor_status.getSelectionModel().getSelectedItem() == null) {
-            alert.errorMessage("Please fill all blank fields");
+            alert.errorMessage("Будь ласка, заповніть усі порожні поля");
         } else {
             Date date = new Date();
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
@@ -160,18 +149,18 @@ public class EditDoctorFormController implements Initializable {
                         + String.valueOf(sqlDate) + "' "
                         + "WHERE doctor_id = '" + editDoctor_doctorID.getText() + "'";
                 try {
-                    if (alert.confirmationMessage("Are you sure you want to Update Doctor ID: " + editDoctor_doctorID.getText() + "?")) {
+                    if (alert.confirmationMessage("Ви впевнені, що хочете оновити лікаря з ID: " + editDoctor_doctorID.getText() + "?")) {
                         prepare = connect.prepareStatement(updateData);
                         prepare.executeUpdate();
                     } else {
-                        alert.errorMessage("Cancelled.");
+                        alert.errorMessage("Скасовано.");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             } else {
                 try {
-                    if (alert.confirmationMessage("Are you sure you want to Update Doctor ID: "
+                    if (alert.confirmationMessage("Ви впевнені, що хочете оновити лікаря з ID: "
                             + editDoctor_doctorID.getText() + "?")) {
                         String path = Data.path;
                         path = path.replace("\\", "\\\\");
@@ -201,7 +190,7 @@ public class EditDoctorFormController implements Initializable {
                         prepare.executeUpdate();
 
                     } else {
-                        alert.errorMessage("Cancelled.");
+                        alert.errorMessage("Скасовано.");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

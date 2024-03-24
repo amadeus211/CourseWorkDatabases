@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package HospitalSystem.Controllers;
 
 import java.net.URL;
@@ -36,9 +31,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class FXMLDocumentController implements Initializable {
-
-    @FXML
-    private AnchorPane main_form;
 
     @FXML
     private AnchorPane login_form;
@@ -83,12 +75,8 @@ public class FXMLDocumentController implements Initializable {
     private CheckBox register_checkBox;
 
     @FXML
-    private Button register_signupBtn;
-
-    @FXML
     private Hyperlink register_loginHere;
 
-    //    DATABASE TOOLS
     private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;
@@ -124,26 +112,21 @@ public class FXMLDocumentController implements Initializable {
                 result = prepare.executeQuery();
 
                 if (result.next()) {
-                    // TO GET THE USERNAME
                     Data.admin_username = login_username.getText();
                     Data.admin_id = Integer.parseInt(result.getString("admin_id"));
 
-                    // IF CORRECT USERNAME AND PASSWORD
-                    alert.successMessage("Login Successfully!");
+                    alert.successMessage("Вхід успішний!");
 
-                    // LINK MAIN FORM FOR ADMIN
                     Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/AdminMainForm.fxml"));
                     Stage stage = new Stage();
 
-                    stage.setTitle("Hospital Management System | Admin Portal");
+                    stage.setTitle("Сторінка адміністратора");
                     stage.setScene(new Scene(root));
                     stage.show();
 
-                    // TO HIDE YOUR ADMIN PAGE (LOGIN FORM)
                     login_loginBtn.getScene().getWindow().hide();
                 } else {
-                    // IF WRONG USERNAME OR PASSWORD
-                    alert.errorMessage("Incorrect Username/Password");
+                    alert.errorMessage("Некоректий логін/пароль");
                 }
 
             } catch (Exception e) {
@@ -173,11 +156,9 @@ public class FXMLDocumentController implements Initializable {
         if (register_email.getText().isEmpty()
                 || register_username.getText().isEmpty()
                 || register_password.getText().isEmpty()) {
-            // LETS CREATE OUR ALERT MESSAGE
-            alert.errorMessage("Please fill all blank fields");
-        } else {
 
-            // WE WILL CHECK IF THE USERNAME THAT USER ENTERED IS ALREADY EXIST TO OUR DATABASE
+            alert.errorMessage("Будь ласка, заповніть усі порожні поля");
+        } else {
             String checkUsername = "SELECT * FROM admin WHERE username = '"
                     + register_username.getText() + "'";
 
@@ -199,11 +180,10 @@ public class FXMLDocumentController implements Initializable {
                 result = prepare.executeQuery();
 
                 if (result.next()) {
-                    alert.errorMessage(register_username.getText() + " is already exist!");
-                } else if (register_password.getText().length() < 8) { // CHECK IF THE CHARACTERS OF THE PASSWORD IS LESS THAN TO 8
-                    alert.errorMessage("Invalid Password, at least 8 characters needed");
+                    alert.errorMessage(register_username.getText() + " вже існує");
+                } else if (register_password.getText().length() < 8) {
+                    alert.errorMessage("Недійсний пароль, потрібно щонайменше 8 символів");
                 } else {
-                    // TO INSERT THE DATA TO OUR DATABASE
                     String insertData = "INSERT INTO admin (email, username, password, date) VALUES(?,?,?,?)";
 
                     Date date = new Date();
@@ -217,10 +197,9 @@ public class FXMLDocumentController implements Initializable {
 
                     prepare.executeUpdate();
 
-                    alert.successMessage("Registered Successfully!");
+                    alert.successMessage("Реєстрація успішна!");
                     registerClear();
 
-                    // TO SWITCH THE FORM INTO LOGIN FORM
                     login_form.setVisible(true);
                     register_form.setVisible(false);
                 }
@@ -272,7 +251,7 @@ public class FXMLDocumentController implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/FXMLDocument.fxml"));
                 Stage stage = new Stage();
 
-                stage.setTitle("Hospital Management System");
+                stage.setTitle("Реєстратура ВХІД(Адміністратор)");
 
                 stage.setMinWidth(340);
                 stage.setMinHeight(580);
@@ -291,7 +270,7 @@ public class FXMLDocumentController implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/DoctorPage.fxml"));
                 Stage stage = new Stage();
 
-                stage.setTitle("Hospital Management System");
+                stage.setTitle("Реєстратура ВХІД(Лікар)");
 
                 stage.setMinWidth(340);
                 stage.setMinHeight(580);
@@ -311,19 +290,15 @@ public class FXMLDocumentController implements Initializable {
     public void switchForm(ActionEvent event) {
 
         if (event.getSource() == login_registerHere) {
-            // REGISTRATION FORM WILL SHOW
             login_form.setVisible(false);
             register_form.setVisible(true);
         } else if (event.getSource() == register_loginHere) {
-            // LOGIN FORM WILL SHOW
             login_form.setVisible(true);
             register_form.setVisible(false);
         }
 
     }
 
-    // WE'VE GOT AN ERROR BECAUSE WE DIDN'T IMPORT THE FONTAWESOME ICON JAR TO OUR LIBRARIES
-    // NOW, LETS CREATE OUR DATABASE FOR OUR USERS
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         userList();

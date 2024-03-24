@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package HospitalSystem.Data;
 
 import java.sql.Date;
@@ -11,19 +6,10 @@ public class PatientsData {
     
     private Integer id;
     private Integer patientID;
-    private String password;
     private String fullName;
     private Long mobileNumber;
     private String address;
     private String image;
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getDiagnosis() {
-        return diagnosis;
-    }
 
     private String description;
     private String diagnosis;
@@ -37,8 +23,8 @@ public class PatientsData {
     private String status;
     
     public PatientsData(Integer id, Integer patientID,String fullName, Long mobileNumber
-            , String gender, String address, String image, String description, String diagnosis, String treatment
-            , String doctor, String specialized, Date date, Date dateModify
+            , String gender, String address, String image,
+            String doctor, String specialized, Date date, Date dateModify
             , Date dateDelete, String status){
         this.id = id;
         this.patientID = patientID;
@@ -47,9 +33,6 @@ public class PatientsData {
         this.gender = gender;
         this.address = address;
         this.image = image;
-        this.description = description;
-        this.diagnosis = diagnosis;
-        this.treatment = treatment;
         this.doctor = doctor;
         this.specialized = specialized;
         this.date = date;
@@ -87,26 +70,38 @@ public class PatientsData {
         this.image = image;
         this.date = date;
     }
-    
-    public PatientsData(Integer id, Integer patientID, String description
-            , String diagnosis, String treatment, Date date){
-        this.id = id;
-        this.patientID = patientID;
-        this.description = description;
-        this.diagnosis = diagnosis;
-        this.treatment = treatment;
-        this.date = date;
+
+    public String getImage() {
+        return image;
     }
-    
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getDiagnosis() {
+        return diagnosis;
+    }
+
+    public String getTreatment() {
+        return treatment;
+    }
+
+    public Date getDateModify() {
+        return dateModify;
+    }
+
+    public Date getDateDelete() {
+        return dateDelete;
+    }
+
     public Integer getId(){
         return id;
     }
     public Integer getPatientID(){
         return patientID;
     }
-    public String getPassword(){
-        return password;
-    }
+
     public String getFullName(){
         return fullName;
     }
@@ -119,12 +114,6 @@ public class PatientsData {
     public String getAddress(){
         return address;
     }
-    public String getImage(){
-        return image;
-    }
-    public String getTreatment(){
-        return treatment;
-    }
     public String getDoctor(){
         return doctor;
     }
@@ -134,13 +123,8 @@ public class PatientsData {
     public Date getDate(){
         return date;
     }
-    public Date getDateModify(){
-        return dateModify;
-    }
-    public Date getDateDelete(){
-        return dateDelete;
-    }
     public String getStatus(){
         return status;
     }
+
 }

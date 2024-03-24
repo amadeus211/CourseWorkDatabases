@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package HospitalSystem.Controllers;
 
 import java.net.URL;
@@ -29,8 +24,6 @@ import javafx.scene.layout.AnchorPane;
 
 public class EditPatientFormController implements Initializable {
 
-    @FXML
-    private AnchorPane main_form;
 
     @FXML
     private TextField edit_patientID;
@@ -50,14 +43,10 @@ public class EditPatientFormController implements Initializable {
     @FXML
     private ComboBox<String> edit_status;
 
-    @FXML
-    private Button edit_updateBtn;
-
     private AlertMessage alert = new AlertMessage();
 
     private Connection connect;
     private PreparedStatement prepare;
-    private ResultSet result;
 
     public void updateBtn() {
 
@@ -66,7 +55,7 @@ public class EditPatientFormController implements Initializable {
                 || edit_contactNumber.getText().isEmpty()
                 || edit_address.getText().isEmpty()
                 || edit_status.getSelectionModel().getSelectedItem() == null) {
-            alert.errorMessage("Please fill all blank fields");
+            alert.errorMessage("Будь ласка, заповніть усі порожні поля");
         } else {
             String updateData = "UPDATE patient SET full_name = ?, gender = ?"
                     + ", mobile_number = ?, address = ?, status = ?, date_modify = ? "
@@ -74,7 +63,7 @@ public class EditPatientFormController implements Initializable {
                     + edit_patientID.getText() + "'";
             connect = Database.connectDB();
             try {
-                if (alert.confirmationMessage("Are you sure you want to UPDATE Patient ID: " + edit_patientID.getText()
+                if (alert.confirmationMessage("Ви впевнені, що хочете оновити пацієнта з ID: " + edit_patientID.getText()
                         + "?")) {
                     prepare = connect.prepareStatement(updateData);
                     Date date = new Date();
@@ -86,9 +75,9 @@ public class EditPatientFormController implements Initializable {
                     prepare.setString(5, edit_status.getSelectionModel().getSelectedItem());
                     prepare.setString(6, String.valueOf(sqlDate));
                     prepare.executeUpdate();
-                    alert.successMessage("Updated Successfully!");
+                    alert.successMessage("Оновлення успішне!");
                 } else {
-                    alert.errorMessage("Cancelled.");
+                    alert.errorMessage("Скасовано.");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -98,7 +87,6 @@ public class EditPatientFormController implements Initializable {
 
     }
 
-    // CLOSE THE EDITPATIENTFORM FXML FILE AND OPEN IT AGAIN
     public void setField() {
         edit_patientID.setText(String.valueOf(Data.temp_PatientID));
         edit_name.setText(Data.temp_name);

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package HospitalSystem.Controllers;
 
 import java.net.URL;
@@ -43,12 +38,6 @@ public class EditAppointmentFormController implements Initializable{
     private TextArea editApp_address;
 
     @FXML
-    private Button editApp_updateBtn;
-
-    @FXML
-    private Button editApp_cancelBtn;
-
-    @FXML
     private TextArea editApp_description;
 
     @FXML
@@ -69,9 +58,6 @@ public class EditAppointmentFormController implements Initializable{
     private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;
-    private Statement statement;
-    
-    private AlertMessage alert = new AlertMessage();
     
     public void displayFields(){
         editApp_appointmentID.setText(Data.temp_appID);

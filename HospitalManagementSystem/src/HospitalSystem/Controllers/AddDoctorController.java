@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package HospitalSystem.Controllers;
 
 import java.io.File;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -68,12 +59,6 @@ public class AddDoctorController implements Initializable {
 
     @FXML
     private ComboBox<String> editDoctor_status;
-
-    @FXML
-    private Button editDoctor_updateBtn;
-
-    @FXML
-    private Button editDoctor_cancelBtn;
 
     private AlertMessage alert = new AlertMessage();
 
@@ -175,7 +160,7 @@ public class AddDoctorController implements Initializable {
                 || editDoctor_mobileNumber.getText().isEmpty()
                 || editDoctor_address.getText().isEmpty()
                 || editDoctor_status.getSelectionModel().getSelectedItem() == null) {
-            alert.errorMessage("Please fill all blank fields");
+            alert.errorMessage("Будь ласка, заповніть усі порожні поля");
         } else {
             Date date = new Date();
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
@@ -196,18 +181,18 @@ public class AddDoctorController implements Initializable {
                 prepare.setString(9, editDoctor_status.getSelectionModel().getSelectedItem());
                 prepare.setDate(10, sqlDate);
 
-                if (alert.confirmationMessage("Are you sure you want to create this Doctor?")) {
+                if (alert.confirmationMessage("Ви впевнені, що хочете створити цього лікаря?")) {
                     prepare.executeUpdate();
-                    alert.successMessage("Doctor created successfully.");
+                    alert.successMessage("Лікаря створено успішно");
                 } else {
-                    alert.errorMessage("Cancelled.");
+                    alert.errorMessage("Скасовано.");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                alert.errorMessage("Error creating Doctor.");
+                alert.errorMessage("Помилка створення лікаря.");
             }
         }
-        displayDoctorData();  // Assuming this method displays updated doctor data
+        displayDoctorData();
     }
 
     public void cancelBtn() {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package HospitalSystem.Controllers;
 
 import java.io.File;
@@ -54,9 +49,6 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 public class DoctorMainFormController implements Initializable {
-
-    @FXML
-    private AnchorPane main_form;
 
     @FXML
     private Circle top_profile;
@@ -143,19 +135,10 @@ public class DoctorMainFormController implements Initializable {
     private TextField patients_mobileNumber;
 
     @FXML
-    private TextField patients_password;
-
-    @FXML
     private TextArea patients_address;
 
     @FXML
-    private Button patients_confirmBtn;
-
-    @FXML
     private Label patients_PA_patientID;
-
-    @FXML
-    private Label patients_PA_password;
 
     @FXML
     private Label patients_PA_dateCreated;
@@ -171,12 +154,6 @@ public class DoctorMainFormController implements Initializable {
 
     @FXML
     private Label patients_PI_address;
-
-    @FXML
-    private Button patients_PI_addBtn;
-
-    @FXML
-    private Button patients_PI_recordBtn;
 
     @FXML
     private AnchorPane appointments_form;
@@ -215,9 +192,6 @@ public class DoctorMainFormController implements Initializable {
     private TableColumn<AppointmentData, String> appointments_col_status;
 
     @FXML
-    private TableColumn<AppointmentData, String> appointments_col_action;
-
-    @FXML
     private TextField appointment_appointmentID;
 
     @FXML
@@ -249,18 +223,6 @@ public class DoctorMainFormController implements Initializable {
 
     @FXML
     private DatePicker appointment_schedule;
-
-    @FXML
-    private Button appointment_insertBtn;
-
-    @FXML
-    private Button appointment_updateBtn;
-
-    @FXML
-    private Button appointment_clearBtn;
-
-    @FXML
-    private Button appointment_deleteBtn;
 
     @FXML
     private ComboBox<String> patients_gender;
@@ -310,10 +272,6 @@ public class DoctorMainFormController implements Initializable {
     @FXML
     private ComboBox<String> profile_status;
 
-    @FXML
-    private Button profile_updateBtn;
-
-//    DATABASE TOOLSs
     private Connection connect;
     private PreparedStatement prepare;
     private Statement statement;
@@ -343,7 +301,7 @@ public class DoctorMainFormController implements Initializable {
     }
 
     public void dashbboardDisplayIP() {
-        String sql = "SELECT COUNT(id) FROM patient WHERE status = 'Inactive' AND doctor = '"
+        String sql = "SELECT COUNT(id) FROM patient WHERE status = 'Неактивний' AND doctor = '"
                 + Data.doctor_id + "'";
         connect = Database.connectDB();
         int getIP = 0;
@@ -361,7 +319,7 @@ public class DoctorMainFormController implements Initializable {
     }
 
     public void dashbboardDisplayAP() {
-        String sql = "SELECT COUNT(id) FROM patient WHERE status = 'Active' AND doctor = '"
+        String sql = "SELECT COUNT(id) FROM patient WHERE status = 'Активний' AND doctor = '"
                 + Data.doctor_id + "'";
         connect = Database.connectDB();
         int getAP = 0;
@@ -400,7 +358,7 @@ public class DoctorMainFormController implements Initializable {
 
         ObservableList<AppointmentData> listData = FXCollections.observableArrayList();
 
-        String sql = "SELECT * FROM appointment WHERE status = 'active' and doctor = '"
+        String sql = "SELECT * FROM appointment WHERE status = 'Активний' and doctor = '"
                 + Data.doctor_id + "'";
 
         connect = Database.connectDB();
@@ -491,22 +449,19 @@ public class DoctorMainFormController implements Initializable {
 
     public void patientConfirmBtn() {
 
-        // CHECK IF SOME OR ALL FIELDS ARE EMPTY
         if (patients_patientID.getText().isEmpty()
                 || patients_patientName.getText().isEmpty()
                 || patients_gender.getSelectionModel().getSelectedItem() == null
                 || patients_mobileNumber.getText().isEmpty()
                 || patients_address.getText().isEmpty()) {
-            alert.errorMessage("Please fill all blank fields");
+            alert.errorMessage("Будь ласка, заповніть усі порожні поля");
         } else {
             Date date = new Date();
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-            // TO DISPLAY THE DATA FROM PERSONAL ACCOUNT 
             patients_PA_patientID.setText(patients_patientID.getText());
             patients_PA_dateCreated.setText(String.valueOf(sqlDate));
 
-            // TO DISPLAY THE DATA FROM PERSONAL INFORMATION 
             patients_PI_patientName.setText(patients_patientName.getText());
             patients_PI_gender.setText(patients_gender.getSelectionModel().getSelectedItem());
             patients_PI_mobileNumber.setText(patients_mobileNumber.getText());
@@ -523,7 +478,7 @@ public class DoctorMainFormController implements Initializable {
                 || patients_PI_gender.getText().isEmpty()
                 || patients_PI_mobileNumber.getText().isEmpty()
                 || patients_PI_address.getText().isEmpty()) {
-            alert.errorMessage("Something wenr wrong");
+            alert.errorMessage("Щось пішло не так");
         } else {
 
             Database.connectDB();
@@ -541,13 +496,12 @@ public class DoctorMainFormController implements Initializable {
                     doctorName = result.getString("full_name");
                     doctorSpecialized = result.getString("specialized");
                 }
-                // CHECK IF THE PATIENT ID THAT THE DOCTORS WANT TO INSERT/ADD IS EXISTING ALREADY
                 String checkPatientID = "SELECT * FROM patient WHERE patient_id = '"
                         + patients_PA_patientID.getText() + "'";
                 statement = connect.createStatement();
                 result = statement.executeQuery(checkPatientID);
                 if (result.next()) {
-                    alert.errorMessage(patients_PA_patientID.getText() + " is already exist");
+                    alert.errorMessage(patients_PA_patientID.getText() + " вже існує");
                 } else {
                     String insertData = "INSERT INTO patient (patient_id, full_name, mobile_number, "
                             + "address, doctor, specialized, date, gender, "
@@ -564,29 +518,26 @@ public class DoctorMainFormController implements Initializable {
                     prepare.setString(6, doctorSpecialized);
                     prepare.setString(7, "" + sqlDate);
                     prepare.setString(8, patients_gender.getSelectionModel().getSelectedItem());
-                    prepare.setString(9, "Confirm");
+                    prepare.setString(9, "Підтвердження");
 
                     prepare.executeUpdate();
 
-                    alert.successMessage("Added successfully!");
-                    // TO CLEAR ALL FIELDS AND SOME LABELS
+                    alert.successMessage("Додавання успішне!");
                     patientClearFields();
                 }
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
-// NOW, LETS TRY 
         }
     }
 
     public void patientRecordBtn() {
         try {
-            // LINK THE NAME OF YOUR FXML FOR RECORD PAGE
             Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/RecordPageForm.fxml"));
             Stage stage = new Stage();
 
-            stage.setTitle("Hospital Management System | Record of Patients");
+            stage.setTitle("Список пацієнтів");
             stage.setScene(new Scene(root));
             stage.show();
 
@@ -628,7 +579,6 @@ public class DoctorMainFormController implements Initializable {
 
     public void appointmentInsertBtn() {
 
-//        CHECK IF THE FIELD(S) ARE EMPTY
         if (appointment_appointmentID.getText().isEmpty()
                 || appointment_patientID.getText().isEmpty()
                 || appointment_name.getText().isEmpty()
@@ -638,7 +588,7 @@ public class DoctorMainFormController implements Initializable {
                 || appointment_address.getText().isEmpty()
                 || appointment_status.getSelectionModel().getSelectedItem() == null
                 || appointment_schedule.getValue() == null) {
-            alert.errorMessage("Please fill the blank fields");
+            alert.errorMessage("Будь ласка, заповніть усі порожні поля");
         } else {
             String checkAppointmentID = "SELECT * FROM appointment WHERE appointment_id = "
                     + appointment_appointmentID.getText();
@@ -648,7 +598,7 @@ public class DoctorMainFormController implements Initializable {
                 result = statement.executeQuery(checkAppointmentID);
 
                 if (result.next()) {
-                    alert.errorMessage(appointment_appointmentID.getText() + " was already taken");
+                    alert.errorMessage(appointment_appointmentID.getText() + " вже існує");
                 } else {
                     String getSpecialized = "";
                     String getDoctorData = "SELECT * FROM doctor WHERE doctor_id = '"
@@ -690,7 +640,7 @@ public class DoctorMainFormController implements Initializable {
                     appointmentShowData();
                     appointmentAppointmentID();
                     appointmentClearBtn();
-                    alert.successMessage("Successully added!");
+                    alert.successMessage("Додавання успішне!");
 
                 }
 
@@ -711,9 +661,8 @@ public class DoctorMainFormController implements Initializable {
                 || appointment_address.getText().isEmpty()
                 || appointment_status.getSelectionModel().getSelectedItem() == null
                 || appointment_schedule.getValue() == null) {
-            alert.errorMessage("Please fill the blank fields");
+            alert.errorMessage("Будь ласка, заповніть усі порожні поля");
         } else {
-            // TO GET THE DATE TODAY
             java.sql.Date sqlDate = new java.sql.Date(new Date().getTime());
 
             String updateData = "UPDATE appointment SET name = '"
@@ -730,7 +679,7 @@ public class DoctorMainFormController implements Initializable {
             connect = Database.connectDB();
 
             try {
-                if (alert.confirmationMessage("Are you sure you want to UPDATE Appointment ID: "
+                if (alert.confirmationMessage("Ви впевнені, що хочете оновити призначення з ID: "
                         + appointment_appointmentID.getText() + "?")) {
                     prepare = connect.prepareStatement(updateData);
                     prepare.executeUpdate();
@@ -738,7 +687,7 @@ public class DoctorMainFormController implements Initializable {
                     appointmentShowData();
                     appointmentAppointmentID();
                     appointmentClearBtn();
-                    alert.successMessage("Successully Updated!");
+                    alert.successMessage("Оновлення успішне!");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -749,10 +698,10 @@ public class DoctorMainFormController implements Initializable {
     public void appointmentDeleteBtn() {
 
         if (appointment_appointmentID.getText().isEmpty()) {
-            alert.errorMessage("Please select the item first");
+            alert.errorMessage("Будь ласка, спочатку виберіть запис");
         } else {
 
-            String updateData = "UPDATE appointment SET date_delete = ?, status ='Inactive' WHERE appointment_id = '"
+            String updateData = "UPDATE appointment SET date_delete = ?, status ='Неактивний' WHERE appointment_id = '"
                     + appointment_appointmentID.getText() + "'";
 
             connect = Database.connectDB();
@@ -760,7 +709,7 @@ public class DoctorMainFormController implements Initializable {
             try {
                 java.sql.Date sqlDate = new java.sql.Date(new Date().getTime());
 
-                if (alert.confirmationMessage("Are you sure you want to DELETE Appointment ID: "
+                if (alert.confirmationMessage("Ви впевнені, що хочете видалити призначення з ID: "
                         + appointment_appointmentID.getText() + "?")) {
                     prepare = connect.prepareStatement(updateData);
 
@@ -771,9 +720,9 @@ public class DoctorMainFormController implements Initializable {
                     appointmentAppointmentID();
                     appointmentClearBtn();
 
-                    alert.successMessage("Successully Updated!");
+                    alert.successMessage("Видалення успішне!");
                 } else {
-                    alert.errorMessage("Cancelled.");
+                    alert.errorMessage("Скасовано.");
                 }
 
             } catch (Exception e) {
@@ -784,7 +733,6 @@ public class DoctorMainFormController implements Initializable {
 
     }
 
-    // TO CLEAR ALL FIELDS
     public void appointmentClearBtn() {
         appointment_appointmentID.clear();
         appointment_patientID.clear();
@@ -943,9 +891,8 @@ public class DoctorMainFormController implements Initializable {
                 || profile_address.getText().isEmpty()
                 || profile_specialized.getSelectionModel().getSelectedItem() == null
                 || profile_status.getSelectionModel().getSelectedItem() == null) {
-            alert.errorMessage("Please fill all blank fields");
+            alert.errorMessage("Будь ласка, заповніть усі порожні поля");
         } else {
-            // CHECK IF THE PATH IS NULL 
             if (Data.path == null || "".equals(Data.path)) {
                 String updateData = "UPDATE doctor SET full_name = ?, email = ?"
                         + ", gender = ?, mobile_number = ?, address = ?, specialized = ?, status = ?, modify_date = ?"
@@ -966,7 +913,7 @@ public class DoctorMainFormController implements Initializable {
 
                     prepare.executeUpdate();
 
-                    alert.successMessage("Updated Successfully!");
+                    alert.successMessage("Оновлення успішне!");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -988,12 +935,10 @@ public class DoctorMainFormController implements Initializable {
                     path = path.replace("\\", "\\\\");
                     Path transfer = Paths.get(path);
 
-                    // LINK YOUR DIRECTORY FOLDER
                     Path copy = Paths.get("C:\\Users\\User\\Desktop\\Coursework-Hospital\\HospitalManagementSystem\\src\\Doctor_Directory\\"
                             + Data.doctor_id + ".jpg");
 
                     try {
-                        // TO PUT THE IMAGE FILE TO YOUR DIRECTORY FOLDER
                         Files.copy(transfer, copy, StandardCopyOption.REPLACE_EXISTING);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -1005,7 +950,7 @@ public class DoctorMainFormController implements Initializable {
 
                     prepare.executeUpdate();
 
-                    alert.successMessage("Updated Successfully!");
+                    alert.successMessage("Оноплвення успішне!");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -1193,7 +1138,7 @@ public class DoctorMainFormController implements Initializable {
     public void logoutBtn() {
 
         try {
-            if (alert.confirmationMessage("Are you sure you want to logout?")) {
+            if (alert.confirmationMessage("Ви впевнені, що хочете вийти?")) {
                 Data.doctor_id = "";
                 Data.doctor_name = "";
                 Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/DoctorPage.fxml"));
@@ -1202,7 +1147,6 @@ public class DoctorMainFormController implements Initializable {
                 stage.setScene(new Scene(root));
                 stage.show();
 
-                // TO HIDE YOUR MAIN FORM
                 logout_btn.getScene().getWindow().hide();
 
                 Data.doctor_id = "";
@@ -1254,23 +1198,18 @@ public class DoctorMainFormController implements Initializable {
         dashboardNOP();
         dashboardNOA();
 
-        // TO SHOW THE DATA IMMEDIATELY ONCE YOU LOGGED IN YOUR ACCOUNT
         appointmentShowData();
         appointmentGenderList();
         appointmentStatusList();
         appointmentAppointmentID();
 
-        // TO SHOW THE DATA IMMEDIATELY THE PATIENT'S GENDER COMBOXBOX
         patientGenderList();
 
-//        PROFILE
         profileLabels();
-        profileFields(); // TO DISPLAY ALL DETAILS TO THE FIELDS
+        profileFields();
         profileGenderList();
         profileSpecializedList();
         profileStatusList();
-        profileDisplayImages(); // TO DISPLAY THE PROFILE PICTURE OF THE DOCTOR
-
+        profileDisplayImages();
     }
-
 }

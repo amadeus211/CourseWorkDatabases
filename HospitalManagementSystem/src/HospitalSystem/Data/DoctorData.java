@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package HospitalSystem.Data;
 
 import java.sql.Date;
@@ -50,15 +45,6 @@ public class DoctorData {
         this.status = status;
     }
 
-    public DoctorData(Integer id, String doctorID, String fullName, String specialized, String email, String image) {
-        this.id = id;
-        this.doctorID = doctorID;
-        this.fullName = fullName;
-        this.specialized = specialized;
-        this.email = email;
-        this.image = image;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -83,6 +69,14 @@ public class DoctorData {
         return gender;
     }
 
+    public Date getDateModify() {
+        return dateModify;
+    }
+
+    public Date getDateDelete() {
+        return dateDelete;
+    }
+
     public Long getMobileNumber() {
         return mobileNumber;
     }
@@ -101,14 +95,6 @@ public class DoctorData {
 
     public Date getDate() {
         return date;
-    }
-
-    public Date getDateModify() {
-        return dateModify;
-    }
-
-    public Date getDateDelete() {
-        return dateDelete;
     }
 
     public String getStatus() {

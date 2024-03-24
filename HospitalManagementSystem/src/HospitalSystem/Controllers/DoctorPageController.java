@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package HospitalSystem.Controllers;
 
 import java.net.URL;
@@ -35,9 +30,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class DoctorPageController implements Initializable {
-
-    @FXML
-    private AnchorPane main_form;
 
     @FXML
     private AnchorPane login_form;
@@ -85,12 +77,8 @@ public class DoctorPageController implements Initializable {
     private CheckBox register_checkBox;
 
     @FXML
-    private Button register_signupBtn;
-
-    @FXML
     private Hyperlink register_loginHere;
 
-    // DATABASE TOOLS
     private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;
@@ -102,7 +90,7 @@ public class DoctorPageController implements Initializable {
 
         if (login_doctorID.getText().isEmpty()
                 || login_password.getText().isEmpty()) {
-            alert.errorMessage("Incorrect Doctor ID/Password");
+            alert.errorMessage("Некоректне ID/пароль");
         } else {
 
             String sql = "SELECT * FROM doctor WHERE doctor_id = ? AND password = ? AND delete_date IS NULL";
@@ -120,17 +108,16 @@ public class DoctorPageController implements Initializable {
                     }
                 }
 
-                // CHECK IF THE STATUS OF THE DOCTOR IS CONFIRM
                 String checkStatus = "SELECT status FROM doctor WHERE doctor_id = '"
                         + login_doctorID.getText() + "' AND password = '"
-                        + login_password.getText() + "' AND status = 'Confirm'";
+                        + login_password.getText() + "' AND status = 'Підтвердження'";
 
                 prepare = connect.prepareStatement(checkStatus);
                 result = prepare.executeQuery();
 
                 if (result.next()) {
 
-                    alert.errorMessage("Need the confimation of the Admin!");
+                    alert.errorMessage("Потрібне підтвердження адміністратором!");
                 } else {
                     prepare = connect.prepareStatement(sql);
                     prepare.setString(1, login_doctorID.getText());
@@ -143,21 +130,19 @@ public class DoctorPageController implements Initializable {
                         Data.doctor_id = result.getString("doctor_id");
                         Data.doctor_name = result.getString("full_name");
 
-                        alert.successMessage("Login Successfully!");
+                        alert.successMessage("Віхд успішний!");
 
-                        // LINK YOUR DOCTOR MAIN FORM
                         Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/DoctorMainForm.fxml"));
                         Stage stage = new Stage();
 
-                        stage.setTitle("Hospital Management System | Doctor Main Form");
+                        stage.setTitle("Сторінка лікаря");
                         stage.setScene(new Scene(root));
                         stage.show();
 
-                        // TO HIDE YOUR DOCTOR PAGE
                         login_loginBtn.getScene().getWindow().hide();
 
                     } else {
-                        alert.errorMessage("Incorrect Doctor ID/Password");
+                        alert.errorMessage("Некоректне ID/пароль");
                     }
                 }
 
@@ -190,11 +175,11 @@ public class DoctorPageController implements Initializable {
                 || register_email.getText().isEmpty()
                 || register_doctorID.getText().isEmpty()
                 || register_password.getText().isEmpty()) {
-            alert.errorMessage("Please fill all blank fields");
+            alert.errorMessage("Будь ласка, заповніть усі порожні поля");
         } else {
 
             String checkDoctorID = "SELECT * FROM doctor WHERE doctor_id = '"
-                    + register_doctorID.getText() + "'"; // LETS CREATE OUR TABLE FOR DOCTOR FIRST
+                    + register_doctorID.getText() + "'";
 
             connect = Database.connectDB();
 
@@ -214,9 +199,9 @@ public class DoctorPageController implements Initializable {
                 result = prepare.executeQuery();
 
                 if (result.next()) {
-                    alert.errorMessage(register_doctorID.getText() + " is already taken");
+                    alert.errorMessage(register_doctorID.getText() + " вже існує");
                 } else if (register_password.getText().length() < 8) {
-                    alert.errorMessage("Invalid password, at least 8 characters needed");
+                    alert.errorMessage("Недійсний пароль, потрібно щонайменше 8 символів");
                 } else {
 
                     String insertData = "INSERT INTO doctor (full_name, email, doctor_id, password, date, status) "
@@ -232,11 +217,11 @@ public class DoctorPageController implements Initializable {
                     prepare.setString(3, register_doctorID.getText());
                     prepare.setString(4, register_password.getText());
                     prepare.setString(5, String.valueOf(sqlDate));
-                    prepare.setString(6, "Confirm");
+                    prepare.setString(6, "Підтвердження");
 
                     prepare.executeUpdate();
 
-                    alert.successMessage("Registered Succesfully!");
+                    alert.successMessage("Реєстрування успішне!");
 
                 }
 
@@ -316,7 +301,7 @@ public class DoctorPageController implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/FXMLDocument.fxml"));
                 Stage stage = new Stage();
 
-                stage.setTitle("Hospital Management System");
+                stage.setTitle("Реєстратура ВХІД(Адміністратор)");
 
                 stage.setMinWidth(340);
                 stage.setMinHeight(580);
@@ -335,7 +320,7 @@ public class DoctorPageController implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/DoctorPage.fxml"));
                 Stage stage = new Stage();
 
-                stage.setTitle("Hospital Management System");
+                stage.setTitle("Реєстратура ВХІД(Лікар)");
 
                 stage.setMinWidth(340);
                 stage.setMinHeight(580);

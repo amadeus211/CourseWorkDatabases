@@ -505,9 +505,9 @@
                                     <Label layoutX="25.0" layoutY="340.0" text="Адреса:" />
                                     <TextArea fx:id="patients_address" layoutX="25.0" layoutY="357.0" prefHeight="89.0" prefWidth="439.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="357.0" />
                                     <Button fx:id="patients_confirmBtn" layoutX="98.0" layoutY="480.0" mnemonicParsing="false" onAction="#patientConfirmBtn" prefHeight="40.0" prefWidth="293.0" styleClass="btn-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Confirm" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="119.0" />
-                                    <TextField fx:id="patients_doctorID" layoutX="27.0" layoutY="300.0" prefHeight="25.0" prefWidth="357.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
                                     <Label layoutX="28.0" layoutY="277.0" text="Лікар ID:" />
                                     <Button fx:id="patients_confirmBtn1" layoutX="98.0" layoutY="480.0" mnemonicParsing="false" onAction="#patientConfirmBtn" prefHeight="40.0" prefWidth="293.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Підтвердити" />
+                                    <ComboBox fx:id="patients_doctor" layoutX="26.0" layoutY="301.0" prefHeight="25.0" prefWidth="355.0" promptText="Вибрати" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="539.0" layoutY="14.0" prefHeight="203.0" prefWidth="333.0" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package HospitalSystem.Data;
 
 public class Data {
@@ -13,14 +8,14 @@ public class Data {
 
     public static String doctor_id;
     public static String doctor_name;
-
     public static Integer patient_id;
 
-    public static String[] gender = {"Male", "Female", "Others"};
+    public static String[] gender = {"Чоловік", "Жінка", "Інше"};
 
-    public static String[] status = {"Active", "Inactive", "Confirm"};
+    public static String[] status = {"Активний", "Неактивний", "Підтвердження"};
 
-    public static String[] specialization = {"Allergist", "Dermatologist", "Ophthalmologist", "Gynecologist", "Cardiologist"};
+    public static String[] specialization = {"Косметолог", "Психіатр", "Дерматолог", "Гінеколог", "Кардіолог", "Терапевт", "Уролог", "Хірург",
+            "Дерматолог", "Кардіолог", "Невролог", "Травматолог"};
 
     public static Integer temp_PatientID;
     public static String temp_name;

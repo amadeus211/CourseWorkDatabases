@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package HospitalSystem.Data;
 
 import java.sql.Date;
@@ -143,6 +138,10 @@ public class AppointmentData {
         return date;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
     public Date getDateModify() {
         return dateModify;
     }
@@ -151,12 +150,7 @@ public class AppointmentData {
         return dateDelete;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
     public Date getSchedule() {
         return schedule;
     }
-
 }

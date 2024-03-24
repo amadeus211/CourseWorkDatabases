@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package HospitalSystem.Controllers;
 
 import java.net.URL;
@@ -39,12 +34,6 @@ import javafx.util.Callback;
 public class RecordPageFormController implements Initializable {
 
     @FXML
-    private AnchorPane recordpage_mainForm;
-
-    @FXML
-    private TextField recordpage_search;
-
-    @FXML
     private TableView<PatientsData> recordpage_tableView;
 
     @FXML
@@ -74,18 +63,15 @@ public class RecordPageFormController implements Initializable {
     @FXML
     private TableColumn<PatientsData, String> recordpage_col_action;
 
-//    DATABASE TOOLS
     private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;
-    private Statement statement;
 
     AlertMessage alert = new AlertMessage();
 
     public ObservableList<PatientsData> getPatientRecordData() {
 
         ObservableList<PatientsData> listData = FXCollections.observableArrayList();
-// RESTART RECORD PAGEFORM FXML IF YOU DIDNT SEE THE RECORDPAGEFORMCONTROLLER CLASS
         String selectData = "SELECT * FROM patient WHERE date_delete IS NULL AND doctor = '"
                 + Data.doctor_id + "'";
         connect = Database.connectDB();
@@ -95,9 +81,6 @@ public class RecordPageFormController implements Initializable {
             result = prepare.executeQuery();
 
             PatientsData pData;
-//            PatientsData(Integer id, Integer patientID, String fullName, 
-//            Long mobileNumber, String address, Date date
-//            , Date dateModify, Date dateDelete)
             while (result.next()) {
                 pData = new PatientsData(result.getInt("id"), result.getInt("patient_id"),
                         result.getString("full_name"), result.getString("gender"), result.getLong("mobile_number"),
@@ -143,8 +126,8 @@ public class RecordPageFormController implements Initializable {
                         setGraphic(null);
                         setText(null);
                     } else {
-                        Button editButton = new Button("Edit");
-                        Button removeButton = new Button("Delete");
+                        Button editButton = new Button("Змінити");
+                        Button removeButton = new Button("Видалити");
 
                         editButton.setStyle("-fx-background-color: linear-gradient(to bottom right, #a413a1, #64308e);\n"
                                 + "    -fx-cursor: hand;\n"
@@ -165,7 +148,7 @@ public class RecordPageFormController implements Initializable {
                                 int num = recordpage_tableView.getSelectionModel().getSelectedIndex();
 
                                 if ((num - 1) < -1) {
-                                    alert.errorMessage("Please select item first");
+                                    alert.errorMessage("Будь ласка, спочатку виберіть запис");
                                     return;
                                 }
 
@@ -175,7 +158,6 @@ public class RecordPageFormController implements Initializable {
                                 Data.temp_number = pData.getMobileNumber();
                                 Data.temp_address = pData.getAddress();
                                 Data.temp_status = pData.getStatus();
-                                // NOW LETS CREATE FXML FOR EDIT PATIENT FORM
                                 Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/EditPatientForm.fxml"));
                                 Stage stage = new Stage();
 
@@ -192,7 +174,7 @@ public class RecordPageFormController implements Initializable {
                             int num = recordpage_tableView.getSelectionModel().getSelectedIndex();
 
                             if ((num - 1) < -1) {
-                                alert.errorMessage("Please select item first");
+                                alert.errorMessage("Будь ласка, спочатку виберіть запис");
                                 return;
                             }
 
@@ -200,7 +182,7 @@ public class RecordPageFormController implements Initializable {
                                     + pData.getPatientID();
 
                             try {
-                                if (alert.confirmationMessage("Are you sure you want to delete Patient ID: " + pData.getPatientID() + "?")) {
+                                if (alert.confirmationMessage("Ви впевнені, що хочете видалити пацієнта з ID: " + pData.getPatientID() + "?")) {
                                     prepare = connect.prepareStatement(deleteData);
                                     Date date = new Date();
                                     java.sql.Date sqlDate = new java.sql.Date(date.getTime());
@@ -208,7 +190,7 @@ public class RecordPageFormController implements Initializable {
                                     prepare.setString(1, String.valueOf(sqlDate));
                                     prepare.executeUpdate();
 
-                                    alert.successMessage("Deleted Successfully!");
+                                    alert.successMessage("Видалення успішне!");
 
                                     displayPatientsData();
                                 }
@@ -235,7 +217,6 @@ public class RecordPageFormController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TO DISPLAY THE PATIENT'S DATA ONCE THE DOCTOR CLICKED THE RECORD BUTTON
         displayPatientsData();
 
         actionButtons();
