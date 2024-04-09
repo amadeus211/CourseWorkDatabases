@@ -17,13 +17,13 @@
 }
 
 .header-2{
-    -fx-border-color: linear-gradient(to bottom right, #a413a1, #64308e);
+    -fx-border-color: linear-gradient(to bottom right, #8cb076, #7cad5e);
     -fx-border-width: 0 0 0 2px;
     -fx-padding: 0 0 0 5px;
 }
 
 .bg-color-2{
-    -fx-background-color: linear-gradient(to bottom right, #a413a1, #64308e);
+    -fx-background-color: linear-gradient(to bottom right,#8cb076, #7cad5e);
 }
 
 .nav-btn-2{
@@ -44,10 +44,10 @@
 .table-view{
     -fx-padding: 0;
     -fx-border-radius: 8px;
-    -fx-border-color: linear-gradient(to bottom right, #a413a1, #64308e);
+    -fx-border-color: linear-gradient(to bottom right, #8cb076, #7cad5e);
 }
 .table-view .column-header-background{
-    -fx-background-color: linear-gradient(to bottom right, #a413a1, #64308e);
+    -fx-background-color: linear-gradient(to bottom right,#8cb076, #7cad5e);
     -fx-background-insets: 0 0 0 0;
     -fx-background-radius: 8px 8px 0 0 ;
 }
@@ -60,15 +60,25 @@
     -fx-text-fill: #fff;
 }
 
+.btn-1{
+    -fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial;
+}
+.btn-1:hover{
+    -fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);}
+
 .btn-2{
-    -fx-background-color: linear-gradient(to bottom right, #a413a1, #64308e);
+    -fx-background-color: linear-gradient(to bottom right, #8cb076, #7cad5e);
     -fx-cursor: hand;
     -fx-text-fill: #fff;
     -fx-font-size: 14px;
     -fx-font-family: Arial;
 }
 .btn-2:hover{
-    -fx-background-color: linear-gradient(to bottom right, #c512c5, #67289d);
+    -fx-background-color: linear-gradient(to bottom right, #8cb076, #7cad5e);
 }
 
 .textfield-2{
@@ -77,7 +87,7 @@
     -fx-font-family: Tahoma;
 }
 .textfield-2:focused{
-    -fx-border-color: linear-gradient(to bottom right, #a413a1, #64308e);
+    -fx-border-color: linear-gradient(to bottom right, #8cb076, #7cad5e);
     -fx-border-width: 1px;
 }
 
@@ -88,6 +98,6 @@
     -fx-padding: 0 0 0 25px;
 }
 .search:focused{
-    -fx-border-color: linear-gradient(to bottom right, #a413a1, #64308e);
+    -fx-border-color: linear-gradient(to bottom right, #8cb076, #7cad5e);
     -fx-border-width: 1px;
 }

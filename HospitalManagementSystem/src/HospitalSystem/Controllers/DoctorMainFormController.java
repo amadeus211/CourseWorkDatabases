@@ -950,7 +950,7 @@ public class DoctorMainFormController implements Initializable {
 
                     prepare.executeUpdate();
 
-                    alert.successMessage("Оноплвення успішне!");
+                    alert.successMessage("Оновлення успішне!");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

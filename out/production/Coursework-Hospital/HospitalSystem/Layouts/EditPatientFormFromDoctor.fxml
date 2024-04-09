@@ -64,8 +64,8 @@
                      </font>
                   </Label>
                   <ComboBox fx:id="edit_status" layoutX="412.0" layoutY="75.0" prefHeight="25.0" prefWidth="179.0" promptText="Вибрати" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
-                  <FontAwesomeIcon fill="#188ba7" glyphName="EDIT" layoutX="365.0" layoutY="380.0" opacity="0.28" size="20em" />
-                  <Button fx:id="edit_updateBtn" layoutX="220.0" layoutY="373.0" mnemonicParsing="false" onAction="#updateBtn" prefHeight="40.0" prefWidth="230.0" styleClass="btn-1" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Оновити" />
+                  <FontAwesomeIcon fill="#2a590c" glyphName="EDIT" layoutX="365.0" layoutY="380.0" opacity="0.28" size="20em" />
+                  <Button fx:id="edit_updateBtn" layoutX="220.0" layoutY="373.0" mnemonicParsing="false" onAction="#updateBtn" prefHeight="40.0" prefWidth="230.0" styleClass="btn-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Оновити" />
                </children>
             </AnchorPane>
          </children>

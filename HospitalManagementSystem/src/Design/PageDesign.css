@@ -22,7 +22,7 @@
     -fx-font-family: Tahoma;
 }
 .textfield-2:focused{
-    -fx-border-color: linear-gradient(to bottom right, #a413a1, #64308e);
+    -fx-border-color: linear-gradient(to bottom right,#8cb076, #7cad5e);
     -fx-border-width: 1px;
 }
 
@@ -48,14 +48,14 @@
 }
 
 .btn-2{
-    -fx-background-color: linear-gradient(to bottom right, #a413a1, #64308e);
+    -fx-background-color: linear-gradient(to bottom right, #8cb076, #7cad5e);
     -fx-cursor: hand;
     -fx-text-fill: #fff;
     -fx-font-size: 14px;
     -fx-font-family: Arial;
 }
 .btn-2:hover{
-    -fx-background-color: linear-gradient(to bottom right, #c512c5, #67289d);
+    -fx-background-color: linear-gradient(to bottom right, #8cb076, #7cad5e);
 }
 
 .btn-3{

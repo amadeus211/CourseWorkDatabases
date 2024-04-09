@@ -2,6 +2,10 @@ package HospitalSystem.Controllers;
 
 import java.io.File;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -167,8 +171,8 @@ public class AddDoctorController implements Initializable {
 
             try {
                 String insertData = "INSERT INTO doctor (doctor_id, full_name, email, password, " +
-                        "specialized, gender, mobile_number, address, status, date) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        "specialized, gender, mobile_number, address, status, date, image) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 prepare = connect.prepareStatement(insertData);
                 prepare.setString(1, editDoctor_doctorID.getText());
                 prepare.setString(2, editDoctor_fullName.getText());
@@ -181,6 +185,22 @@ public class AddDoctorController implements Initializable {
                 prepare.setString(9, editDoctor_status.getSelectionModel().getSelectedItem());
                 prepare.setDate(10, sqlDate);
 
+
+                String path = Data.path;
+                path = path.replace("\\", "\\\\");
+                Path transfer = Paths.get(path);
+
+                Path copy = Paths.get("C:\\Users\\User\\Desktop\\Coursework-Hospital\\HospitalManagementSystem\\src\\Doctor_Directory\\"
+                        + editDoctor_doctorID.getText() + ".jpg");
+
+                try {
+                    Files.copy(transfer, copy, StandardCopyOption.REPLACE_EXISTING);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                prepare.setString(11, copy.toAbsolutePath().toString());
+
                 if (alert.confirmationMessage("Ви впевнені, що хочете створити цього лікаря?")) {
                     prepare.executeUpdate();
                     alert.successMessage("Лікаря створено успішно");
@@ -192,10 +212,6 @@ public class AddDoctorController implements Initializable {
                 alert.errorMessage("Помилка створення лікаря.");
             }
         }
-        displayDoctorData();
-    }
-
-    public void cancelBtn() {
         displayDoctorData();
     }
 

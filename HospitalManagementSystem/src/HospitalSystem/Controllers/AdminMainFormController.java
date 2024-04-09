@@ -658,7 +658,6 @@ public class AdminMainFormController implements Initializable {
 
         doctors_col_action.setCellFactory(cellFactory);
         doctors_tableView.setItems(doctorListData);
-
     }
 
     public ObservableList<PatientsData> patientGetData() {
@@ -680,7 +679,6 @@ public class AdminMainFormController implements Initializable {
                         result.getString("full_name"),
                         result.getLong("mobile_number"), result.getString("gender"),
                         result.getString("address"),
-                        result.getString("image"),
                         result.getString("doctor"),
                         result.getString("specialized"), result.getDate("date"),
                         result.getDate("date_modify"), result.getDate("date_delete"),
@@ -940,7 +938,7 @@ public class AdminMainFormController implements Initializable {
                                 return;
                             }
 
-                            String deleteData = "UPDATE appointment SET date_delete = ? WHERE appointment_id = '"
+                            String deleteData = "UPDATE appointment SET date_delete = ?, status = 'Неактивний' WHERE appointment_id = '"
                                     + aData.getAppointmentID() + "'";
 
                             try {
@@ -976,34 +974,6 @@ public class AdminMainFormController implements Initializable {
         appointments_action.setCellFactory(cellFactory);
         appointments_tableView.setItems(appointmentListData);
 
-    }
-
-    public ObservableList<PatientsData> paymentGetData() {
-
-        ObservableList<PatientsData> listData = FXCollections.observableArrayList();
-
-        String sql = "SELECT * FROM patient WHERE date_delete IS NULL AND status_pay IS NULL";
-        connect = Database.connectDB();
-
-        try {
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
-
-            PatientsData pData;
-            while (result.next()) {
-
-                pData = new PatientsData(result.getInt("id"),
-                        result.getInt("patient_id"), result.getString("full_name"),
-                        result.getString("gender"), result.getString("description"),
-                        result.getString("diagnosis"), result.getString("treatment"),
-                        result.getString("doctor"), result.getString("image"), result.getDate("date"));
-
-                listData.add(pData);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listData;
     }
 
     public void profileUpdateBtn() {

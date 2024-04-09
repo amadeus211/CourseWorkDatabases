@@ -61,6 +61,9 @@ public class RecordPageFormController implements Initializable {
     private TableColumn<PatientsData, String> recordpage_col_dateDeleted;
 
     @FXML
+    private TableColumn<PatientsData, String> recordpage_col_status;
+
+    @FXML
     private TableColumn<PatientsData, String> recordpage_col_action;
 
     private Connection connect;
@@ -72,7 +75,7 @@ public class RecordPageFormController implements Initializable {
     public ObservableList<PatientsData> getPatientRecordData() {
 
         ObservableList<PatientsData> listData = FXCollections.observableArrayList();
-        String selectData = "SELECT * FROM patient WHERE date_delete IS NULL AND doctor = '"
+        String selectData = "SELECT * FROM patient WHERE doctor = '"
                 + Data.doctor_id + "'";
         connect = Database.connectDB();
 
@@ -107,6 +110,8 @@ public class RecordPageFormController implements Initializable {
         recordpage_col_dateCreated.setCellValueFactory(new PropertyValueFactory<>("date"));
         recordpage_col_dateModiftied.setCellValueFactory(new PropertyValueFactory<>("dateModify"));
         recordpage_col_dateDeleted.setCellValueFactory(new PropertyValueFactory<>("dateDelete"));
+        recordpage_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
+
 
         recordpage_tableView.setItems(patientRecordData);
 
@@ -129,13 +134,13 @@ public class RecordPageFormController implements Initializable {
                         Button editButton = new Button("Змінити");
                         Button removeButton = new Button("Видалити");
 
-                        editButton.setStyle("-fx-background-color: linear-gradient(to bottom right, #a413a1, #64308e);\n"
+                        editButton.setStyle("-fx-background-color: linear-gradient(to bottom right, #70b048, #3c7319);\n"
                                 + "    -fx-cursor: hand;\n"
                                 + "    -fx-text-fill: #fff;\n"
                                 + "    -fx-font-size: 14px;\n"
                                 + "    -fx-font-family: Arial;");
 
-                        removeButton.setStyle("-fx-background-color: linear-gradient(to bottom right, #a413a1, #64308e);\n"
+                        removeButton.setStyle("-fx-background-color: linear-gradient(to bottom right, #70b048, #3c7319);\n"
                                 + "    -fx-cursor: hand;\n"
                                 + "    -fx-text-fill: #fff;\n"
                                 + "    -fx-font-size: 14px;\n"
@@ -158,7 +163,7 @@ public class RecordPageFormController implements Initializable {
                                 Data.temp_number = pData.getMobileNumber();
                                 Data.temp_address = pData.getAddress();
                                 Data.temp_status = pData.getStatus();
-                                Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/EditPatientForm.fxml"));
+                                Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/EditPatientFormFromDoctor.fxml"));
                                 Stage stage = new Stage();
 
                                 stage.setScene(new Scene(root));
@@ -178,7 +183,7 @@ public class RecordPageFormController implements Initializable {
                                 return;
                             }
 
-                            String deleteData = "UPDATE patient SET date_delete = ? WHERE patient_id = "
+                            String deleteData = "UPDATE patient SET date_delete = ?, status = 'Неактивний' WHERE patient_id = "
                                     + pData.getPatientID();
 
                             try {

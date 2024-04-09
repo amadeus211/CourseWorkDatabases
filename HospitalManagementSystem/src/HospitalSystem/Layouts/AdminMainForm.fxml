@@ -498,7 +498,7 @@
                                     <TextField fx:id="patients_patientID" layoutX="25.0" layoutY="73.0" prefHeight="25.0" prefWidth="439.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="73.0" />
                                     <Label layoutX="25.0" layoutY="112.0" text="Ім'я пацієнта:" />
                                     <TextField fx:id="patients_patientName" layoutX="25.0" layoutY="129.0" prefHeight="25.0" prefWidth="439.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="129.0" />
-                                    <Label layoutX="26.0" layoutY="168.0" text="Gender:" />
+                                    <Label layoutX="26.0" layoutY="168.0" text="Стать:" />
                                     <ComboBox fx:id="patients_gender" layoutX="26.0" layoutY="185.0" prefHeight="25.0" prefWidth="355.0" promptText="Вибрати" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="185.0" />
                                     <Label layoutX="25.0" layoutY="225.0" text="Номер телефону:" />
                                     <TextField fx:id="patients_mobileNumber" layoutX="25.0" layoutY="242.0" prefHeight="25.0" prefWidth="357.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="128.0" AnchorPane.topAnchor="242.0" />

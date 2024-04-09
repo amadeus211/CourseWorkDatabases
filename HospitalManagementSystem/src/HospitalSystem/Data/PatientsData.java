@@ -9,7 +9,6 @@ public class PatientsData {
     private String fullName;
     private Long mobileNumber;
     private String address;
-    private String image;
 
     private String description;
     private String diagnosis;
@@ -23,7 +22,7 @@ public class PatientsData {
     private String status;
     
     public PatientsData(Integer id, Integer patientID,String fullName, Long mobileNumber
-            , String gender, String address, String image,
+            , String gender, String address,
             String doctor, String specialized, Date date, Date dateModify
             , Date dateDelete, String status){
         this.id = id;
@@ -32,7 +31,6 @@ public class PatientsData {
         this.mobileNumber = mobileNumber;
         this.gender = gender;
         this.address = address;
-        this.image = image;
         this.doctor = doctor;
         this.specialized = specialized;
         this.date = date;
@@ -58,7 +56,7 @@ public class PatientsData {
     
     public PatientsData(Integer id, Integer patientID, String fullName, String gender
             , String description, String diagnosis, String treatment
-            , String doctor, String image, Date date){
+            , String doctor, Date date){
         this.id = id;
         this.patientID = patientID;
         this.fullName = fullName;
@@ -67,12 +65,7 @@ public class PatientsData {
         this.diagnosis = diagnosis;
         this.treatment = treatment;
         this.doctor = doctor;
-        this.image = image;
         this.date = date;
-    }
-
-    public String getImage() {
-        return image;
     }
 
     public String getDescription() {
