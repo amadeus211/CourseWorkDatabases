@@ -88,10 +88,16 @@ public class AdminMainFormController implements Initializable {
     private Button dashboard_btn;
 
     @FXML
+    private Button record_create_btn;
+
+    @FXML
     private Button add_patient;
 
     @FXML
     private Button doctors_btn;
+
+    @FXML
+    private Button record_btn;
 
     @FXML
     private Button patients_btn;
@@ -110,6 +116,9 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     private ComboBox<?> patients_gender;
+
+    @FXML
+    private ComboBox<?> patients_Id;
 
     @FXML
     private ComboBox<?> patients_doctor;
@@ -151,9 +160,30 @@ public class AdminMainFormController implements Initializable {
     @FXML
     private TableColumn<AppointmentData, String> dashboad_col_status;
 
+    @FXML
+    private TableView<RecordData> record_tableView;
+
+    @FXML
+    private TableColumn<RecordData, String> record_col_recordId;
+    @FXML
+    private TableColumn<RecordData, String> record_col_patientID;
+    @FXML
+    private TableColumn<RecordData, String> record_col_patientName;
+    @FXML
+    private TableColumn<RecordData, String> record_col_date;
+    @FXML
+    private TableColumn<RecordData, String> record_col_time;
+    @FXML
+    private TableColumn<RecordData, String> record_col_status;
+    @FXML
+    private TableColumn<RecordData, String> record_col_dcotor;
+
 
     @FXML
     private TextField patients_patientName;
+
+    @FXML
+    private TextField record_time;
 
 
     @FXML
@@ -191,6 +221,9 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     private AnchorPane add_patient_form;
+
+    @FXML
+    private AnchorPane add_record_form;
 
     @FXML
     private Label dashboard_AD;
@@ -260,6 +293,9 @@ public class AdminMainFormController implements Initializable {
     private TableColumn<PatientsData, String> patients_col_status;
 
     @FXML
+    private DatePicker record_date_picker;
+
+    @FXML
     private TableColumn<PatientsData, String> patients_col_action;
 
     @FXML
@@ -314,6 +350,53 @@ public class AdminMainFormController implements Initializable {
     private AlertMessage alert = new AlertMessage();
 
     private Image image;
+
+
+    public ObservableList<RecordData> recordGetData() {
+
+        ObservableList<RecordData> listData = FXCollections.observableArrayList();
+
+        String sql = "SELECT * FROM record";
+
+        connect = Database.connectDB();
+
+        try {
+
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            RecordData recordData;
+
+            while (result.next()) {
+
+                recordData = new RecordData(result.getInt("id"), result.getInt("patient_id"),
+                        result.getString("patient_name"), result.getDate("date"),
+                        result.getString("time"), result.getString("status"),
+                        result.getString("doctor_id"));
+                listData.add(recordData);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listData;
+    }
+
+    public ObservableList<RecordData> recordListData;
+
+    public void recordShowData() {
+        recordListData = recordGetData();
+
+        record_col_recordId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        record_col_patientID.setCellValueFactory(new PropertyValueFactory<>("patientId"));
+        record_col_patientName.setCellValueFactory(new PropertyValueFactory<>("patientName"));
+        record_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        record_col_time.setCellValueFactory(new PropertyValueFactory<>("time"));
+        record_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        record_col_dcotor.setCellValueFactory(new PropertyValueFactory<>("doctorId"));
+
+        record_tableView.setItems(recordListData);
+    }
 
     public void dashboardAD() {
 
@@ -452,12 +535,12 @@ public class AdminMainFormController implements Initializable {
     public void dashboardPatientDataChart() {
         dashboad_chart_PD.getData().clear();
 
-        String selectData = "SELECT date, COUNT(id) FROM patient WHERE date_delete IS NULL GROUP BY TIMESTAMP(datE) ASC LIMIT 8";
+        String selectData = "SELECT date, COUNT(id) FROM patient WHERE date_delete IS NULL GROUP BY TIMESTAMP(date)";
 
         connect = Database.connectDB();
-        XYChart.Series chart = new XYChart.Series<>();
 
         try {
+            XYChart.Series chart = new XYChart.Series<>();
             prepare = connect.prepareStatement(selectData);
             result = prepare.executeQuery();
 
@@ -469,6 +552,8 @@ public class AdminMainFormController implements Initializable {
 
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("SQL Exception: " + e.getMessage());
+
         }
 
     }
@@ -476,7 +561,7 @@ public class AdminMainFormController implements Initializable {
     public void dashboardDoctorDataChart() {
         dashboad_chart_DD.getData().clear();
 
-        String selectData = "SELECT date, COUNT(id) FROM doctor WHERE delete_date IS NULL GROUP BY TIMESTAMP(date) ASC LIMIT 6";
+        String selectData = "SELECT date, COUNT(id) FROM doctor WHERE delete_date IS NULL GROUP BY TIMESTAMP(date)";
 
         connect = Database.connectDB();
         XYChart.Series chart = new XYChart.Series<>();
@@ -1125,6 +1210,8 @@ public class AdminMainFormController implements Initializable {
             appointments_form.setVisible(false);
             profile_form.setVisible(false);
             add_patient_form.setVisible(false);
+            add_record_form.setVisible((false));
+
 
 
             dashboardAD();
@@ -1141,6 +1228,7 @@ public class AdminMainFormController implements Initializable {
             appointments_form.setVisible(false);
             profile_form.setVisible(false);
             add_patient_form.setVisible(false);
+            add_record_form.setVisible((false));
 
             doctorDisplayData();
             doctorActionButton();
@@ -1153,6 +1241,8 @@ public class AdminMainFormController implements Initializable {
             appointments_form.setVisible(false);
             profile_form.setVisible(false);
             add_patient_form.setVisible(false);
+            add_record_form.setVisible((false));
+
 
             patientDisplayData();
             patientActionButton();
@@ -1164,6 +1254,8 @@ public class AdminMainFormController implements Initializable {
             appointments_form.setVisible(true);
             profile_form.setVisible(false);
             add_patient_form.setVisible(false);
+            add_record_form.setVisible((false));
+
 
             appointmentDisplayData();
 
@@ -1175,6 +1267,7 @@ public class AdminMainFormController implements Initializable {
             appointments_form.setVisible(false);
             profile_form.setVisible(false);
             add_patient_form.setVisible(true);
+            add_record_form.setVisible((false));
 
             appointmentDisplayData();
 
@@ -1188,6 +1281,7 @@ public class AdminMainFormController implements Initializable {
             appointments_form.setVisible(false);
             profile_form.setVisible(true);
             add_patient_form.setVisible(false);
+            add_record_form.setVisible((false));
 
 
             profileStatusList();
@@ -1196,6 +1290,21 @@ public class AdminMainFormController implements Initializable {
 
             current_form.setText("Вікно налаштувань");
         }
+        else if (event.getSource() == record_btn) {
+            dashboard_form.setVisible(false);
+            doctors_form.setVisible(false);
+            patients_form.setVisible(false);
+            appointments_form.setVisible(false);
+            profile_form.setVisible(false);
+            add_patient_form.setVisible(false);
+            add_record_form.setVisible((true));
+
+            patientsIdRecordList();
+            recordShowData();
+
+            current_form.setText("Вікно додавання запису");
+        }
+
 
     }
 
@@ -1223,6 +1332,73 @@ public class AdminMainFormController implements Initializable {
         }
 
     }
+
+    public void createRecordBtn(){
+        if (patients_Id.getItems().isEmpty()
+                || record_time.getText().isEmpty()
+                || record_date_picker.getValue() == null)
+                {
+            alert.errorMessage("Щось пішло не так");
+        } else {
+
+            Database.connectDB();
+            try {
+                String patientName = "";
+                String doctorId = "";
+
+                String getDoctor = "SELECT doctor, full_name FROM patient WHERE patient_id = '"
+                        + (String) patients_Id.getSelectionModel().getSelectedItem() + "'";
+
+                statement = connect.createStatement();
+                result = statement.executeQuery(getDoctor);
+
+                if (result.next()) {
+                    doctorId = result.getString("doctor");
+                    patientName = result.getString("full_name");
+                }
+
+                    String insertData = "INSERT INTO record (patient_id, patient_name, date, "
+                            + "time, status, doctor_id) "
+                            + "VALUES(?,?,?,?,?,?)";
+                    prepare = connect.prepareStatement(insertData);
+                    prepare.setString(1, (String) patients_Id.getSelectionModel().getSelectedItem());
+                    prepare.setString(2, patientName);
+                    prepare.setString(3, "" + record_date_picker.getValue());
+                    prepare.setString(4, record_time.getText());
+                    prepare.setString(5, "Незавершено");
+                    prepare.setString(6, doctorId);
+
+                    prepare.executeUpdate();
+
+                    alert.successMessage("Додавання успішне!");
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        recordShowData();
+
+    }
+
+    public void patientsIdRecordList(){
+        String sql = "SELECT * FROM patient WHERE date_delete IS NULL and status = 'Активний'";
+
+        connect = Database.connectDB();
+
+        try{
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+            ObservableList listData = FXCollections.observableArrayList();
+            while(result.next()){
+                listData.add(result.getString("patient_id"));
+            }
+
+            patients_Id.setItems(listData);
+        }catch(Exception e){e.printStackTrace();}
+    }
+
+
 
     public void patientAddBtn() {
 

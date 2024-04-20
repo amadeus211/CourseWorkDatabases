@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 import HospitalSystem.Data.AppointmentData;
 import HospitalSystem.Data.Data;
 import HospitalSystem.Data.Database;
+import HospitalSystem.Data.RecordData;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -54,6 +55,22 @@ public class DoctorMainFormController implements Initializable {
     private Circle top_profile;
 
     @FXML
+    private TableView<RecordData> record_tableView;
+
+    @FXML
+    private TableColumn<RecordData, String> record_col_recordId;
+    @FXML
+    private TableColumn<RecordData, String> record_col_patientID;
+    @FXML
+    private TableColumn<RecordData, String> record_col_patientName;
+    @FXML
+    private TableColumn<RecordData, String> record_col_date;
+    @FXML
+    private TableColumn<RecordData, String> record_col_time;
+    @FXML
+    private TableColumn<RecordData, String> record_col_status;
+
+    @FXML
     private Label top_username;
 
     @FXML
@@ -84,7 +101,13 @@ public class DoctorMainFormController implements Initializable {
     private Button profile_btn;
 
     @FXML
+    private Button record_btn;
+
+    @FXML
     private AnchorPane dashboard_form;
+
+    @FXML
+    private AnchorPane add_record_form;
 
     @FXML
     private Label dashboard_IP;
@@ -201,6 +224,9 @@ public class DoctorMainFormController implements Initializable {
     private ComboBox<String> appointment_gender;
 
     @FXML
+    private ComboBox<?> patients_record_id;
+
+    @FXML
     private TextField appointment_description;
 
     @FXML
@@ -235,6 +261,9 @@ public class DoctorMainFormController implements Initializable {
 
     @FXML
     private Button profile_importBtn;
+
+    @FXML
+    private Button close_record_btn;
 
     @FXML
     private Label profile_label_doctorID;
@@ -280,6 +309,94 @@ public class DoctorMainFormController implements Initializable {
     private Image image;
 
     private final AlertMessage alert = new AlertMessage();
+
+    public ObservableList<RecordData> recordGetData() {
+
+        ObservableList<RecordData> listData = FXCollections.observableArrayList();
+
+        String sql = "SELECT * FROM record WHERE doctor_id='"
+                + Data.doctor_id + "'";
+
+        connect = Database.connectDB();
+
+        try {
+
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            RecordData recordData;
+
+            while (result.next()) {
+
+                recordData = new RecordData(result.getInt("id"), result.getInt("patient_id"),
+                        result.getString("patient_name"), result.getDate("date"),
+                        result.getString("time"), result.getString("status"),
+                        result.getString("doctor_id"));
+                listData.add(recordData);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listData;
+    }
+
+    public ObservableList<RecordData> recordListData;
+
+    public void recordShowData() {
+        recordListData = recordGetData();
+
+        record_col_recordId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        record_col_patientID.setCellValueFactory(new PropertyValueFactory<>("patientId"));
+        record_col_patientName.setCellValueFactory(new PropertyValueFactory<>("patientName"));
+        record_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        record_col_time.setCellValueFactory(new PropertyValueFactory<>("time"));
+        record_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        record_tableView.setItems(recordListData);
+    }
+
+    public void completeRecord(){
+        if (patients_record_id.getItems().isEmpty()) {
+            alert.errorMessage("Будь ласка, введіть ID запису");
+        } else {
+
+            String updateQuery = "UPDATE record SET status = 'Завершено' WHERE id = ?";
+
+            connect = Database.connectDB();
+
+            try {
+                if (alert.confirmationMessage("Ви впевнені, що хочете завершити запис з ID: "
+                        + patients_record_id.getSelectionModel().getSelectedItem() + "?")) {
+                    prepare = connect.prepareStatement(updateQuery);
+                    prepare.setString(1, (String) patients_record_id.getSelectionModel().getSelectedItem());
+                    prepare.executeUpdate();
+
+                    alert.successMessage("Запис завершено!");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        recordShowData();
+    }
+
+    public void patientsIdRecordList(){
+        String sql = "SELECT * FROM record WHERE status = 'Незавершено'";
+
+        connect = Database.connectDB();
+
+        try{
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+            ObservableList listData = FXCollections.observableArrayList();
+            while(result.next()){
+                listData.add(result.getString("id"));
+            }
+
+            patients_record_id.setItems(listData);
+        }catch(Exception e){e.printStackTrace();}
+    }
 
 
     public void dashbboardDisplayTP() {
@@ -402,7 +519,7 @@ public class DoctorMainFormController implements Initializable {
         dashboad_chart_PD.getData().clear();
 
         String sql = "SELECT date, COUNT(id) FROM patient WHERE doctor = '"
-                + Data.doctor_id + "' GROUP BY TIMESTAMP(date) ASC LIMIT 8";
+                + Data.doctor_id + "' GROUP BY TIMESTAMP(date)";
         connect = Database.connectDB();
 
         try {
@@ -418,6 +535,7 @@ public class DoctorMainFormController implements Initializable {
 
         } catch (Exception e) {
             e.printStackTrace();
+
         }
 
     }
@@ -427,7 +545,7 @@ public class DoctorMainFormController implements Initializable {
         dashboad_chart_DD.getData().clear();
 
         String sql = "SELECT date, COUNT(id) FROM appointment WHERE doctor = '"
-                + Data.doctor_id + "' GROUP BY TIMESTAMP(date) ASC LIMIT 7";
+                + Data.doctor_id + "' GROUP BY TIMESTAMP(date)";
         connect = Database.connectDB();
 
         try {
@@ -1065,7 +1183,8 @@ public class DoctorMainFormController implements Initializable {
 
     }
 
-    private String[] specialization = {"Allergist", "Dermatologist", "Ophthalmologist", "Gynecologist", "Cardiologist"};
+    private String[] specialization =  {"Косметолог", "Психіатр", "Дерматолог", "Гінеколог", "Кардіолог", "Терапевт", "Уролог", "Хірург",
+            "Дерматолог", "Кардіолог", "Невролог", "Травматолог"};
 
     public void profileSpecializedList() {
 
@@ -1113,26 +1232,43 @@ public class DoctorMainFormController implements Initializable {
             dashbboardDisplayTP();
             dashbboardDisplayAP();
             dashbboardDisplayTA();
+            dashboardNOP();
+            dashboardNOA();
             current_form.setText("Вікно статистики");
         } else if (event.getSource() == patients_btn) {
             dashboard_form.setVisible(false);
             patients_form.setVisible(true);
             appointments_form.setVisible(false);
             profile_form.setVisible(false);
+            add_record_form.setVisible(false);
             current_form.setText("Вікно пацієнтів");
         } else if (event.getSource() == appointments_btn) {
             dashboard_form.setVisible(false);
             patients_form.setVisible(false);
             appointments_form.setVisible(true);
             profile_form.setVisible(false);
+            add_record_form.setVisible(false);
+
             current_form.setText("Вікно призначень");
         } else if (event.getSource() == profile_btn) {
             dashboard_form.setVisible(false);
             patients_form.setVisible(false);
             appointments_form.setVisible(false);
             profile_form.setVisible(true);
+            add_record_form.setVisible(false);
+
             current_form.setText("Вікно налаштувань");
         }
+        else if(event.getSource() == record_btn){
+        dashboard_form.setVisible(false);
+        patients_form.setVisible(false);
+        appointments_form.setVisible(false);
+        profile_form.setVisible(false);
+        current_form.setText("Вікно записів");
+        add_record_form.setVisible(true);
+        recordShowData();
+        patientsIdRecordList();}
+
     }
 
     public void logoutBtn() {

@@ -33,7 +33,7 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="edit_patientID" layoutX="156.0" layoutY="75.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                  <TextField fx:id="edit_patientID" disable="true" layoutX="156.0" layoutY="75.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
                   <Label layoutX="123.0" layoutY="114.0" text="Ім'я:">
                      <font>
                         <Font size="13.0" />

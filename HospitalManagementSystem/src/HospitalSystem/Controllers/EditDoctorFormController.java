@@ -213,7 +213,7 @@ public class EditDoctorFormController implements Initializable {
         editDoctor_specialized.getSelectionModel().select(Data.temp_doctorSpecialized);
         editDoctor_gender.getSelectionModel().select(Data.temp_doctorGender);
         editDoctor_mobileNumber.setText(Data.temp_doctorMobileNumber);
-        editDoctor_address.setText(Data.temp_doctorName);
+        editDoctor_address.setText(Data.temp_doctorAddress);
         editDoctor_status.getSelectionModel().select(Data.temp_doctorStatus);
 
         image = new Image("File:" + Data.temp_doctorImagePath, 112, 121, false, true);
@@ -255,6 +255,8 @@ public class EditDoctorFormController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //displayDoctorData();
+
         setField();
         specializationList();
         genderList();

@@ -31,6 +31,8 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import javax.swing.text.html.ImageView;
+
 public class RecordPageFormController implements Initializable {
 
     @FXML
@@ -132,6 +134,7 @@ public class RecordPageFormController implements Initializable {
                         setText(null);
                     } else {
                         Button editButton = new Button("Змінити");
+
                         Button removeButton = new Button("Видалити");
 
                         editButton.setStyle("-fx-background-color: linear-gradient(to bottom right, #70b048, #3c7319);\n"
