@@ -22,7 +22,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HospitalSystem.Controllers.DoctorMainFormController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1211.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HospitalSystem.Controllers.DoctorMainFormController">
    <children>
       <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -399,32 +399,32 @@
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="101.0" layoutY="19.0" text="ID:" />
-                                    <TextField fx:id="appointment_appointmentID" layoutX="125.0" layoutY="14.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
-                                    <Label layoutX="92.0" layoutY="55.0" text="Ім'я:" />
-                                    <TextField fx:id="appointment_name" layoutX="125.0" layoutY="51.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
-                                    <Label layoutX="368.0" layoutY="126.0" text="Стать:" />
-                                    <ComboBox fx:id="appointment_gender" layoutX="409.0" layoutY="122.0" prefHeight="25.0" prefWidth="180.0" promptText="Вибрати" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
-                                    <Label layoutX="368.0" layoutY="19.0" text="Опис:" />
-                                    <TextField fx:id="appointment_description" layoutX="409.0" layoutY="15.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
-                                    <Label layoutX="358.0" layoutY="56.0" text="Діагноз:" />
-                                    <TextField fx:id="appointment_diagnosis" layoutX="409.0" layoutY="52.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
-                                    <Label layoutX="345.0" layoutY="91.0" text="Лікування:" />
-                                    <TextField fx:id="appointment_treatment" layoutX="409.0" layoutY="87.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
-                                    <Label layoutX="24.0" layoutY="125.0" text="Номер телефону:" />
-                                    <TextField fx:id="appointment_mobileNumber" layoutX="125.0" layoutY="121.0" prefHeight="25.0" prefWidth="166.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
-                                    <Label layoutX="622.0" layoutY="25.0" text="Адреса:" />
-                                    <TextArea fx:id="appointment_address" layoutX="674.0" layoutY="25.0" prefHeight="40.0" prefWidth="167.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
-                                    <Label layoutX="627.0" layoutY="84.0" text="Статус:" />
-                                    <ComboBox fx:id="appointment_status" layoutX="674.0" layoutY="80.0" prefHeight="25.0" prefWidth="168.0" promptText="Вибрати" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
-                                    <Button fx:id="appointment_insertBtn" layoutX="167.0" layoutY="171.0" mnemonicParsing="false" onAction="#appointmentInsertBtn" prefHeight="36.0" prefWidth="100.0" styleClass="btn-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Додати" />
-                                    <Button fx:id="appointment_updateBtn" layoutX="286.0" layoutY="171.0" mnemonicParsing="false" onAction="#appointmentUpdateBtn" prefHeight="36.0" prefWidth="100.0" styleClass="btn-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Оновити" />
-                                    <Button fx:id="appointment_clearBtn" layoutX="430.0" layoutY="171.0" mnemonicParsing="false" onAction="#appointmentClearBtn" prefHeight="36.0" prefWidth="100.0" styleClass="btn-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Очистити" />
-                                    <Button fx:id="appointment_deleteBtn" layoutX="549.0" layoutY="171.0" mnemonicParsing="false" onAction="#appointmentDeleteBtn" prefHeight="36.0" prefWidth="100.0" styleClass="btn-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Видалити" />
-                                    <DatePicker fx:id="appointment_schedule" layoutX="671.0" layoutY="121.0" />
-                                    <Label layoutX="635.0" layoutY="125.0" text="Дата:" />
-                                    <Label layoutX="56.0" layoutY="93.0" text="Пацієнт ID:" />
-                                    <TextField fx:id="appointment_patientID" layoutX="125.0" layoutY="87.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                                    <Label layoutX="140.0" layoutY="19.0" text="ID:" />
+                                    <TextField fx:id="appointment_appointmentID" layoutX="164.0" layoutY="14.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                                    <Label layoutX="131.0" layoutY="55.0" text="Ім'я:" />
+                                    <TextField fx:id="appointment_name" layoutX="164.0" layoutY="51.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                                    <Label layoutX="407.0" layoutY="126.0" text="Стать:" />
+                                    <ComboBox fx:id="appointment_gender" layoutX="448.0" layoutY="122.0" prefHeight="25.0" prefWidth="180.0" promptText="Вибрати" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                                    <Label layoutX="407.0" layoutY="19.0" text="Опис:" />
+                                    <TextField fx:id="appointment_description" layoutX="448.0" layoutY="15.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                                    <Label layoutX="397.0" layoutY="56.0" text="Діагноз:" />
+                                    <TextField fx:id="appointment_diagnosis" layoutX="448.0" layoutY="52.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                                    <Label layoutX="384.0" layoutY="91.0" text="Лікування:" />
+                                    <TextField fx:id="appointment_treatment" layoutX="448.0" layoutY="87.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                                    <Label layoutX="63.0" layoutY="125.0" text="Номер телефону:" />
+                                    <TextField fx:id="appointment_mobileNumber" layoutX="164.0" layoutY="121.0" prefHeight="25.0" prefWidth="166.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                                    <Label layoutX="661.0" layoutY="25.0" text="Адреса:" />
+                                    <TextArea fx:id="appointment_address" layoutX="713.0" layoutY="25.0" prefHeight="40.0" prefWidth="167.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                                    <Label layoutX="666.0" layoutY="84.0" text="Статус:" />
+                                    <ComboBox fx:id="appointment_status" layoutX="713.0" layoutY="80.0" prefHeight="25.0" prefWidth="168.0" promptText="Вибрати" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                                    <Button fx:id="appointment_insertBtn" layoutX="247.0" layoutY="171.0" mnemonicParsing="false" onAction="#appointmentInsertBtn" prefHeight="36.0" prefWidth="100.0" styleClass="btn-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Додати" />
+                                    <Button fx:id="appointment_updateBtn" layoutX="364.0" layoutY="171.0" mnemonicParsing="false" onAction="#appointmentUpdateBtn" prefHeight="36.0" prefWidth="100.0" styleClass="btn-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Оновити" />
+                                    <Button fx:id="appointment_clearBtn" layoutX="555.0" layoutY="171.0" mnemonicParsing="false" onAction="#appointmentClearBtn" prefHeight="36.0" prefWidth="100.0" styleClass="btn-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Очистити" />
+                                    <Button fx:id="appointment_deleteBtn" layoutX="671.0" layoutY="171.0" mnemonicParsing="false" onAction="#appointmentDeleteBtn" prefHeight="36.0" prefWidth="100.0" styleClass="btn-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Видалити" />
+                                    <DatePicker fx:id="appointment_schedule" layoutX="710.0" layoutY="121.0" />
+                                    <Label layoutX="674.0" layoutY="125.0" text="Дата:" />
+                                    <Label layoutX="95.0" layoutY="93.0" text="Пацієнт ID:" />
+                                    <TextField fx:id="appointment_patientID" layoutX="164.0" layoutY="87.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -516,7 +516,7 @@
                                  </children>
                               </AnchorPane>
                            </children></AnchorPane>
-                        <AnchorPane fx:id="add_record_form" prefHeight="560.0" prefWidth="886.0" visible="false">
+                        <AnchorPane fx:id="add_record_form" prefHeight="560.0" prefWidth="994.0" visible="false">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="13.0" prefHeight="534.0" prefWidth="857.0" stylesheets="@../../Design/PageDesign.css" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="13.0">
                                  <styleClass>
@@ -530,7 +530,7 @@
                                           <Font size="20.0" />
                                        </font>
                                     </Label>
-                                    <TableView fx:id="record_tableView" layoutX="7.0" layoutY="53.0" prefHeight="387.0" prefWidth="843.0" stylesheets="@../../Design/DoctorMainFormDesign.css">
+                                    <TableView fx:id="record_tableView" layoutX="7.0" layoutY="53.0" prefHeight="387.0" prefWidth="942.0" stylesheets="@../../Design/DoctorMainFormDesign.css">
                                        <columns>
                                           <TableColumn fx:id="record_col_recordId" prefWidth="65.0" text="ID" />
                                           <TableColumn fx:id="record_col_patientID" prefWidth="70.0" text="ПацієнтID" />
@@ -543,13 +543,13 @@
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                        </columnResizePolicy>
                                     </TableView>
-                                    <Label layoutX="14.0" layoutY="456.0" prefHeight="28.0" prefWidth="214.0" text="Завершити запис з ID:">
+                                    <Label layoutX="14.0" layoutY="467.0" prefHeight="28.0" prefWidth="214.0" text="Завершити запис з ID:">
                                        <font>
                                           <Font size="19.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="patients_record_id" layoutX="221.0" layoutY="459.0" prefWidth="150.0" />
-                                    <Button fx:id="close_record_btn" layoutX="394.0" layoutY="457.0" mnemonicParsing="false" onAction="#completeRecord" prefHeight="26.0" prefWidth="108.0" styleClass="btn-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Завершити" />
+                                    <ComboBox fx:id="patients_record_id" layoutX="221.0" layoutY="459.0" prefHeight="43.0" prefWidth="162.0" />
+                                    <Button fx:id="close_record_btn" layoutX="420.0" layoutY="459.0" mnemonicParsing="false" onAction="#completeRecord" prefHeight="45.0" prefWidth="116.0" styleClass="btn-2" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Завершити" />
                                  </children>
                               </AnchorPane>
                            </children>

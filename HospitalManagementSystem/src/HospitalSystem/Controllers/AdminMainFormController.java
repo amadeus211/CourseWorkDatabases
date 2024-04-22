@@ -293,6 +293,9 @@ public class AdminMainFormController implements Initializable {
     private TableColumn<PatientsData, String> patients_col_status;
 
     @FXML
+    private TableColumn<PatientsData, String> patients_col_doctor;
+
+    @FXML
     private DatePicker record_date_picker;
 
     @FXML
@@ -790,6 +793,7 @@ public class AdminMainFormController implements Initializable {
         patients_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
         patients_col_dateModify.setCellValueFactory(new PropertyValueFactory<>("dateModify"));
         patients_col_dateDelete.setCellValueFactory(new PropertyValueFactory<>("dateDelete"));
+        patients_col_doctor.setCellValueFactory(new PropertyValueFactory<>("doctor"));
         patients_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         patients_tableView.setItems(patientListData);
@@ -841,6 +845,8 @@ public class AdminMainFormController implements Initializable {
                                 Data.temp_gender = pData.getGender();
                                 Data.temp_number = pData.getMobileNumber();
                                 Data.temp_status = pData.getStatus();
+                                Data.temp_patient_doctor = pData.getDoctor();
+
 
                                 Parent root = FXMLLoader.load(getClass().getResource("/HospitalSystem/Layouts/EditPatientForm.fxml"));
                                 Stage stage = new Stage();
@@ -1269,8 +1275,7 @@ public class AdminMainFormController implements Initializable {
             add_patient_form.setVisible(true);
             add_record_form.setVisible((false));
 
-            appointmentDisplayData();
-
+            doctorList();
             current_form.setText("Вікно додавання пацієнтів");
         }
 
@@ -1493,7 +1498,7 @@ public class AdminMainFormController implements Initializable {
     }
 
     public void doctorList(){
-        String sql = "SELECT * FROM doctor WHERE delete_date IS NULL";
+        String sql = "SELECT * FROM doctor WHERE delete_date IS NULL and status = 'Активний'";
 
         connect = Database.connectDB();
 

@@ -26,6 +26,10 @@ public class Data {
     public static String temp_date;
     public static String temp_path;
 
+    public static String temp_patient_doctor;
+
+
+
     public static String temp_doctorID;
     public static String temp_doctorName;
     public static String temp_doctorEmail;

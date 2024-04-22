@@ -35,6 +35,9 @@ public class EditPatientFormController implements Initializable {
     private ComboBox<String> edit_gender;
 
     @FXML
+    private ComboBox<String> edit_doctor;
+
+    @FXML
     private TextField edit_contactNumber;
 
     @FXML
@@ -54,11 +57,12 @@ public class EditPatientFormController implements Initializable {
                 || edit_gender.getSelectionModel().getSelectedItem() == null
                 || edit_contactNumber.getText().isEmpty()
                 || edit_address.getText().isEmpty()
-                || edit_status.getSelectionModel().getSelectedItem() == null) {
+                || edit_status.getSelectionModel().getSelectedItem() == null
+                || edit_doctor.getSelectionModel().getSelectedItem() == null) {
             alert.errorMessage("Будь ласка, заповніть усі порожні поля");
         } else {
             String updateData = "UPDATE patient SET full_name = ?, gender = ?"
-                    + ", mobile_number = ?, address = ?, status = ?, date_modify = ? "
+                    + ", mobile_number = ?, address = ?, status = ?, date_modify = ?, doctor = ? "
                     + "WHERE patient_id = '"
                     + edit_patientID.getText() + "'";
             connect = Database.connectDB();
@@ -74,6 +78,8 @@ public class EditPatientFormController implements Initializable {
                     prepare.setString(4, edit_address.getText());
                     prepare.setString(5, edit_status.getSelectionModel().getSelectedItem());
                     prepare.setString(6, String.valueOf(sqlDate));
+                    prepare.setString(7, edit_doctor.getSelectionModel().getSelectedItem());
+
                     prepare.executeUpdate();
                     alert.successMessage("Оновлення успішне!");
                 } else {
@@ -87,6 +93,26 @@ public class EditPatientFormController implements Initializable {
 
     }
 
+    private ResultSet result;
+
+    public void doctorList(){
+        String sql = "SELECT * FROM doctor WHERE delete_date IS NULL and status = 'Активний'";
+
+        connect = Database.connectDB();
+
+        try{
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+            ObservableList listData = FXCollections.observableArrayList();
+            while(result.next()){
+                listData.add(result.getString("doctor_id"));
+            }
+
+            edit_doctor.setItems(listData);
+        }catch(Exception e){e.printStackTrace();}
+    }
+
+
     public void setField() {
         edit_patientID.setText(String.valueOf(Data.temp_PatientID));
         edit_name.setText(Data.temp_name);
@@ -94,6 +120,7 @@ public class EditPatientFormController implements Initializable {
         edit_contactNumber.setText(String.valueOf(Data.temp_number));
         edit_address.setText(Data.temp_address);
         edit_status.getSelectionModel().select(Data.temp_status);
+        edit_doctor.getSelectionModel().select(Data.temp_patient_doctor);
     }
 
     public void genderList() {
@@ -123,6 +150,7 @@ public class EditPatientFormController implements Initializable {
         setField();
         genderList();
         statusList();
+        doctorList();
     }
 
 }
