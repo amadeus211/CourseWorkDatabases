@@ -4,7 +4,6 @@ import java.sql.Date;
 
 public class DoctorData {
 
-    private Integer id;
     private String doctorID;
     private String password;
     private String fullName;
@@ -19,10 +18,9 @@ public class DoctorData {
     private Date dateDelete;
     private String status;
 
-    public DoctorData(Integer id, String doctorID, String password, String fullName,
+    public DoctorData( String doctorID, String password, String fullName,
             String email, String gender, Long mobileNumber, String specialized, String address,
             String image, Date date, Date dateModify, Date dateDelete, String status) {
-        this.id = id;
         this.doctorID = doctorID;
         this.password = password;
         this.fullName = fullName;
@@ -45,9 +43,6 @@ public class DoctorData {
         this.status = status;
     }
 
-    public Integer getId() {
-        return id;
-    }
 
     public String getDoctorID() {
         return doctorID;

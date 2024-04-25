@@ -293,7 +293,7 @@
                                        </font>
                                     </Label>
                                     <Label layoutX="25.0" layoutY="56.0" text="Пацієнт ID:" />
-                                    <TextField fx:id="patients_patientID" layoutX="25.0" layoutY="73.0" prefHeight="25.0" prefWidth="439.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="73.0" />
+                                    <TextField fx:id="patients_patientID" disable="true" layoutX="25.0" layoutY="73.0" prefHeight="25.0" prefWidth="439.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="73.0" />
                                     <Label layoutX="25.0" layoutY="112.0" text="Ім'я:" />
                                     <TextField fx:id="patients_patientName" layoutX="25.0" layoutY="129.0" prefHeight="25.0" prefWidth="439.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="129.0" />
                                     <Label layoutX="26.0" layoutY="168.0" text="Стать:" />
@@ -424,7 +424,7 @@
                                     <DatePicker fx:id="appointment_schedule" layoutX="710.0" layoutY="121.0" />
                                     <Label layoutX="674.0" layoutY="125.0" text="Дата:" />
                                     <Label layoutX="95.0" layoutY="93.0" text="Пацієнт ID:" />
-                                    <TextField fx:id="appointment_patientID" layoutX="164.0" layoutY="87.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                                    <ComboBox fx:id="appointment_patient_id" layoutX="164.0" layoutY="87.0" onAction="#appointmentPatientIdSelected" prefHeight="25.0" prefWidth="180.0" promptText="Вибрати" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -469,7 +469,7 @@
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="profile_doctorID" layoutX="198.0" layoutY="66.0" prefHeight="25.0" prefWidth="215.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="171.0" AnchorPane.topAnchor="66.0" />
+                                    <TextField fx:id="profile_doctorID" disable="true" layoutX="198.0" layoutY="66.0" prefHeight="25.0" prefWidth="215.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="171.0" AnchorPane.topAnchor="66.0" />
                                     <Label layoutX="154.0" layoutY="105.0" text="Ім'я:">
                                        <font>
                                           <Font size="15.0" />

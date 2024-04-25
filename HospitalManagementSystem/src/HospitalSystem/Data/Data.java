@@ -17,6 +17,8 @@ public class Data {
     public static String[] specialization = {"Косметолог", "Психіатр", "Дерматолог", "Гінеколог", "Кардіолог", "Терапевт", "Уролог", "Хірург",
             "Дерматолог", "Кардіолог", "Невролог", "Травматолог"};
 
+    public static String[] records_time = {"8:00-9:00", "9:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", };
+
     public static Integer temp_PatientID;
     public static String temp_name;
     public static String temp_gender;
@@ -27,6 +29,8 @@ public class Data {
     public static String temp_path;
 
     public static String temp_patient_doctor;
+
+    public static boolean log = false;
 
 
 

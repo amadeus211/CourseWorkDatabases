@@ -250,33 +250,31 @@ public class DoctorPageController implements Initializable {
 
     public void registerDoctorID() {
         String doctorID = "DID-";
-        int tempID = 0;
-        String sql = "SELECT MAX(id) FROM doctor";
+        int maxID = 0;
+        String sql = "SELECT doctor_id FROM doctor";
 
         connect = Database.connectDB();
 
         try {
-
             prepare = connect.prepareStatement(sql);
             result = prepare.executeQuery();
 
-            if (result.next()) {
-                tempID = result.getInt("MAX(id)");
+            while (result.next()) {
+                String idString = result.getString("doctor_id").replaceAll("\\D+", "");
+                int id = Integer.parseInt(idString); // Парсинг числового значення ID
+                if (id > maxID) {
+                    maxID = id;
+                }
             }
 
-            if (tempID == 0) {
-                tempID += 1;
-                doctorID += tempID;
-            } else {
-                doctorID += (tempID + 1);
-            }
-
-            register_doctorID.setText(doctorID);
-            register_doctorID.setDisable(true);
-
+            doctorID += (maxID + 1);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+        register_doctorID.setText(doctorID);
+        register_doctorID.setDisable(true);
 
     }
 

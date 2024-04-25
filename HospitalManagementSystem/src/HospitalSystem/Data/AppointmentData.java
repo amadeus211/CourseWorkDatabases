@@ -22,11 +22,10 @@ public class AppointmentData {
     private String specialized;
     private Date schedule;
 
-    public AppointmentData(Integer id, Integer appointmentID, Long patientID, String name, String gender,
+    public AppointmentData( Integer appointmentID, Long patientID, String name, String gender,
             Long mobileNumber, String description, String diagnosis, String treatment, String address,
-            String doctorID, String specialized,
+            String doctorID,
             Date date, Date dateModify, Date dateDelete, String status, Date schedule) {
-        this.id = id;
         this.appointmentID = appointmentID;
         this.patientID = patientID;
         this.name = name;
@@ -37,7 +36,6 @@ public class AppointmentData {
         this.treatment = treatment;
         this.address = address;
         this.doctorID = doctorID;
-        this.specialized = specialized;
         this.date = date;
         this.dateModify = dateModify;
         this.dateDelete = dateDelete;
@@ -90,9 +88,6 @@ public class AppointmentData {
         this.schedule = schedule;
     }
 
-    public Integer getId() {
-        return id;
-    }
 
     public Integer getAppointmentID() {
         return appointmentID;

@@ -12,7 +12,7 @@ public class Database {
             Class.forName("com.mysql.jdbc.Driver");
 
             Connection connect
-                    = DriverManager.getConnection("jdbc:mysql://localhost/hospital", "root", ""); // root IS OUR DEFAULT USERNAME AND EMPTY OR NULL OR BLANK TO OUR PASSWORD
+                    = DriverManager.getConnection("jdbc:mysql://localhost/hospital", "root", "");
             return connect;
         } catch (Exception e) {
             e.printStackTrace();

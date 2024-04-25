@@ -31,7 +31,7 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="editApp_appointmentID" layoutX="137.0" layoutY="71.0" prefHeight="25.0" prefWidth="112.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
+                  <TextField fx:id="editApp_appointmentID" disable="true" layoutX="137.0" layoutY="71.0" prefHeight="25.0" prefWidth="112.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
                   <Label layoutX="103.0" layoutY="113.0" text="Ім'я:">
                      <font>
                         <Font size="13.0" />
@@ -82,18 +82,12 @@
                      </font>
                   </Label>
                   <ComboBox fx:id="editApp_doctor" layoutX="444.0" layoutY="220.0" onAction="#doctorList" prefWidth="150.0" promptText="Вибрати" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                  <Label layoutX="354.0" layoutY="259.0" text="Спеціалізація:">
+                  <Label layoutX="398.0" layoutY="267.0" text="Статус:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="editApp_specialized" layoutX="444.0" layoutY="257.0" prefWidth="150.0" promptText="Вибрати" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                  <Label layoutX="395.0" layoutY="295.0" text="Статус:">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Label>
-                  <ComboBox fx:id="editApp_status" layoutX="444.0" layoutY="292.0" prefWidth="150.0" promptText="Вибрати" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
+                  <ComboBox fx:id="editApp_status" layoutX="444.0" layoutY="265.0" prefWidth="150.0" promptText="Вибрати" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
                </children>
             </AnchorPane>
          </children>

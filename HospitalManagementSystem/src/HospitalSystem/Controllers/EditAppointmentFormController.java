@@ -69,7 +69,6 @@ public class EditAppointmentFormController implements Initializable{
         editApp_diagnosis.setText(Data.temp_appDiagnosis);
         editApp_treatment.setText(Data.temp_appTreatment);
         editApp_doctor.getSelectionModel().select(Data.temp_appDoctor);
-        editApp_specialized.getSelectionModel().select(Data.temp_appSpecialized);
         editApp_status.getSelectionModel().select(Data.temp_appStatus);
     }
     
@@ -87,28 +86,9 @@ public class EditAppointmentFormController implements Initializable{
             }
             
             editApp_doctor.setItems(listData);
-            specializedList();
         }catch(Exception e){e.printStackTrace();}
     }
-    
-    public void specializedList(){
-        String sql = "SELECT * FROM doctor WHERE delete_date IS NULL AND doctor_id = '"
-                + editApp_doctor.getSelectionModel().getSelectedItem() + "'";
-        
-        connect = Database.connectDB();
-        
-        try{
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
-            ObservableList listData = FXCollections.observableArrayList();
-            if(result.next()){
-                listData.add(result.getString("specialized"));
-            }
-            editApp_specialized.setItems(listData);
-            
-        }catch(Exception e){e.printStackTrace();}
-    }
-    
+
     public void genderList() {
         List<String> genderL = new ArrayList<>();
 

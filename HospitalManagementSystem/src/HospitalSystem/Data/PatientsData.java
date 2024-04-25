@@ -21,28 +21,26 @@ public class PatientsData {
     private Date dateDelete;
     private String status;
     
-    public PatientsData(Integer id, Integer patientID,String fullName, Long mobileNumber
+    public PatientsData( Integer patientID,String fullName, Long mobileNumber
             , String gender, String address,
-            String doctor, String specialized, Date date, Date dateModify
+            String doctor,  Date date, Date dateModify
             , Date dateDelete, String status){
-        this.id = id;
         this.patientID = patientID;
         this.fullName = fullName;
         this.mobileNumber = mobileNumber;
         this.gender = gender;
         this.address = address;
         this.doctor = doctor;
-        this.specialized = specialized;
+
         this.date = date;
         this.dateModify = dateModify;
         this.dateDelete = dateDelete;
         this.status = status;
     }
     
-    public PatientsData(Integer id, Integer patientID, String fullName, String gender,
+    public PatientsData( Integer patientID, String fullName, String gender,
             Long mobileNumber, String address, String status, Date date
             , Date dateModify, Date dateDelete){
-        this.id = id;
         this.patientID = patientID;
         this.fullName = fullName;
         this.gender = gender;
@@ -53,7 +51,7 @@ public class PatientsData {
         this.dateModify = dateModify;
         this.dateDelete = dateDelete;
     }
-    
+
     public PatientsData(Integer id, Integer patientID, String fullName, String gender
             , String description, String diagnosis, String treatment
             , String doctor, Date date){

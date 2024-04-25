@@ -87,7 +87,7 @@ public class RecordPageFormController implements Initializable {
 
             PatientsData pData;
             while (result.next()) {
-                pData = new PatientsData(result.getInt("id"), result.getInt("patient_id"),
+                pData = new PatientsData(result.getInt("patient_id"),
                         result.getString("full_name"), result.getString("gender"), result.getLong("mobile_number"),
                         result.getString("address"), result.getString("status"), result.getDate("date"),
                         result.getDate("date_modify"), result.getDate("date_delete"));

@@ -35,6 +35,9 @@ public class EditPatientFormController implements Initializable {
     private ComboBox<String> edit_gender;
 
     @FXML
+    private ComboBox<String> appointment_patient_id;
+
+    @FXML
     private ComboBox<String> edit_doctor;
 
     @FXML
@@ -52,45 +55,80 @@ public class EditPatientFormController implements Initializable {
     private PreparedStatement prepare;
 
     public void updateBtn() {
+        if(Data.log){
+            if (edit_patientID.getText().isEmpty() || edit_name.getText().isEmpty()
+                    || edit_gender.getSelectionModel().getSelectedItem() == null
+                    || edit_contactNumber.getText().isEmpty()
+                    || edit_address.getText().isEmpty()
+                    || edit_status.getSelectionModel().getSelectedItem() == null
+                    || edit_doctor.getSelectionModel().getSelectedItem() == null) {
+                alert.errorMessage("Будь ласка, заповніть усі порожні поля");
+            } else {
+                String updateData = "UPDATE patient SET full_name = ?, gender = ?"
+                        + ", mobile_number = ?, address = ?, status = ?, date_modify = ?, doctor = ? "
+                        + "WHERE patient_id = '"
+                        + edit_patientID.getText() + "'";
+                connect = Database.connectDB();
+                try {
+                    if (alert.confirmationMessage("Ви впевнені, що хочете оновити пацієнта з ID: " + edit_patientID.getText()
+                            + "?")) {
+                        prepare = connect.prepareStatement(updateData);
+                        Date date = new Date();
+                        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                        prepare.setString(1, edit_name.getText());
+                        prepare.setString(2, edit_gender.getSelectionModel().getSelectedItem());
+                        prepare.setString(3, edit_contactNumber.getText());
+                        prepare.setString(4, edit_address.getText());
+                        prepare.setString(5, edit_status.getSelectionModel().getSelectedItem());
+                        prepare.setString(6, String.valueOf(sqlDate));
+                        prepare.setString(7, edit_doctor.getSelectionModel().getSelectedItem());
 
-        if (edit_patientID.getText().isEmpty() || edit_name.getText().isEmpty()
-                || edit_gender.getSelectionModel().getSelectedItem() == null
-                || edit_contactNumber.getText().isEmpty()
-                || edit_address.getText().isEmpty()
-                || edit_status.getSelectionModel().getSelectedItem() == null
-                || edit_doctor.getSelectionModel().getSelectedItem() == null) {
-            alert.errorMessage("Будь ласка, заповніть усі порожні поля");
-        } else {
-            String updateData = "UPDATE patient SET full_name = ?, gender = ?"
-                    + ", mobile_number = ?, address = ?, status = ?, date_modify = ?, doctor = ? "
-                    + "WHERE patient_id = '"
-                    + edit_patientID.getText() + "'";
-            connect = Database.connectDB();
-            try {
-                if (alert.confirmationMessage("Ви впевнені, що хочете оновити пацієнта з ID: " + edit_patientID.getText()
-                        + "?")) {
-                    prepare = connect.prepareStatement(updateData);
-                    Date date = new Date();
-                    java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-                    prepare.setString(1, edit_name.getText());
-                    prepare.setString(2, edit_gender.getSelectionModel().getSelectedItem());
-                    prepare.setString(3, edit_contactNumber.getText());
-                    prepare.setString(4, edit_address.getText());
-                    prepare.setString(5, edit_status.getSelectionModel().getSelectedItem());
-                    prepare.setString(6, String.valueOf(sqlDate));
-                    prepare.setString(7, edit_doctor.getSelectionModel().getSelectedItem());
-
-                    prepare.executeUpdate();
-                    alert.successMessage("Оновлення успішне!");
-                } else {
-                    alert.errorMessage("Скасовано.");
+                        prepare.executeUpdate();
+                        alert.successMessage("Оновлення успішне!");
+                    } else {
+                        alert.errorMessage("Скасовано.");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
 
-        }
+        }else{
+            if (edit_patientID.getText().isEmpty() || edit_name.getText().isEmpty()
+                    || edit_gender.getSelectionModel().getSelectedItem() == null
+                    || edit_contactNumber.getText().isEmpty()
+                    || edit_address.getText().isEmpty()
+                    || edit_status.getSelectionModel().getSelectedItem() == null) {
+                alert.errorMessage("Будь ласка, заповніть усі порожні поля");
+            } else {
+                String updateData = "UPDATE patient SET full_name = ?, gender = ?"
+                        + ", mobile_number = ?, address = ?, status = ?, date_modify = ?"
+                        + "WHERE patient_id = '"
+                        + edit_patientID.getText() + "'";
+                connect = Database.connectDB();
+                try {
+                    if (alert.confirmationMessage("Ви впевнені, що хочете оновити пацієнта з ID: " + edit_patientID.getText()
+                            + "?")) {
+                        prepare = connect.prepareStatement(updateData);
+                        Date date = new Date();
+                        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                        prepare.setString(1, edit_name.getText());
+                        prepare.setString(2, edit_gender.getSelectionModel().getSelectedItem());
+                        prepare.setString(3, edit_contactNumber.getText());
+                        prepare.setString(4, edit_address.getText());
+                        prepare.setString(5, edit_status.getSelectionModel().getSelectedItem());
+                        prepare.setString(6, String.valueOf(sqlDate));
+                        prepare.executeUpdate();
+                        alert.successMessage("Оновлення успішне!");
+                    } else {
+                        alert.errorMessage("Скасовано.");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
+            }
+        }
     }
 
     private ResultSet result;
@@ -107,7 +145,6 @@ public class EditPatientFormController implements Initializable {
             while(result.next()){
                 listData.add(result.getString("doctor_id"));
             }
-
             edit_doctor.setItems(listData);
         }catch(Exception e){e.printStackTrace();}
     }
@@ -120,7 +157,12 @@ public class EditPatientFormController implements Initializable {
         edit_contactNumber.setText(String.valueOf(Data.temp_number));
         edit_address.setText(Data.temp_address);
         edit_status.getSelectionModel().select(Data.temp_status);
-        edit_doctor.getSelectionModel().select(Data.temp_patient_doctor);
+        if(Data.log){
+            edit_doctor.getSelectionModel().select(Data.temp_patient_doctor);
+        }else{
+            Data.log = false;
+        }
+
     }
 
     public void genderList() {
@@ -145,12 +187,15 @@ public class EditPatientFormController implements Initializable {
         edit_status.setItems(listData);
     }
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setField();
         genderList();
         statusList();
-        doctorList();
+        if(Data.log){
+            doctorList();
+        }else{Data.log=false;}
     }
 
 }

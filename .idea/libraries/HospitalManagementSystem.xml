@@ -1,8 +1,6 @@
 <component name="libraryTable">
   <library name="HospitalManagementSystem">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/HospitalManagementSystem/dist/HospitalManagementSystem.jar!/" />
-    </CLASSES>
+    <CLASSES />
     <JAVADOC />
     <SOURCES />
   </library>

@@ -75,7 +75,7 @@ public class AddDoctorController implements Initializable {
     public void importBtn() {
 
         FileChooser open = new FileChooser();
-        open.getExtensionFilters().add(new ExtensionFilter("Open Image", "*jpg", "*png", "*jpeg"));
+        open.getExtensionFilters().add(new ExtensionFilter("Open Image", "*.jpg", "*.png", "*.jpeg"));
 
         File file = open.showOpenDialog(editDoctor_importBtn.getScene().getWindow());
 
@@ -121,35 +121,33 @@ public class AddDoctorController implements Initializable {
 
     public String registerDoctorID() {
         String doctorID = "DID-";
-        int tempID = 0;
-        String sql = "SELECT MAX(id) FROM doctor";
+        int maxID = 0;
+        String sql = "SELECT doctor_id FROM doctor";
 
         connect = Database.connectDB();
 
         try {
-
             prepare = connect.prepareStatement(sql);
             result = prepare.executeQuery();
 
-            if (result.next()) {
-                tempID = result.getInt("MAX(id)");
+            // Проходження через всі записи та пошук максимального числового значення ID
+            while (result.next()) {
+                String idString = result.getString("doctor_id").replaceAll("\\D+", ""); // Видалення всіх нецифрових символів
+                int id = Integer.parseInt(idString); // Парсинг числового значення ID
+                if (id > maxID) {
+                    maxID = id;
+                }
             }
 
-            if (tempID == 0) {
-                tempID += 1;
-                doctorID += tempID;
-            } else {
-                doctorID += (tempID + 1);
-            }
-
-
+            // Створення нового ID, збільшуючи максимальне значення на 1
+            doctorID += (maxID + 1);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return doctorID;
-
     }
+
 
     public void addBtn() {
         connect = Database.connectDB();
