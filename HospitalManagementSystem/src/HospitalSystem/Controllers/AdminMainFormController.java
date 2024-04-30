@@ -10,18 +10,13 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
+
 import java.util.Arrays;
 
-import java.util.Map;
 
 
 
@@ -95,9 +90,6 @@ public class AdminMainFormController implements Initializable {
     private Button dashboard_btn;
 
     @FXML
-    private Button record_create_btn;
-
-    @FXML
     private Button add_patient;
 
     @FXML
@@ -137,11 +129,7 @@ public class AdminMainFormController implements Initializable {
     private TextField patients_mobileNumber;
 
     @FXML
-    private TextField patients_doctorID;
-
-    @FXML
     private TextField patients_patientID;
-
 
     @FXML
     private Button logout_btn;
@@ -190,15 +178,8 @@ public class AdminMainFormController implements Initializable {
     @FXML
     private TableColumn<RecordData, String> record_col_action;
 
-
-
-
     @FXML
     private TextField patients_patientName;
-
-    @FXML
-    private TextField record_time;
-
 
     @FXML
     private TextArea patients_address;
@@ -319,16 +300,7 @@ public class AdminMainFormController implements Initializable {
     private TableColumn<AppointmentData, String> appointments_appointmentID;
 
     @FXML
-    private TableColumn<AppointmentData, String> appointments_name;
-
-    @FXML
     private TableColumn<AppointmentData, String> appointments_patientID;
-
-    @FXML
-    private TableColumn<AppointmentData, String> appointments_gender;
-
-    @FXML
-    private TableColumn<AppointmentData, String> appointments_contactNumber;
 
     @FXML
     private TableColumn<AppointmentData, String> appointments_description;
@@ -936,13 +908,11 @@ public class AdminMainFormController implements Initializable {
             AppointmentData aData;
             while (result.next()) {
                 aData = new AppointmentData(result.getInt("appointment_id"), result.getLong("patient_id"),
-                        result.getString("name"), result.getString("gender"), result.getLong("mobile_number"),
                         result.getString("description"), result.getString("diagnosis"),
-                        result.getString("treatment"), result.getString("address"),
+                        result.getString("treatment"),
                         result.getString("doctor"),
                         result.getDate("date"), result.getDate("date_modify"),
-                        result.getDate("date_delete"), result.getString("status"),
-                        result.getDate("schedule"));
+                        result.getDate("date_delete"), result.getString("status"));
                 listData.add(aData);
             }
         } catch (Exception e) {
@@ -955,13 +925,8 @@ public class AdminMainFormController implements Initializable {
 
     public void appointmentDisplayData() {
         appointmentListData = appointmentGetData();
-
         appointments_appointmentID.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
         appointments_patientID.setCellValueFactory(new PropertyValueFactory<>("patientID"));
-
-        appointments_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        appointments_gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
-        appointments_contactNumber.setCellValueFactory(new PropertyValueFactory<>("mobileNumber"));
         appointments_description.setCellValueFactory(new PropertyValueFactory<>("description"));
         appointments_date.setCellValueFactory(new PropertyValueFactory<>("date"));
         appointments_dateModify.setCellValueFactory(new PropertyValueFactory<>("dateModify"));
@@ -1013,13 +978,9 @@ public class AdminMainFormController implements Initializable {
                                 }
 
                                 Data.temp_appID = String.valueOf(aData.getAppointmentID());
-                                Data.temp_appName = aData.getName();
-                                Data.temp_appGender = aData.getGender();
-                                Data.temp_appAddress = aData.getAddress();
                                 Data.temp_appDescription = aData.getDescription();
                                 Data.temp_appDiagnosis = aData.getDiagnosis();
                                 Data.temp_appTreatment = aData.getTreatment();
-                                Data.temp_appMobileNumber = String.valueOf(aData.getMobileNumber());
                                 Data.temp_appDoctor = aData.getDoctorID();
                                 Data.temp_appStatus = aData.getStatus();
 

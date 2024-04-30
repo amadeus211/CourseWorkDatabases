@@ -130,16 +130,14 @@ public class AddDoctorController implements Initializable {
             prepare = connect.prepareStatement(sql);
             result = prepare.executeQuery();
 
-            // Проходження через всі записи та пошук максимального числового значення ID
             while (result.next()) {
-                String idString = result.getString("doctor_id").replaceAll("\\D+", ""); // Видалення всіх нецифрових символів
-                int id = Integer.parseInt(idString); // Парсинг числового значення ID
+                String idString = result.getString("doctor_id").replaceAll("\\D+", "");
+                int id = Integer.parseInt(idString);
                 if (id > maxID) {
                     maxID = id;
                 }
             }
 
-            // Створення нового ID, збільшуючи максимальне значення на 1
             doctorID += (maxID + 1);
         } catch (Exception e) {
             e.printStackTrace();

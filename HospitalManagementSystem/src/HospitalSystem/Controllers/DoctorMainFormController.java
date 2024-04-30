@@ -126,8 +126,6 @@ public class DoctorMainFormController implements Initializable {
     @FXML
     private TableColumn<AppointmentData, String> dashboad_col_appointmentID;
 
-    @FXML
-    private TableColumn<AppointmentData, String> dashboad_col_name;
 
     @FXML
     private TableColumn<AppointmentData, String> dashboad_col_description;
@@ -181,15 +179,6 @@ public class DoctorMainFormController implements Initializable {
     private TableColumn<AppointmentData, String> appointments_col_appointmentID;
 
     @FXML
-    private TableColumn<AppointmentData, String> appointments_col_name;
-
-    @FXML
-    private TableColumn<AppointmentData, String> appointments_col_gender;
-
-    @FXML
-    private TableColumn<AppointmentData, String> appointments_col_contactNumber;
-
-    @FXML
     private TableColumn<AppointmentData, String> appointments_col_patientID;
 
     @FXML
@@ -211,14 +200,7 @@ public class DoctorMainFormController implements Initializable {
     private TextField appointment_appointmentID;
 
     @FXML
-    private TextField appointment_name;
-
-    @FXML
-    private ComboBox<String> appointment_gender;
-
-    @FXML
     private ComboBox<String> appointment_patient_id;
-
 
     @FXML
     private ComboBox<?> patients_record_id;
@@ -231,15 +213,6 @@ public class DoctorMainFormController implements Initializable {
 
     @FXML
     private TextField appointment_treatment;
-
-    @FXML
-    private TextField appointment_patientID;
-
-    @FXML
-    private TextField appointment_mobileNumber;
-
-    @FXML
-    private TextArea appointment_address;
 
     @FXML
     private ComboBox<String> appointment_status;
@@ -258,9 +231,6 @@ public class DoctorMainFormController implements Initializable {
 
     @FXML
     private Button profile_importBtn;
-
-    @FXML
-    private Button close_record_btn;
 
     @FXML
     private Label profile_label_doctorID;
@@ -486,7 +456,7 @@ public class DoctorMainFormController implements Initializable {
             AppointmentData aData;
             while (result.next()) {
                 aData = new AppointmentData(result.getInt("appointment_id"),
-                        result.getString("name"), result.getString("description"),
+                        result.getString("description"),
                         result.getDate("date"), result.getString("status"));
 
                 listData.add(aData);
@@ -504,7 +474,6 @@ public class DoctorMainFormController implements Initializable {
         dashboardGetData = dashboardAppointmentTableView();
 
         dashboad_col_appointmentID.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
-        dashboad_col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         dashboad_col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
         dashboad_col_appointmentDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         dashboad_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
@@ -684,11 +653,7 @@ public class DoctorMainFormController implements Initializable {
 
         if (appointment_appointmentID.getText().isEmpty()
                 || appointment_patient_id.getSelectionModel().getSelectedItem() == null
-                || appointment_name.getText().isEmpty()
-                || appointment_gender.getSelectionModel().getSelectedItem() == null
-                || appointment_mobileNumber.getText().isEmpty()
                 || appointment_description.getText().isEmpty()
-                || appointment_address.getText().isEmpty()
                 || appointment_status.getSelectionModel().getSelectedItem() == null
                 || appointment_schedule.getValue() == null) {
             alert.errorMessage("Будь ласка, заповніть усі порожні поля");
@@ -714,28 +679,24 @@ public class DoctorMainFormController implements Initializable {
                         getSpecialized = result.getString("specialized");
                     }
 
-                    String insertData = "INSERT INTO appointment (appointment_id, patient_id, name, gender"
-                            + ", description, diagnosis, treatment, mobile_number"
-                            + ", address, date, status, doctor,  schedule) "
+                    String insertData = "INSERT INTO appointment (appointment_id, patient_id"
+                            + ", description, diagnosis, treatment"
+                            + ",date, status, doctor,  schedule) "
                             + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
                     prepare = connect.prepareStatement(insertData);
 
                     prepare.setString(1, appointment_appointmentID.getText());
                     prepare.setString(2, appointment_patient_id.getSelectionModel().getSelectedItem());
-                    prepare.setString(3, appointment_name.getText());
-                    prepare.setString(4, (String) appointment_gender.getSelectionModel().getSelectedItem());
-                    prepare.setString(5, appointment_description.getText());
-                    prepare.setString(6, appointment_diagnosis.getText());
-                    prepare.setString(7, appointment_treatment.getText());
-                    prepare.setString(8, appointment_mobileNumber.getText());
-                    prepare.setString(9, appointment_address.getText());
+                    prepare.setString(3, appointment_description.getText());
+                    prepare.setString(4, appointment_diagnosis.getText());
+                    prepare.setString(5, appointment_treatment.getText());
 
                     java.sql.Date sqlDate = new java.sql.Date(new Date().getTime());
 
-                    prepare.setString(10, "" + sqlDate);
-                    prepare.setString(11, (String) appointment_status.getSelectionModel().getSelectedItem());
-                    prepare.setString(12, Data.doctor_id);
-                    prepare.setString(13, "" + appointment_schedule.getValue());
+                    prepare.setString(6, "" + sqlDate);
+                    prepare.setString(7, (String) appointment_status.getSelectionModel().getSelectedItem());
+                    prepare.setString(8, Data.doctor_id);
+                    prepare.setString(9, "" + appointment_schedule.getValue());
 
                     prepare.executeUpdate();
 
@@ -756,11 +717,7 @@ public class DoctorMainFormController implements Initializable {
     public void appointmentUpdateBtn() {
 
         if (appointment_appointmentID.getText().isEmpty()
-                || appointment_name.getText().isEmpty()
-                || appointment_gender.getSelectionModel().getSelectedItem() == null
-                || appointment_mobileNumber.getText().isEmpty()
                 || appointment_description.getText().isEmpty()
-                || appointment_address.getText().isEmpty()
                 || appointment_status.getSelectionModel().getSelectedItem() == null
                 || appointment_schedule.getValue() == null) {
             alert.errorMessage("Будь ласка, заповніть усі порожні поля");
@@ -768,11 +725,8 @@ public class DoctorMainFormController implements Initializable {
             java.sql.Date sqlDate = new java.sql.Date(new Date().getTime());
 
             String updateData = "UPDATE appointment SET name = '"
-                    + appointment_name.getText() + "', gender = '"
-                    + appointment_gender.getSelectionModel().getSelectedItem() + "', mobile_number = '"
-                    + appointment_mobileNumber.getText() + "', description = '"
-                    + appointment_description.getText() + "', address = '"
-                    + appointment_address.getText() + "', status = '"
+                    +  "', description = '"
+                    + appointment_description.getText() + "', status = '"
                     + appointment_status.getSelectionModel().getSelectedItem() + "', schedule = '"
                     + appointment_schedule.getValue() + "', date_modify = '"
                     + sqlDate + "' WHERE appointment_id = '"
@@ -838,15 +792,10 @@ public class DoctorMainFormController implements Initializable {
     public void appointmentClearBtn() {
         appointment_appointmentID.clear();
         appointment_patient_id.getSelectionModel().clearSelection();
-        appointment_name.clear();
-        appointment_gender.getSelectionModel().clearSelection();
-        appointment_mobileNumber.clear();
         appointment_description.clear();
         appointment_treatment.clear();
         appointment_diagnosis.clear();
-        appointment_address.clear();
         appointment_status.getSelectionModel().clearSelection();
-        appointment_schedule.setValue(null);
         appointmentAppointmentID();
     }
 ;
@@ -911,18 +860,6 @@ public class DoctorMainFormController implements Initializable {
         patients_patientID.setText("" + patientId);
     }
 
-    public void appointmentGenderList() {
-        List<String> listG = new ArrayList<>();
-
-        for (String data : Data.gender) {
-            listG.add(data);
-        }
-
-        ObservableList listData = FXCollections.observableArrayList(listG);
-        appointment_gender.setItems(listData);
-
-    }
-
     public void appointmentStatusList() {
         List<String> listS = new ArrayList<>();
 
@@ -954,12 +891,11 @@ public class DoctorMainFormController implements Initializable {
             while (result.next()) {
 
                 appData = new AppointmentData(result.getInt("appointment_id"), result.getLong("patient_id"),
-                        result.getString("name"), result.getString("gender"),
-                        result.getLong("mobile_number"), result.getString("description"),
+                        result.getString("description"),
                         result.getString("diagnosis"), result.getString("treatment"),
-                        result.getString("address"), result.getDate("date"),
+                        result.getDate("date"),
                         result.getDate("date_modify"), result.getDate("date_delete"),
-                        result.getString("status"), result.getDate("schedule"));
+                        result.getString("status"));
                 listData.add(appData);
             }
 
@@ -976,9 +912,6 @@ public class DoctorMainFormController implements Initializable {
 
         appointments_col_appointmentID.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
         appointments_col_patientID.setCellValueFactory(new PropertyValueFactory<>("patientID"));
-        appointments_col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        appointments_col_gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
-        appointments_col_contactNumber.setCellValueFactory(new PropertyValueFactory<>("mobileNumber"));
         appointments_col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
         appointments_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
         appointments_col_dateModify.setCellValueFactory(new PropertyValueFactory<>("dateModify"));
@@ -988,26 +921,6 @@ public class DoctorMainFormController implements Initializable {
         appointments_tableView.setItems(appoinmentListData);
     }
 
-    public void appointmentPatientIdSelected(){
-        String currentPatient = "";
-
-        currentPatient = appointment_patient_id.getSelectionModel().getSelectedItem();
-
-        String sql = "SELECT mobile_number, gender, address FROM patient WHERE patient_id = '" + currentPatient + "'";
-
-        connect = Database.connectDB();
-
-        try{
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
-            ObservableList listData = FXCollections.observableArrayList();
-            while(result.next()){
-                appointment_mobileNumber.setText(result.getString("mobile_number"));
-                appointment_gender.getSelectionModel().select(result.getString("gender"));
-                appointment_address.setText(result.getString("address"));
-            }
-        }catch(Exception e){e.printStackTrace();}
-    }
 
     public void appointmentSelect() {
 
@@ -1020,13 +933,9 @@ public class DoctorMainFormController implements Initializable {
 
         appointment_appointmentID.setText("" + appData.getAppointmentID());
         appointment_patient_id.getSelectionModel().select(String.valueOf(appData.getPatientID()));
-        appointment_name.setText(appData.getName());
-        appointment_gender.getSelectionModel().select(appData.getGender());
-        appointment_mobileNumber.setText("" + appData.getMobileNumber());
         appointment_description.setText(appData.getDescription());
         appointment_diagnosis.setText(appData.getDiagnosis());
         appointment_treatment.setText(appData.getTreatment());
-        appointment_address.setText(appData.getAddress());
         appointment_status.getSelectionModel().select(appData.getStatus());
 
     }
@@ -1387,7 +1296,6 @@ public class DoctorMainFormController implements Initializable {
         dashboardNOA();
 
         appointmentShowData();
-        appointmentGenderList();
         appointmentStatusList();
         appointmentAppointmentID();
 

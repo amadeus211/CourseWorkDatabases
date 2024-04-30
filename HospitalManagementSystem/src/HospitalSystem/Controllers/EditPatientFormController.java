@@ -35,9 +35,6 @@ public class EditPatientFormController implements Initializable {
     private ComboBox<String> edit_gender;
 
     @FXML
-    private ComboBox<String> appointment_patient_id;
-
-    @FXML
     private ComboBox<String> edit_doctor;
 
     @FXML

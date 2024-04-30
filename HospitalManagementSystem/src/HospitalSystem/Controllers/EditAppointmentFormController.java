@@ -26,18 +26,6 @@ public class EditAppointmentFormController implements Initializable{
     private TextField editApp_appointmentID;
 
     @FXML
-    private TextField editApp_fullName;
-
-    @FXML
-    private ComboBox<String> editApp_gender;
-
-    @FXML
-    private TextField editApp_mobileNumber;
-
-    @FXML
-    private TextArea editApp_address;
-
-    @FXML
     private TextArea editApp_description;
 
     @FXML
@@ -50,9 +38,6 @@ public class EditAppointmentFormController implements Initializable{
     private ComboBox<String> editApp_doctor;
 
     @FXML
-    private ComboBox<String> editApp_specialized;
-
-    @FXML
     private ComboBox<String> editApp_status;
     
     private Connection connect;
@@ -61,10 +46,6 @@ public class EditAppointmentFormController implements Initializable{
     
     public void displayFields(){
         editApp_appointmentID.setText(Data.temp_appID);
-        editApp_fullName.setText(Data.temp_appName);
-        editApp_gender.getSelectionModel().select(Data.temp_appGender);
-        editApp_mobileNumber.setText(Data.temp_appMobileNumber);
-        editApp_address.setText(Data.temp_appAddress);
         editApp_description.setText(Data.temp_appDescription);
         editApp_diagnosis.setText(Data.temp_appDiagnosis);
         editApp_treatment.setText(Data.temp_appTreatment);
@@ -89,16 +70,6 @@ public class EditAppointmentFormController implements Initializable{
         }catch(Exception e){e.printStackTrace();}
     }
 
-    public void genderList() {
-        List<String> genderL = new ArrayList<>();
-
-        for (String data : Data.gender) {
-            genderL.add(data);
-        }
-
-        ObservableList listData = FXCollections.observableList(genderL);
-        editApp_gender.setItems(listData);
-    }
 
     public void statusList() {
         List<String> statusL = new ArrayList<>();
@@ -114,7 +85,6 @@ public class EditAppointmentFormController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         doctorList();
-        genderList();
         statusList();
         
         displayFields();
