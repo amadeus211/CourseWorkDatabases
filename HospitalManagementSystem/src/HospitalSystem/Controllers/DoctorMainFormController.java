@@ -1282,10 +1282,17 @@ public class DoctorMainFormController implements Initializable {
         }.start();
     }
 
+    RefreshDatabaseDeleteDates refreshDatabaseDeleteDates = new RefreshDatabaseDeleteDates();
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         displayAdminIDNumberName();
         runTime();
+
+        refreshDatabaseDeleteDates.refresh("appointment");
+        refreshDatabaseDeleteDates.refresh("patients");
+        refreshDatabaseDeleteDates.refresh("doctor");
 
         dashbboardDisplayIP();
         dashbboardDisplayTP();

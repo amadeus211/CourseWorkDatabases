@@ -32,8 +32,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="editApp_appointmentID" disable="true" layoutX="137.0" layoutY="71.0" prefHeight="25.0" prefWidth="112.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                  <Button fx:id="editApp_updateBtn" layoutX="209.0" layoutY="263.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="94.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Оновити" />
-                  <Button fx:id="editApp_cancelBtn" layoutX="330.0" layoutY="263.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="94.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Відміна" />
+                  <Button fx:id="editApp_updateBtn" layoutX="191.0" layoutY="261.0" mnemonicParsing="false" onAction="#updateApp" prefHeight="45.0" prefWidth="237.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Оновити" />
                   <Label layoutX="97.0" layoutY="109.0" text="Опис:">
                      <font>
                         <Font size="13.0" />

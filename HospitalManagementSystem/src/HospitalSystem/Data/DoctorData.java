@@ -18,9 +18,26 @@ public class DoctorData {
     private Date dateDelete;
     private String status;
 
-    public DoctorData( String doctorID, String password, String fullName,
-            String email, String gender, Long mobileNumber, String specialized, String address,
-            String image, Date date, Date dateModify, Date dateDelete, String status) {
+    public DoctorData(String doctorID, String password, String fullName, String email,
+                      String gender, Long mobileNumber, String specialized, String address,
+                      String image, Date date, Date dateModify, String status) {
+        this.doctorID = doctorID;
+        this.password = password;
+        this.fullName = fullName;
+        this.email = email;
+        this.gender = gender;
+        this.mobileNumber = mobileNumber;
+        this.specialized = specialized;
+        this.address = address;
+        this.image = image;
+        this.date = date;
+        this.dateModify = dateModify;
+        this.status = status;
+    }
+
+    public DoctorData(String doctorID, String password, String fullName,
+                      String email, String gender, Long mobileNumber, String specialized, String address,
+                      String image, Date date, Date dateModify, Date dateDelete, String status) {
         this.doctorID = doctorID;
         this.password = password;
         this.fullName = fullName;

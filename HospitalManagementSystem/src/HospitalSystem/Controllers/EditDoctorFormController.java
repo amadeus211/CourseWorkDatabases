@@ -137,21 +137,31 @@ public class EditDoctorFormController implements Initializable {
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
             if (Data.path == null || "".equals(Data.path)) {
-                String updateData = "UPDATE doctor SET full_name = '"
-                        + editDoctor_fullName.getText() + "', email = '"
-                        + editDoctor_email.getText() + "', password = '"
-                        + editDoctor_password.getText() + "', specialized = '"
-                        + editDoctor_specialized.getSelectionModel().getSelectedItem() + "', gender = '"
-                        + editDoctor_gender.getSelectionModel().getSelectedItem() + "', mobile_number = '"
-                        + editDoctor_mobileNumber.getText() + "', address = '"
-                        + editDoctor_address.getText() + "', status = '"
-                        + editDoctor_status.getSelectionModel().getSelectedItem() + "', modify_date = '"
-                        + String.valueOf(sqlDate) + "' "
-                        + "WHERE doctor_id = '" + editDoctor_doctorID.getText() + "'";
+                String updateData = "UPDATE doctor SET full_name = ?, email = ?, password = ?, specialized = ?, " +
+                        "gender = ?, mobile_number = ?, address = ?, status = ?, modify_date = ?, date_delete = ? WHERE doctor_id = ?";
                 try {
                     if (alert.confirmationMessage("Ви впевнені, що хочете оновити лікаря з ID: " + editDoctor_doctorID.getText() + "?")) {
+                        System.out.println("no image");
                         prepare = connect.prepareStatement(updateData);
+                        prepare.setString(1, editDoctor_fullName.getText());
+                        prepare.setString(2, editDoctor_email.getText());
+                        prepare.setString(3, editDoctor_password.getText());
+                        prepare.setString(4, editDoctor_specialized.getSelectionModel().getSelectedItem());
+                        prepare.setString(5, editDoctor_gender.getSelectionModel().getSelectedItem());
+                        prepare.setString(6, editDoctor_mobileNumber.getText());
+                        prepare.setString(7, editDoctor_address.getText());
+                        if(editDoctor_status.getSelectionModel().getSelectedItem().equals("Неактивний")) {
+                            prepare.setString(10, String.valueOf(sqlDate));
+                        }else{
+                            prepare.setString(10, null);
+                        }
+                        prepare.setString(8, editDoctor_status.getSelectionModel().getSelectedItem());
+                        prepare.setDate(9, sqlDate);
+                        prepare.setString(11, editDoctor_doctorID.getText());
+
                         prepare.executeUpdate();
+                        alert.successMessage("Оновлення успішне");
+
                     } else {
                         alert.errorMessage("Скасовано.");
                     }
@@ -160,42 +170,56 @@ public class EditDoctorFormController implements Initializable {
                 }
             } else {
                 try {
-                    if (alert.confirmationMessage("Ви впевнені, що хочете оновити лікаря з ID: "
-                            + editDoctor_doctorID.getText() + "?")) {
-                        String path = Data.path;
-                        path = path.replace("\\", "\\\\");
-                        Path transfer = Paths.get(path);
+                    if (alert.confirmationMessage("Ви впевнені, що хочете оновити лікаря з ID: " + editDoctor_doctorID.getText() + "?")) {
+                        try {
+                            String path = Data.path;
+                            path = path.replace("\\", "\\\\");
+                            Path transfer = Paths.get(path);
 
-                        Path copy = Paths.get("C:\\Users\\WINDOWS 10\\Documents\\NetBeansProjects\\HospitalManagementSystem\\src\\Doctor_Directory\\"
-                                + editDoctor_doctorID.getText() + ".jpg");
+                            Path copy = Paths.get("C:\\Users\\User\\Desktop\\Coursework-Hospital\\HospitalManagementSystem\\src\\Doctor_Directory\\" + editDoctor_doctorID.getText() + ".jpg");
 
-                        Files.copy(transfer, copy, StandardCopyOption.REPLACE_EXISTING);
+                            Files.copy(transfer, copy, StandardCopyOption.REPLACE_EXISTING);
 
-                        String insertImage = copy.toString();
-                        insertImage = insertImage.replace("\\", "\\\\");
-                        
-                        String updateData = "UPDATE doctor SET full_name = '"
-                                + editDoctor_fullName.getText() + "', email = '"
-                                + editDoctor_email.getText() + "', password = '"
-                                + editDoctor_password.getText() + "', specialized = '"
-                                + editDoctor_specialized.getSelectionModel().getSelectedItem() + "', gender = '"
-                                + editDoctor_gender.getSelectionModel().getSelectedItem() + "', mobile_number = '"
-                                + editDoctor_mobileNumber.getText() + "', image = '"
-                                + insertImage + "', address = '"
-                                + editDoctor_address.getText() + "', status = '"
-                                + editDoctor_status.getSelectionModel().getSelectedItem() + "' "
-                                + "WHERE doctor_id = '" + editDoctor_doctorID.getText() + "'";
+                            String insertImage = copy.toString();
+                            insertImage = insertImage.replace("\\", "\\\\");
 
-                        prepare = connect.prepareStatement(updateData);
-                        prepare.executeUpdate();
+                            String updateData = "UPDATE doctor SET full_name = ?, email = ?, password = ?, specialized = ?, " +
+                                    "gender = ?, mobile_number = ?, image = ?, address = ?, status = ?, modify_date = ?" +
+                                    ", date_delete = ? WHERE doctor_id = ?";
+                            System.out.println(" image");
 
+                            prepare = connect.prepareStatement(updateData);
+                            prepare.setString(1, editDoctor_fullName.getText());
+                            prepare.setString(2, editDoctor_email.getText());
+                            prepare.setString(3, editDoctor_password.getText());
+                            prepare.setString(4, editDoctor_specialized.getSelectionModel().getSelectedItem());
+                            prepare.setString(5, editDoctor_gender.getSelectionModel().getSelectedItem());
+                            prepare.setString(6, editDoctor_mobileNumber.getText());
+                            prepare.setString(7, insertImage);
+                            prepare.setString(8, editDoctor_address.getText());
+                            prepare.setString(9, editDoctor_status.getSelectionModel().getSelectedItem());
+                            if(editDoctor_status.getSelectionModel().getSelectedItem().equals("Неактивний")){
+                                prepare.setString(11, String.valueOf(sqlDate));
+                            }else{
+                                prepare.setString(11, null);
+
+                            }
+                            prepare.setString(12, editDoctor_doctorID.getText());
+                            prepare.setString(10, String.valueOf(sqlDate));
+
+
+                            prepare.executeUpdate();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     } else {
                         alert.errorMessage("Скасовано.");
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
 
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
         displayDoctorData();

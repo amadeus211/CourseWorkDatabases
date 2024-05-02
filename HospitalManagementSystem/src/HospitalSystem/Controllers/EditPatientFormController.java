@@ -62,7 +62,7 @@ public class EditPatientFormController implements Initializable {
                 alert.errorMessage("Будь ласка, заповніть усі порожні поля");
             } else {
                 String updateData = "UPDATE patient SET full_name = ?, gender = ?"
-                        + ", mobile_number = ?, address = ?, status = ?, date_modify = ?, doctor = ? "
+                        + ", mobile_number = ?, address = ?, status = ?, date_modify = ?, doctor = ?, date_delete = ? "
                         + "WHERE patient_id = '"
                         + edit_patientID.getText() + "'";
                 connect = Database.connectDB();
@@ -76,6 +76,11 @@ public class EditPatientFormController implements Initializable {
                         prepare.setString(2, edit_gender.getSelectionModel().getSelectedItem());
                         prepare.setString(3, edit_contactNumber.getText());
                         prepare.setString(4, edit_address.getText());
+                        if(edit_status.getSelectionModel().getSelectedItem().equals("Неактивний")){
+                            prepare.setString(8, String.valueOf(sqlDate));
+                        }else{
+                            prepare.setString(8, null);
+                        }
                         prepare.setString(5, edit_status.getSelectionModel().getSelectedItem());
                         prepare.setString(6, String.valueOf(sqlDate));
                         prepare.setString(7, edit_doctor.getSelectionModel().getSelectedItem());
@@ -99,8 +104,8 @@ public class EditPatientFormController implements Initializable {
                 alert.errorMessage("Будь ласка, заповніть усі порожні поля");
             } else {
                 String updateData = "UPDATE patient SET full_name = ?, gender = ?"
-                        + ", mobile_number = ?, address = ?, status = ?, date_modify = ?"
-                        + "WHERE patient_id = '"
+                        + ", mobile_number = ?, address = ?, status = ?, date_modify = ?, date_delete = ?"
+                        + " WHERE patient_id = '"
                         + edit_patientID.getText() + "'";
                 connect = Database.connectDB();
                 try {
@@ -113,6 +118,11 @@ public class EditPatientFormController implements Initializable {
                         prepare.setString(2, edit_gender.getSelectionModel().getSelectedItem());
                         prepare.setString(3, edit_contactNumber.getText());
                         prepare.setString(4, edit_address.getText());
+                        if(edit_status.getSelectionModel().getSelectedItem().equals("Неактивний")){
+                            prepare.setString(7, String.valueOf(sqlDate));
+                        }else{
+                            prepare.setString(7, null);
+                        }
                         prepare.setString(5, edit_status.getSelectionModel().getSelectedItem());
                         prepare.setString(6, String.valueOf(sqlDate));
                         prepare.executeUpdate();
@@ -131,7 +141,7 @@ public class EditPatientFormController implements Initializable {
     private ResultSet result;
 
     public void doctorList(){
-        String sql = "SELECT * FROM doctor WHERE delete_date IS NULL and status = 'Активний'";
+        String sql = "SELECT * FROM doctor WHERE date_delete IS NULL and status = 'Активний'";
 
         connect = Database.connectDB();
 

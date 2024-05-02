@@ -389,7 +389,7 @@ public class AdminMainFormController implements Initializable {
 
     public void dashboardAD() {
 
-        String sql = "SELECT COUNT(doctor_id) FROM doctor WHERE status = 'Активний' AND delete_date IS NULL";
+        String sql = "SELECT COUNT(doctor_id) FROM doctor WHERE status = 'Активний' AND date_delete IS NULL";
 
         connect = Database.connectDB();
 
@@ -482,7 +482,7 @@ public class AdminMainFormController implements Initializable {
     public ObservableList<DoctorData> dashboardGetDoctorData() {
 
         ObservableList<DoctorData> listData = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM doctor WHERE delete_date IS NULL";
+        String sql = "SELECT * FROM doctor WHERE date_delete IS NULL";
 
         connect = Database.connectDB();
 
@@ -550,7 +550,7 @@ public class AdminMainFormController implements Initializable {
     public void dashboardDoctorDataChart() {
         dashboad_chart_DD.getData().clear();
 
-        String selectData = "SELECT date, COUNT(doctor_id) FROM doctor WHERE delete_date IS NULL GROUP BY TIMESTAMP(date)";
+        String selectData = "SELECT date, COUNT(doctor_id) FROM doctor WHERE date_delete IS NULL GROUP BY TIMESTAMP(date)";
 
         connect = Database.connectDB();
         XYChart.Series chart = new XYChart.Series<>();
@@ -589,7 +589,7 @@ public class AdminMainFormController implements Initializable {
                         result.getLong("mobile_number"), result.getString("specialized"),
                         result.getString("address"), result.getString("image"),
                         result.getDate("date"), result.getDate("modify_date"),
-                        result.getDate("delete_date"), result.getString("status"));
+                        result.getDate("date_delete"), result.getString("status"));
 
                 listData.add(dData);
             }
@@ -697,7 +697,7 @@ public class AdminMainFormController implements Initializable {
                                 return;
                             }
 
-                            String deleteData = "UPDATE doctor SET delete_date = ?, status = 'Неактивний' WHERE doctor_id = '"
+                            String deleteData = "UPDATE doctor SET date_delete = ?, status = 'Неактивний' WHERE doctor_id = '"
                                     + pData.getDoctorID() + "'";
 
                             try {
@@ -1581,7 +1581,7 @@ public void recordActionButton() {
     }
 
     public void doctorList(){
-        String sql = "SELECT * FROM doctor WHERE delete_date IS NULL and status = 'Активний'";
+        String sql = "SELECT * FROM doctor WHERE date_delete IS NULL and status = 'Активний'";
 
         connect = Database.connectDB();
 
@@ -1694,10 +1694,19 @@ public void recordActionButton() {
         patients_patientID.setText("" + patientId);
     }
 
+
+    RefreshDatabaseDeleteDates refreshDatabaseDeleteDates = new RefreshDatabaseDeleteDates();
+
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         runTime();
         displayAdminIDUsername();
+
+        refreshDatabaseDeleteDates.refresh("appointment");
+        refreshDatabaseDeleteDates.refresh("patients");
+        refreshDatabaseDeleteDates.refresh("doctor");
 
         dashboardAD();
         dashboardTP();
