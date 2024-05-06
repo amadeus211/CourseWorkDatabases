@@ -38,6 +38,9 @@ public class AddDoctorController implements Initializable {
     private TextField editDoctor_fullName;
 
     @FXML
+    private TextField editDoctor_surname;
+
+    @FXML
     private TextField editDoctor_email;
 
     @FXML
@@ -101,7 +104,8 @@ public class AddDoctorController implements Initializable {
             result = prepare.executeQuery();
 
             if (result.next()) {
-                editDoctor_fullName.setText(result.getString("full_name"));
+                editDoctor_fullName.setText(result.getString("name"));
+                editDoctor_surname.setText(result.getString("surname"));
                 editDoctor_email.setText(result.getString("email"));
                 editDoctor_password.setText(result.getString("password"));
                 editDoctor_specialized.getSelectionModel().select(result.getString("specialized"));
@@ -153,6 +157,7 @@ public class AddDoctorController implements Initializable {
 
         if (editDoctor_doctorID.getText().isEmpty()
                 || editDoctor_fullName.getText().isEmpty()
+                || editDoctor_surname.getText().isEmpty()
                 || editDoctor_email.getText().isEmpty()
                 || editDoctor_password.getText().isEmpty()
                 || editDoctor_specialized.getSelectionModel().getSelectedItem() == null
@@ -166,20 +171,21 @@ public class AddDoctorController implements Initializable {
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
             try {
-                String insertData = "INSERT INTO doctor (doctor_id, full_name, email, password, " +
+                String insertData = "INSERT INTO doctor (doctor_id, name, surname, email, password, " +
                         "specialized, gender, mobile_number, address, status, date, image) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 prepare = connect.prepareStatement(insertData);
                 prepare.setString(1, editDoctor_doctorID.getText());
                 prepare.setString(2, editDoctor_fullName.getText());
-                prepare.setString(3, editDoctor_email.getText());
-                prepare.setString(4, editDoctor_password.getText());
-                prepare.setString(5, editDoctor_specialized.getSelectionModel().getSelectedItem());
-                prepare.setString(6, editDoctor_gender.getSelectionModel().getSelectedItem());
-                prepare.setString(7, editDoctor_mobileNumber.getText());
-                prepare.setString(8, editDoctor_address.getText());
-                prepare.setString(9, editDoctor_status.getSelectionModel().getSelectedItem());
-                prepare.setDate(10, sqlDate);
+                prepare.setString(3, editDoctor_surname.getText());
+                prepare.setString(4, editDoctor_email.getText());
+                prepare.setString(5, editDoctor_password.getText());
+                prepare.setString(6, editDoctor_specialized.getSelectionModel().getSelectedItem());
+                prepare.setString(7, editDoctor_gender.getSelectionModel().getSelectedItem());
+                prepare.setString(8, editDoctor_mobileNumber.getText());
+                prepare.setString(9, editDoctor_address.getText());
+                prepare.setString(10, editDoctor_status.getSelectionModel().getSelectedItem());
+                prepare.setDate(11, sqlDate);
 
 
                 String path = Data.path;
@@ -195,7 +201,7 @@ public class AddDoctorController implements Initializable {
                     e.printStackTrace();
                 }
 
-                prepare.setString(11, copy.toAbsolutePath().toString());
+                prepare.setString(12, copy.toAbsolutePath().toString());
 
                 if (alert.confirmationMessage("Ви впевнені, що хочете створити цього лікаря?")) {
                     prepare.executeUpdate();

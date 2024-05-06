@@ -14,6 +14,12 @@ public class RecordData {
 
     private String patientName;
 
+    public String getPatientSurname() {
+        return patientSurname;
+    }
+
+    private String patientSurname;
+
     private String status;
 
     public String getDoctorId() {
@@ -21,14 +27,25 @@ public class RecordData {
     }
     private String doctorId;
 
+    public RecordData(Integer id, Integer patientId, Date date, String time, String status, String doctorId, String patientName, String patientSurname) {
+        this.id = id;
+        this.patientId = patientId;
+        this.date = date;
+        this.time = time;
+        this.status = status;
+        this.doctorId = doctorId;
+        this.patientName = patientName;
+        this.patientSurname = patientSurname;
+    }
 
-
-    public RecordData(Integer id, Integer patientId,String patientName, Date date, String time, String status, String doctorId) {
+    public RecordData(Integer id, Integer patientId, String patientName, String patientSurname,
+                      Date date, String time, String status, String doctorId) {
         this.id = id;
         this.patientId = patientId;
         this.date = date;
         this.time = time;
         this.patientName = patientName;
+        this.patientSurname = patientSurname;
         this.status = status;
         this.doctorId = doctorId;
     }

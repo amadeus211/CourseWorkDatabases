@@ -70,25 +70,25 @@
                      </font>
                   </Label>
                   <Label layoutX="151.0" layoutY="124.0" text="Лікар" />
-                  <TextField fx:id="register_fullName" layoutX="39.0" layoutY="172.0" prefHeight="30.0" prefWidth="250.0" promptText="Повне ім'я" stylesheets="@../../Design/PageDesign.css">
+                  <TextField fx:id="register_fullName" layoutX="39.0" layoutY="165.0" prefHeight="30.0" prefWidth="250.0" promptText="Ім'я" stylesheets="@../../Design/PageDesign.css">
                      <styleClass>
                         <String fx:value="textfield-2" />
                         <String fx:value="white-bg" />
                      </styleClass>
                   </TextField>
-                  <TextField fx:id="register_email" layoutX="39.0" layoutY="209.0" prefHeight="30.0" prefWidth="250.0" promptText="Email" stylesheets="@../../Design/PageDesign.css">
+                  <TextField fx:id="register_email" layoutX="40.0" layoutY="242.0" prefHeight="30.0" prefWidth="250.0" promptText="Email" stylesheets="@../../Design/PageDesign.css">
                      <styleClass>
                         <String fx:value="textfield-2" />
                         <String fx:value="white-bg" />
                      </styleClass>
                   </TextField>
-                  <TextField fx:id="register_doctorID" layoutX="40.0" layoutY="246.0" prefHeight="30.0" prefWidth="250.0" stylesheets="@../../Design/PageDesign.css">
+                  <TextField fx:id="register_doctorID" layoutX="40.0" layoutY="279.0" prefHeight="30.0" prefWidth="250.0" stylesheets="@../../Design/PageDesign.css">
                      <styleClass>
                         <String fx:value="textfield-2" />
                         <String fx:value="white-bg" />
                      </styleClass>
                   </TextField>
-                  <PasswordField fx:id="register_password" layoutX="40.0" layoutY="282.0" prefHeight="30.0" prefWidth="250.0" promptText="Пароль" stylesheets="@../../Design/PageDesign.css">
+                  <PasswordField fx:id="register_password" layoutX="40.0" layoutY="315.0" prefHeight="30.0" prefWidth="250.0" promptText="Пароль" stylesheets="@../../Design/PageDesign.css">
                      <styleClass>
                         <String fx:value="textfield-2" />
                         <String fx:value="white-bg" />
@@ -100,15 +100,21 @@
                         <String fx:value="white-bg" />
                      </styleClass>
                   </TextField>
-                  <CheckBox fx:id="register_checkBox" layoutX="40.0" layoutY="318.0" mnemonicParsing="false" onAction="#registerShowPassword" text="Показати пароль" />
-                  <Button fx:id="register_signupBtn" layoutX="41.0" layoutY="344.0" mnemonicParsing="false" onAction="#registerAccount" prefHeight="40.0" prefWidth="250.0" stylesheets="@../../Design/PageDesign.css" text="Зареєструватись">
+                  <CheckBox fx:id="register_checkBox" layoutX="40.0" layoutY="350.0" mnemonicParsing="false" onAction="#registerShowPassword" text="Показати пароль" />
+                  <Button fx:id="register_signupBtn" layoutX="41.0" layoutY="376.0" mnemonicParsing="false" onAction="#registerAccount" prefHeight="40.0" prefWidth="250.0" stylesheets="@../../Design/PageDesign.css" text="Зареєструватись">
                      <styleClass>
                         <String fx:value="btn-2" />
                         <String fx:value="radius" />
                      </styleClass>
                   </Button>
-                  <FontAwesomeIcon fill="#2a590c" glyphName="HOSPITAL_ALT" layoutX="136.0" layoutY="474.0" size="6em" />
+                  <FontAwesomeIcon fill="#2a590c" glyphName="HOSPITAL_ALT" layoutX="136.0" layoutY="486.0" size="6em" />
                   <Hyperlink fx:id="register_loginHere" layoutX="143.0" layoutY="506.0" onAction="#switchForm" text="Увійти" />
+                  <TextField fx:id="register_surname" layoutX="39.0" layoutY="204.0" prefHeight="30.0" prefWidth="250.0" promptText="Прізвище" stylesheets="@../../Design/PageDesign.css">
+                     <styleClass>
+                        <String fx:value="textfield-2" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                  </TextField>
                </children>
             </AnchorPane>
          </children>

@@ -4,7 +4,6 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -24,14 +23,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-
-import javax.swing.text.html.ImageView;
 
 public class RecordPageFormController implements Initializable {
 
@@ -43,6 +38,9 @@ public class RecordPageFormController implements Initializable {
 
     @FXML
     private TableColumn<PatientsData, String> recordpage_col_name;
+
+    @FXML
+    private TableColumn<PatientsData, String> recordpage_col_surname;
 
     @FXML
     private TableColumn<PatientsData, String> recordpage_col_gender;
@@ -88,7 +86,8 @@ public class RecordPageFormController implements Initializable {
             PatientsData pData;
             while (result.next()) {
                 pData = new PatientsData(result.getInt("patient_id"),
-                        result.getString("full_name"), result.getString("gender"), result.getLong("mobile_number"),
+                        result.getString("name"), result.getString("surname"),
+                        result.getString("gender"), result.getLong("mobile_number"),
                         result.getString("address"), result.getString("status"), result.getDate("date"),
                         result.getDate("date_modify"), result.getDate("date_delete"));
                 listData.add(pData);
@@ -105,7 +104,8 @@ public class RecordPageFormController implements Initializable {
         patientRecordData = getPatientRecordData();
 
         recordpage_col_patientID.setCellValueFactory(new PropertyValueFactory<>("patientID"));
-        recordpage_col_name.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        recordpage_col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        recordpage_col_surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         recordpage_col_gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
         recordpage_col_mobileNumber.setCellValueFactory(new PropertyValueFactory<>("mobileNumber"));
         recordpage_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
@@ -161,7 +161,8 @@ public class RecordPageFormController implements Initializable {
                                 }
 
                                 Data.temp_PatientID = pData.getPatientID();
-                                Data.temp_name = pData.getFullName();
+                                Data.temp_name = pData.getName();
+                                Data.temp_surname = pData.getSurname();
                                 Data.temp_gender = pData.getGender();
                                 Data.temp_number = pData.getMobileNumber();
                                 Data.temp_address = pData.getAddress();

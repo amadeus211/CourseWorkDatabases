@@ -32,6 +32,9 @@ public class EditPatientFormController implements Initializable {
     private TextField edit_name;
 
     @FXML
+    private TextField edit_surname;
+
+    @FXML
     private ComboBox<String> edit_gender;
 
     @FXML
@@ -53,7 +56,7 @@ public class EditPatientFormController implements Initializable {
 
     public void updateBtn() {
         if(Data.log){
-            if (edit_patientID.getText().isEmpty() || edit_name.getText().isEmpty()
+            if (edit_patientID.getText().isEmpty() || edit_name.getText().isEmpty() || edit_surname.getText().isEmpty()
                     || edit_gender.getSelectionModel().getSelectedItem() == null
                     || edit_contactNumber.getText().isEmpty()
                     || edit_address.getText().isEmpty()
@@ -61,8 +64,9 @@ public class EditPatientFormController implements Initializable {
                     || edit_doctor.getSelectionModel().getSelectedItem() == null) {
                 alert.errorMessage("Будь ласка, заповніть усі порожні поля");
             } else {
-                String updateData = "UPDATE patient SET full_name = ?, gender = ?"
-                        + ", mobile_number = ?, address = ?, status = ?, date_modify = ?, doctor = ?, date_delete = ? "
+                String updateData = "UPDATE patient SET name = ?, gender = ?"
+                        + ", mobile_number = ?, address = ?, status = ?, date_modify = ?, doctor = ?, date_delete = ?" +
+                        ", surname = ? "
                         + "WHERE patient_id = '"
                         + edit_patientID.getText() + "'";
                 connect = Database.connectDB();
@@ -84,6 +88,7 @@ public class EditPatientFormController implements Initializable {
                         prepare.setString(5, edit_status.getSelectionModel().getSelectedItem());
                         prepare.setString(6, String.valueOf(sqlDate));
                         prepare.setString(7, edit_doctor.getSelectionModel().getSelectedItem());
+                        prepare.setString(9, edit_surname.getText());
 
                         prepare.executeUpdate();
                         alert.successMessage("Оновлення успішне!");
@@ -99,12 +104,13 @@ public class EditPatientFormController implements Initializable {
             if (edit_patientID.getText().isEmpty() || edit_name.getText().isEmpty()
                     || edit_gender.getSelectionModel().getSelectedItem() == null
                     || edit_contactNumber.getText().isEmpty()
-                    || edit_address.getText().isEmpty()
+                    || edit_address.getText().isEmpty() || edit_surname.getText().isEmpty()
                     || edit_status.getSelectionModel().getSelectedItem() == null) {
                 alert.errorMessage("Будь ласка, заповніть усі порожні поля");
             } else {
-                String updateData = "UPDATE patient SET full_name = ?, gender = ?"
-                        + ", mobile_number = ?, address = ?, status = ?, date_modify = ?, date_delete = ?"
+                String updateData = "UPDATE patient SET name = ?, gender = ?"
+                        + ", mobile_number = ?, address = ?, status = ?, date_modify = ?, date_delete = ?" +
+                        ", surname = ?"
                         + " WHERE patient_id = '"
                         + edit_patientID.getText() + "'";
                 connect = Database.connectDB();
@@ -118,6 +124,7 @@ public class EditPatientFormController implements Initializable {
                         prepare.setString(2, edit_gender.getSelectionModel().getSelectedItem());
                         prepare.setString(3, edit_contactNumber.getText());
                         prepare.setString(4, edit_address.getText());
+                        prepare.setString(8, edit_surname.getText());
                         if(edit_status.getSelectionModel().getSelectedItem().equals("Неактивний")){
                             prepare.setString(7, String.valueOf(sqlDate));
                         }else{
@@ -158,6 +165,7 @@ public class EditPatientFormController implements Initializable {
 
 
     public void setField() {
+        edit_surname.setText(Data.temp_surname);
         edit_patientID.setText(String.valueOf(Data.temp_PatientID));
         edit_name.setText(Data.temp_name);
         edit_gender.getSelectionModel().select(Data.temp_gender);

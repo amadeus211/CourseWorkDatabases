@@ -6,15 +6,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
 
 import HospitalSystem.Data.AppointmentData;
 import HospitalSystem.Data.Data;
@@ -51,11 +46,22 @@ public class DoctorMainFormController implements Initializable {
     private TableView<RecordData> record_tableView;
 
     @FXML
+    private ComboBox<String> record_time_select;
+
+    @FXML
+    private ComboBox<String> patients_Id;
+
+    @FXML
+    private DatePicker record_date_picker;
+
+    @FXML
     private TableColumn<RecordData, String> record_col_recordId;
     @FXML
     private TableColumn<RecordData, String> record_col_patientID;
     @FXML
     private TableColumn<RecordData, String> record_col_patientName;
+    @FXML
+    private TableColumn<RecordData, String> record_col_patientSurname;
     @FXML
     private TableColumn<RecordData, String> record_col_date;
     @FXML
@@ -63,8 +69,7 @@ public class DoctorMainFormController implements Initializable {
     @FXML
     private TableColumn<RecordData, String> record_col_status;
 
-    @FXML
-    private Label top_username;
+
 
     @FXML
     private Button logout_btn;
@@ -80,6 +85,9 @@ public class DoctorMainFormController implements Initializable {
 
     @FXML
     private Label nav_username;
+
+    @FXML
+    private Label nav_surname;
 
     @FXML
     private Button dashboard_btn;
@@ -146,6 +154,9 @@ public class DoctorMainFormController implements Initializable {
     private TextField patients_patientName;
 
     @FXML
+    private TextField patients_patientSurname;
+
+    @FXML
     private TextField patients_mobileNumber;
 
     @FXML
@@ -159,6 +170,9 @@ public class DoctorMainFormController implements Initializable {
 
     @FXML
     private Label patients_PI_patientName;
+
+    @FXML
+    private Label patients_PI_patientSurname;
 
     @FXML
     private Label patients_PI_gender;
@@ -217,8 +231,7 @@ public class DoctorMainFormController implements Initializable {
     @FXML
     private ComboBox<String> appointment_status;
 
-    @FXML
-    private DatePicker appointment_schedule;
+
 
     @FXML
     private ComboBox<String> patients_gender;
@@ -239,6 +252,9 @@ public class DoctorMainFormController implements Initializable {
     private Label profile_label_name;
 
     @FXML
+    private Label profile_label_surname;
+
+    @FXML
     private Label profile_label_email;
 
     @FXML
@@ -249,6 +265,9 @@ public class DoctorMainFormController implements Initializable {
 
     @FXML
     private TextField profile_name;
+
+    @FXML
+    private TextField profile_surname;
 
     @FXML
     private TextField profile_email;
@@ -277,28 +296,148 @@ public class DoctorMainFormController implements Initializable {
 
     private final AlertMessage alert = new AlertMessage();
 
+    public void createRecordBtn() {
+        if (patients_Id.getItems().isEmpty()
+                || record_time_select.getItems().isEmpty()
+                || record_date_picker.getValue() == null) {
+            alert.errorMessage("Щось пішло не так");
+        } else {
+            try {
+                String patientId = (String) patients_Id.getSelectionModel().getSelectedItem();
+
+                String insertData = "INSERT INTO record (patient_id, date, "
+                        + "time, status, doctor_id) " +
+                        "SELECT ?, ?, ?, 'Незавершено', patient.doctor " +
+                        "FROM patient WHERE patient.patient_id = ?";
+
+                connect = Database.connectDB();
+                prepare = connect.prepareStatement(insertData);
+                prepare.setString(1, patientId);
+                prepare.setString(2, record_date_picker.getValue().toString());
+                prepare.setString(3, (String) record_time_select.getSelectionModel().getSelectedItem());
+                prepare.setString(4, patientId);
+
+                prepare.executeUpdate();
+                alert.successMessage("Додавання успішне!");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        patients_Id.getSelectionModel().clearSelection();
+        record_time_select.getSelectionModel().clearSelection();
+        record_date_picker.setValue(null);
+        recordShowData();
+    }
+
+
+    public void patientsIdRecordListToAdd() {
+        String sql = "SELECT patient_id FROM patient WHERE date_delete IS NULL AND status = 'Активний' AND doctor = ?";
+
+        try {
+            connect = Database.connectDB();
+            prepare = connect.prepareStatement(sql);
+            prepare.setString(1, nav_adminID.getText());
+            result = prepare.executeQuery();
+
+            ObservableList<String> listData = FXCollections.observableArrayList();
+            while(result.next()) {
+                listData.add(result.getString("patient_id"));
+            }
+
+            patients_Id.setItems(listData);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (result != null) result.close();
+                if (prepare != null) prepare.close();
+                if (connect != null) connect.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    public void patientsTimeList() {
+        List<String> recordTimesAll = new ArrayList<>(Arrays.asList(Data.records_time));
+
+        String current_patient = "";
+
+        String currentDate = "" + record_date_picker.getValue();
+
+        if(patients_Id.getSelectionModel().getSelectedItem()==null && !(record_date_picker.getValue() ==null)){
+            alert.errorMessage("Введіть ID пацієнта");
+            record_date_picker.setValue(null);
+            return;
+        }
+        else{
+            current_patient = (String) patients_Id.getSelectionModel().getSelectedItem();
+        }
+
+        List<String> currentDoctorRecordTimes = new ArrayList<>();
+
+        String current_doctor = "";
+        String sql = "SELECT doctor FROM patient WHERE patient_id = ?";
+        try {
+            connect = Database.connectDB();
+            prepare = connect.prepareStatement(sql);
+            prepare.setString(1, current_patient);
+            result = prepare.executeQuery();
+            if (result.next()) {
+                current_doctor = result.getString("doctor");
+            } else {
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String sqlRecord = "SELECT time FROM record WHERE doctor_id = ? AND date = ? AND status = 'Незавершено'";
+        try {
+            prepare = connect.prepareStatement(sqlRecord);
+            prepare.setString(1, current_doctor);
+            prepare.setString(2, currentDate);
+            result = prepare.executeQuery();
+            while (result.next()) {
+                currentDoctorRecordTimes.add(result.getString("time"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        recordTimesAll.removeAll(currentDoctorRecordTimes);
+
+        ObservableList<String> observableRecordTimes = FXCollections.observableArrayList(recordTimesAll);
+        record_time_select.setItems(observableRecordTimes);
+    }
+
+
     public ObservableList<RecordData> recordGetData() {
 
         ObservableList<RecordData> listData = FXCollections.observableArrayList();
 
-        String sql = "SELECT * FROM record WHERE doctor_id='"
-                + Data.doctor_id + "'";
+        String sql = "SELECT record.*, patient.name, patient.surname " +
+                "FROM record " +
+                "JOIN patient ON record.patient_id = patient.patient_id " +
+                "WHERE record.doctor_id = ?";
 
         connect = Database.connectDB();
 
         try {
-
             prepare = connect.prepareStatement(sql);
+            prepare.setString(1, Data.doctor_id);
             result = prepare.executeQuery();
 
-            RecordData recordData;
-
             while (result.next()) {
-
-                recordData = new RecordData(result.getInt("id"), result.getInt("patient_id"),
-                        result.getString("patient_name"), result.getDate("date"),
-                        result.getString("time"), result.getString("status"),
-                        result.getString("doctor_id"));
+                RecordData recordData = new RecordData(result.getInt("id"),
+                        result.getInt("patient_id"),
+                        result.getDate("date"),
+                        result.getString("time"),
+                        result.getString("status"),
+                        result.getString("doctor_id"),
+                        result.getString("name"),
+                        result.getString("surname"));
                 listData.add(recordData);
             }
 
@@ -308,6 +447,7 @@ public class DoctorMainFormController implements Initializable {
         return listData;
     }
 
+
     public ObservableList<RecordData> recordListData;
 
     public void recordShowData() {
@@ -316,6 +456,7 @@ public class DoctorMainFormController implements Initializable {
         record_col_recordId.setCellValueFactory(new PropertyValueFactory<>("id"));
         record_col_patientID.setCellValueFactory(new PropertyValueFactory<>("patientId"));
         record_col_patientName.setCellValueFactory(new PropertyValueFactory<>("patientName"));
+        record_col_patientSurname.setCellValueFactory(new PropertyValueFactory<>("patientSurname"));
         record_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
         record_col_time.setCellValueFactory(new PropertyValueFactory<>("time"));
         record_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
@@ -536,6 +677,7 @@ public class DoctorMainFormController implements Initializable {
 
         if (patients_patientID.getText().isEmpty()
                 || patients_patientName.getText().isEmpty()
+                || patients_patientSurname.getText().isEmpty()
                 || patients_gender.getSelectionModel().getSelectedItem() == null
                 || patients_mobileNumber.getText().isEmpty()
                 || patients_address.getText().isEmpty()) {
@@ -548,6 +690,7 @@ public class DoctorMainFormController implements Initializable {
             patients_PA_dateCreated.setText(String.valueOf(sqlDate));
 
             patients_PI_patientName.setText(patients_patientName.getText());
+            patients_PI_patientSurname.setText(patients_patientSurname.getText());
             patients_PI_gender.setText(patients_gender.getSelectionModel().getSelectedItem());
             patients_PI_mobileNumber.setText(patients_mobileNumber.getText());
             patients_PI_address.setText(patients_address.getText());
@@ -560,6 +703,7 @@ public class DoctorMainFormController implements Initializable {
         if (patients_PA_patientID.getText().isEmpty()
                 || patients_PA_dateCreated.getText().isEmpty()
                 || patients_PI_patientName.getText().isEmpty()
+                || patients_PI_patientSurname.getText().isEmpty()
                 || patients_PI_gender.getText().isEmpty()
                 || patients_PI_mobileNumber.getText().isEmpty()
                 || patients_PI_address.getText().isEmpty()) {
@@ -575,21 +719,22 @@ public class DoctorMainFormController implements Initializable {
                 if (result.next()) {
                     alert.errorMessage(patients_PA_patientID.getText() + " вже існує");
                 } else {
-                    String insertData = "INSERT INTO patient (patient_id, full_name, mobile_number, "
+                    String insertData = "INSERT INTO patient (patient_id, name, surname, mobile_number, "
                             + "address, doctor, date, gender, "
                             + "status) "
-                            + "VALUES(?,?,?,?,?,?,?,?)";
+                            + "VALUES(?,?,?,?,?,?,?,?,?)";
                     Date date = new Date();
                     java.sql.Date sqlDate = new java.sql.Date(date.getTime());
                     prepare = connect.prepareStatement(insertData);
                     prepare.setString(1, patients_PA_patientID.getText());
                     prepare.setString(2, patients_PI_patientName.getText());
-                    prepare.setString(3, patients_PI_mobileNumber.getText());
-                    prepare.setString(4, patients_PI_address.getText());
-                    prepare.setString(5, nav_adminID.getText());
-                    prepare.setString(6, "" + sqlDate);
-                    prepare.setString(7, patients_gender.getSelectionModel().getSelectedItem());
-                    prepare.setString(8, "Підтвердження");
+                    prepare.setString(3, patients_PI_patientSurname.getText());
+                    prepare.setString(4, patients_PI_mobileNumber.getText());
+                    prepare.setString(5, patients_PI_address.getText());
+                    prepare.setString(6, nav_adminID.getText());
+                    prepare.setString(7, "" + sqlDate);
+                    prepare.setString(8, patients_gender.getSelectionModel().getSelectedItem());
+                    prepare.setString(9, "Підтвердження");
 
                     prepare.executeUpdate();
 
@@ -654,8 +799,7 @@ public class DoctorMainFormController implements Initializable {
         if (appointment_appointmentID.getText().isEmpty()
                 || appointment_patient_id.getSelectionModel().getSelectedItem() == null
                 || appointment_description.getText().isEmpty()
-                || appointment_status.getSelectionModel().getSelectedItem() == null
-                || appointment_schedule.getValue() == null) {
+                || appointment_status.getSelectionModel().getSelectedItem() == null) {
             alert.errorMessage("Будь ласка, заповніть усі порожні поля");
         } else {
             String checkAppointmentID = "SELECT * FROM appointment WHERE appointment_id = "
@@ -681,8 +825,8 @@ public class DoctorMainFormController implements Initializable {
 
                     String insertData = "INSERT INTO appointment (appointment_id, patient_id"
                             + ", description, diagnosis, treatment"
-                            + ",date, status, doctor,  schedule) "
-                            + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                            + ",date, status, doctor) "
+                            + "VALUES(?,?,?,?,?,?,?,?)";
                     prepare = connect.prepareStatement(insertData);
 
                     prepare.setString(1, appointment_appointmentID.getText());
@@ -696,7 +840,6 @@ public class DoctorMainFormController implements Initializable {
                     prepare.setString(6, "" + sqlDate);
                     prepare.setString(7, (String) appointment_status.getSelectionModel().getSelectedItem());
                     prepare.setString(8, Data.doctor_id);
-                    prepare.setString(9, "" + appointment_schedule.getValue());
 
                     prepare.executeUpdate();
 
@@ -718,8 +861,7 @@ public class DoctorMainFormController implements Initializable {
 
         if (appointment_appointmentID.getText().isEmpty()
                 || appointment_description.getText().isEmpty()
-                || appointment_status.getSelectionModel().getSelectedItem() == null
-                || appointment_schedule.getValue() == null) {
+                || appointment_status.getSelectionModel().getSelectedItem() == null) {
             alert.errorMessage("Будь ласка, заповніть усі порожні поля");
         } else {
             java.sql.Date sqlDate = new java.sql.Date(new Date().getTime());
@@ -727,8 +869,7 @@ public class DoctorMainFormController implements Initializable {
             String updateData = "UPDATE appointment SET name = '"
                     +  "', description = '"
                     + appointment_description.getText() + "', status = '"
-                    + appointment_status.getSelectionModel().getSelectedItem() + "', schedule = '"
-                    + appointment_schedule.getValue() + "', date_modify = '"
+                    + appointment_status.getSelectionModel().getSelectedItem() + "', date_modify = '"
                     + sqlDate + "' WHERE appointment_id = '"
                     + appointment_appointmentID.getText() + "'";
 
@@ -946,6 +1087,7 @@ public class DoctorMainFormController implements Initializable {
 
         if (profile_doctorID.getText().isEmpty()
                 || profile_name.getText().isEmpty()
+                || profile_surname.getText().isEmpty()
                 || profile_email.getText().isEmpty()
                 || profile_gender.getSelectionModel().getSelectedItem() == null
                 || profile_mobileNumber.getText().isEmpty()
@@ -955,7 +1097,7 @@ public class DoctorMainFormController implements Initializable {
             alert.errorMessage("Будь ласка, заповніть усі порожні поля");
         } else {
             if (Data.path == null || "".equals(Data.path)) {
-                String updateData = "UPDATE doctor SET full_name = ?, email = ?"
+                String updateData = "UPDATE doctor SET name = ?, surname = ?, email = ?"
                         + ", gender = ?, mobile_number = ?, address = ?, specialized = ?, status = ?, modify_date = ?"
                         + " WHERE doctor_id = '"
                         + Data.doctor_id + "'";
@@ -964,13 +1106,14 @@ public class DoctorMainFormController implements Initializable {
                     java.sql.Date sqlDate = new java.sql.Date(date.getTime());
                     prepare = connect.prepareStatement(updateData);
                     prepare.setString(1, profile_name.getText());
-                    prepare.setString(2, profile_email.getText());
-                    prepare.setString(3, profile_gender.getSelectionModel().getSelectedItem());
-                    prepare.setString(4, profile_mobileNumber.getText());
-                    prepare.setString(5, profile_address.getText());
-                    prepare.setString(6, profile_specialized.getSelectionModel().getSelectedItem());
-                    prepare.setString(7, profile_status.getSelectionModel().getSelectedItem());
-                    prepare.setString(8, String.valueOf(sqlDate));
+                    prepare.setString(2, profile_surname.getText());
+                    prepare.setString(3, profile_email.getText());
+                    prepare.setString(4, profile_gender.getSelectionModel().getSelectedItem());
+                    prepare.setString(5, profile_mobileNumber.getText());
+                    prepare.setString(6, profile_address.getText());
+                    prepare.setString(7, profile_specialized.getSelectionModel().getSelectedItem());
+                    prepare.setString(8, profile_status.getSelectionModel().getSelectedItem());
+                    prepare.setString(9, String.valueOf(sqlDate));
 
                     prepare.executeUpdate();
 
@@ -979,7 +1122,7 @@ public class DoctorMainFormController implements Initializable {
                     e.printStackTrace();
                 }
             } else {
-                String updateData = "UPDATE doctor SET full_name = ?, email = ?"
+                String updateData = "UPDATE doctor SET name = ?, surname = ?, email = ?"
                         + ", gender = ?, mobile_number = ?, address = ?, image = ?, specialized = ?, status = ?, modify_date = ?"
                         + " WHERE doctor_id = '"
                         + Data.doctor_id + "'";
@@ -988,10 +1131,11 @@ public class DoctorMainFormController implements Initializable {
                     java.sql.Date sqlDate = new java.sql.Date(date.getTime());
                     prepare = connect.prepareStatement(updateData);
                     prepare.setString(1, profile_name.getText());
-                    prepare.setString(2, profile_email.getText());
-                    prepare.setString(3, profile_gender.getSelectionModel().getSelectedItem());
-                    prepare.setString(4, profile_mobileNumber.getText());
-                    prepare.setString(5, profile_address.getText());
+                    prepare.setString(2, profile_surname.getText());
+                    prepare.setString(3, profile_email.getText());
+                    prepare.setString(4, profile_gender.getSelectionModel().getSelectedItem());
+                    prepare.setString(5, profile_mobileNumber.getText());
+                    prepare.setString(6, profile_address.getText());
                     String path = Data.path;
                     path = path.replace("\\", "\\\\");
                     Path transfer = Paths.get(path);
@@ -1004,10 +1148,10 @@ public class DoctorMainFormController implements Initializable {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    prepare.setString(6, copy.toAbsolutePath().toString());
-                    prepare.setString(7, profile_specialized.getSelectionModel().getSelectedItem());
-                    prepare.setString(8, profile_status.getSelectionModel().getSelectedItem());
-                    prepare.setString(9, String.valueOf(sqlDate));
+                    prepare.setString(7, copy.toAbsolutePath().toString());
+                    prepare.setString(8, profile_specialized.getSelectionModel().getSelectedItem());
+                    prepare.setString(9, profile_status.getSelectionModel().getSelectedItem());
+                    prepare.setString(10, String.valueOf(sqlDate));
 
                     prepare.executeUpdate();
 
@@ -1046,7 +1190,8 @@ public class DoctorMainFormController implements Initializable {
 
             if (result.next()) {
                 profile_label_doctorID.setText(result.getString("doctor_id"));
-                profile_label_name.setText(result.getString("full_name"));
+                profile_label_name.setText(result.getString("name"));
+                profile_label_surname.setText(result.getString("surname"));
                 profile_label_email.setText(result.getString("email"));
                 profile_label_dateCreated.setText(result.getString("date"));
             }
@@ -1067,7 +1212,8 @@ public class DoctorMainFormController implements Initializable {
 
             if (result.next()) {
                 profile_doctorID.setText(result.getString("doctor_id"));
-                profile_name.setText(result.getString("full_name"));
+                profile_name.setText(result.getString("name"));
+                profile_surname.setText(result.getString("surname"));
                 profile_email.setText(result.getString("email"));
                 profile_gender.getSelectionModel().select(result.getString("gender"));
                 profile_mobileNumber.setText(result.getString("mobile_number"));
@@ -1172,11 +1318,13 @@ public class DoctorMainFormController implements Initializable {
     public void displayAdminIDNumberName() {
 
         String name = Data.doctor_name;
+//        String surname = Data.doctor_surname;
         name = name.substring(0, 1).toUpperCase() + name.substring(1);
+//        surname = surname.substring(0, 1).toUpperCase() + surname.substring(1);
 
         nav_username.setText(name);
         nav_adminID.setText(Data.doctor_id);
-        top_username.setText(name);
+//        nav_surname.setText(surname);
 
     }
 
@@ -1228,8 +1376,9 @@ public class DoctorMainFormController implements Initializable {
         current_form.setText("Вікно записів");
         add_record_form.setVisible(true);
         recordShowData();
-        patientsIdRecordList();}
-
+        patientsIdRecordList();
+        patientsIdRecordListToAdd();
+        }
     }
 
     public void logoutBtn() {

@@ -38,6 +38,9 @@ public class EditDoctorFormController implements Initializable {
     private TextField editDoctor_fullName;
 
     @FXML
+    private TextField editDoctor_surname;
+
+    @FXML
     private TextField editDoctor_email;
 
     @FXML
@@ -101,7 +104,8 @@ public class EditDoctorFormController implements Initializable {
             result = prepare.executeQuery();
 
             if (result.next()) {
-                editDoctor_fullName.setText(result.getString("full_name"));
+                editDoctor_fullName.setText(result.getString("name"));
+                editDoctor_fullName.setText(result.getString("surname"));
                 editDoctor_email.setText(result.getString("email"));
                 editDoctor_password.setText(result.getString("password"));
                 editDoctor_specialized.getSelectionModel().select(result.getString("specialized"));
@@ -124,6 +128,7 @@ public class EditDoctorFormController implements Initializable {
 
         if (editDoctor_doctorID.getText().isEmpty()
                 || editDoctor_fullName.getText().isEmpty()
+                || editDoctor_surname.getText().isEmpty()
                 || editDoctor_email.getText().isEmpty()
                 || editDoctor_password.getText().isEmpty()
                 || editDoctor_specialized.getSelectionModel().getSelectedItem() == null
@@ -137,8 +142,8 @@ public class EditDoctorFormController implements Initializable {
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
             if (Data.path == null || "".equals(Data.path)) {
-                String updateData = "UPDATE doctor SET full_name = ?, email = ?, password = ?, specialized = ?, " +
-                        "gender = ?, mobile_number = ?, address = ?, status = ?, modify_date = ?, date_delete = ? WHERE doctor_id = ?";
+                String updateData = "UPDATE doctor SET name = ?, email = ?, password = ?, specialized = ?, " +
+                        "gender = ?, mobile_number = ?, address = ?, status = ?, modify_date = ?, date_delete = ?, surname = ? WHERE doctor_id = ?";
                 try {
                     if (alert.confirmationMessage("Ви впевнені, що хочете оновити лікаря з ID: " + editDoctor_doctorID.getText() + "?")) {
                         System.out.println("no image");
@@ -157,7 +162,8 @@ public class EditDoctorFormController implements Initializable {
                         }
                         prepare.setString(8, editDoctor_status.getSelectionModel().getSelectedItem());
                         prepare.setDate(9, sqlDate);
-                        prepare.setString(11, editDoctor_doctorID.getText());
+                        prepare.setString(11, editDoctor_surname.getText());
+                        prepare.setString(12, editDoctor_doctorID.getText());
 
                         prepare.executeUpdate();
                         alert.successMessage("Оновлення успішне");
@@ -183,29 +189,31 @@ public class EditDoctorFormController implements Initializable {
                             String insertImage = copy.toString();
                             insertImage = insertImage.replace("\\", "\\\\");
 
-                            String updateData = "UPDATE doctor SET full_name = ?, email = ?, password = ?, specialized = ?, " +
+                            String updateData = "UPDATE doctor SET name = ?, surname = ?, email = ?, password = ?, specialized = ?, " +
                                     "gender = ?, mobile_number = ?, image = ?, address = ?, status = ?, modify_date = ?" +
-                                    ", date_delete = ? WHERE doctor_id = ?";
+                                    ", date_delete = ?, surname = ? WHERE doctor_id = ?";
                             System.out.println(" image");
 
                             prepare = connect.prepareStatement(updateData);
                             prepare.setString(1, editDoctor_fullName.getText());
-                            prepare.setString(2, editDoctor_email.getText());
-                            prepare.setString(3, editDoctor_password.getText());
-                            prepare.setString(4, editDoctor_specialized.getSelectionModel().getSelectedItem());
-                            prepare.setString(5, editDoctor_gender.getSelectionModel().getSelectedItem());
-                            prepare.setString(6, editDoctor_mobileNumber.getText());
-                            prepare.setString(7, insertImage);
-                            prepare.setString(8, editDoctor_address.getText());
-                            prepare.setString(9, editDoctor_status.getSelectionModel().getSelectedItem());
+                            prepare.setString(2, editDoctor_surname.getText());
+                            prepare.setString(3, editDoctor_email.getText());
+                            prepare.setString(4, editDoctor_password.getText());
+                            prepare.setString(5, editDoctor_specialized.getSelectionModel().getSelectedItem());
+                            prepare.setString(6, editDoctor_gender.getSelectionModel().getSelectedItem());
+                            prepare.setString(7, editDoctor_mobileNumber.getText());
+                            prepare.setString(8, insertImage);
+                            prepare.setString(9, editDoctor_address.getText());
+                            prepare.setString(10, editDoctor_status.getSelectionModel().getSelectedItem());
                             if(editDoctor_status.getSelectionModel().getSelectedItem().equals("Неактивний")){
-                                prepare.setString(11, String.valueOf(sqlDate));
+                                prepare.setString(12, String.valueOf(sqlDate));
                             }else{
-                                prepare.setString(11, null);
+                                prepare.setString(12, null);
 
                             }
-                            prepare.setString(12, editDoctor_doctorID.getText());
-                            prepare.setString(10, String.valueOf(sqlDate));
+                            prepare.setString(13, editDoctor_surname.getText());
+                            prepare.setString(14, editDoctor_doctorID.getText());
+                            prepare.setString(11, String.valueOf(sqlDate));
 
 
                             prepare.executeUpdate();
@@ -230,6 +238,7 @@ public class EditDoctorFormController implements Initializable {
     }
 
     public void setField() {
+        editDoctor_surname.setText(Data.temp_doctorSurname);
         editDoctor_doctorID.setText(Data.temp_doctorID);
         editDoctor_fullName.setText(Data.temp_doctorName);
         editDoctor_email.setText(Data.temp_doctorEmail);

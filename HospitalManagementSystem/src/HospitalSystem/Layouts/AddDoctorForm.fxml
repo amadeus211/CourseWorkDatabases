@@ -33,42 +33,42 @@
                             </font>
                         </Label>
                         <TextField fx:id="editDoctor_doctorID" disable="true" layoutX="137.0" layoutY="71.0" prefHeight="25.0" prefWidth="112.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                        <Label layoutX="62.0" layoutY="111.0" text="Повне ім'я:">
+                        <Label layoutX="103.0" layoutY="111.0" text="Ім'я">
                             <font>
                                 <Font size="13.0" />
                             </font>
                         </Label>
                         <TextField fx:id="editDoctor_fullName" layoutX="137.0" layoutY="108.0" prefHeight="25.0" prefWidth="144.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                        <Label layoutX="92.0" layoutY="148.0" text="Email:">
+                        <Label layoutX="92.0" layoutY="181.0" text="Email:">
                             <font>
                                 <Font size="13.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="editDoctor_email" layoutX="137.0" layoutY="145.0" prefHeight="25.0" prefWidth="144.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                        <Label layoutX="78.0" layoutY="185.0" text="Пароль:">
+                        <TextField fx:id="editDoctor_email" layoutX="137.0" layoutY="178.0" prefHeight="25.0" prefWidth="144.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
+                        <Label layoutX="78.0" layoutY="218.0" text="Пароль:">
                             <font>
                                 <Font size="13.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="editDoctor_password" layoutX="137.0" layoutY="182.0" prefHeight="25.0" prefWidth="144.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                        <Label layoutX="42.0" layoutY="222.0" text="Спеціалізація:">
+                        <TextField fx:id="editDoctor_password" layoutX="137.0" layoutY="215.0" prefHeight="25.0" prefWidth="144.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
+                        <Label layoutX="42.0" layoutY="255.0" text="Спеціалізація:">
                             <font>
                                 <Font size="13.0" />
                             </font>
                         </Label>
-                        <ComboBox fx:id="editDoctor_specialized" layoutX="134.0" layoutY="219.0" prefWidth="150.0" promptText="Вибрати" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                        <Label layoutX="89.0" layoutY="257.0" text="Стать:">
+                        <ComboBox fx:id="editDoctor_specialized" layoutX="134.0" layoutY="252.0" prefWidth="150.0" promptText="Вибрати" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
+                        <Label layoutX="89.0" layoutY="290.0" text="Стать:">
                             <font>
                                 <Font size="13.0" />
                             </font>
                         </Label>
-                        <ComboBox fx:id="editDoctor_gender" layoutX="134.0" layoutY="254.0" prefWidth="150.0" promptText="Вибрати" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
-                        <Label layoutX="23.0" layoutY="293.0" text="Номер телефону:">
+                        <ComboBox fx:id="editDoctor_gender" layoutX="134.0" layoutY="287.0" prefWidth="150.0" promptText="Вибрати" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
+                        <Label layoutX="23.0" layoutY="326.0" text="Номер телефону:">
                             <font>
                                 <Font size="13.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="editDoctor_mobileNumber" layoutX="137.0" layoutY="290.0" prefHeight="25.0" prefWidth="144.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
+                        <TextField fx:id="editDoctor_mobileNumber" layoutX="137.0" layoutY="323.0" prefHeight="25.0" prefWidth="144.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
                         <AnchorPane layoutX="496.0" layoutY="11.0" prefHeight="121.0" prefWidth="112.0" stylesheets="@../../Design/MainFormDesign.css">
                             <styleClass>
                                 <String fx:value="white-bg" />
@@ -93,6 +93,12 @@
                         <ComboBox fx:id="editDoctor_status" layoutX="436.0" layoutY="254.0" prefWidth="150.0" promptText="Вибрати" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
                         <Button fx:id="editDoctor_updateBtn" layoutX="201.0" layoutY="363.0" mnemonicParsing="false" onAction="#addBtn" prefHeight="36.0" prefWidth="94.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Додати" />
                         <Button fx:id="editDoctor_cancelBtn" layoutX="328.0" layoutY="363.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="94.0" styleClass="btn-1" stylesheets="@../../Design/PageDesign.css" text="Відміна" />
+                  <Label layoutX="72.0" layoutY="144.0" text="Прізвище:">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="editDoctor_surname" layoutX="137.0" layoutY="141.0" prefHeight="25.0" prefWidth="144.0" styleClass="textfield-1" stylesheets="@../../Design/PageDesign.css" />
                     </children>
                 </AnchorPane>
             </children>

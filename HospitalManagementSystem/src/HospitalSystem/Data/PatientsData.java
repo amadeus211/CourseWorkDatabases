@@ -6,7 +6,33 @@ public class PatientsData {
     
     private Integer id;
     private Integer patientID;
-    private String fullName;
+    private String name;
+
+    public PatientsData(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
+    public PatientsData(int patientId, String name, String surname, String gender,
+                        long mobileNumber, String address, String status,
+                        Date date, Date dateModify, Date dateDelete) {
+        this.patientID = patientId;
+        this.name = name;
+        this.surname = surname;
+        this.gender = gender;
+        this.mobileNumber = mobileNumber;
+        this.address = address;
+        this.status = status;
+        this.date = date;
+        this.dateModify = dateModify;
+        this.dateDelete = dateDelete;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    private String surname;
     private Long mobileNumber;
     private String address;
 
@@ -20,13 +46,15 @@ public class PatientsData {
     private Date dateModify;
     private Date dateDelete;
     private String status;
-    
-    public PatientsData( Integer patientID,String fullName, Long mobileNumber
+
+    public PatientsData(Integer patientID, String name, String surname, Long mobileNumber
             , String gender, String address,
-            String doctor,  Date date, Date dateModify
+                        String doctor, Date date, Date dateModify
             , Date dateDelete, String status){
         this.patientID = patientID;
-        this.fullName = fullName;
+        this.name = name;
+        this.surname = surname;
+
         this.mobileNumber = mobileNumber;
         this.gender = gender;
         this.address = address;
@@ -38,11 +66,11 @@ public class PatientsData {
         this.status = status;
     }
     
-    public PatientsData( Integer patientID, String fullName, String gender,
-            Long mobileNumber, String address, String status, Date date
+    public PatientsData(Integer patientID, String name, String gender,
+                        Long mobileNumber, String address, String status, Date date
             , Date dateModify, Date dateDelete){
         this.patientID = patientID;
-        this.fullName = fullName;
+        this.name = name;
         this.gender = gender;
         this.mobileNumber = mobileNumber;
         this.address = address;
@@ -52,12 +80,12 @@ public class PatientsData {
         this.dateDelete = dateDelete;
     }
 
-    public PatientsData(Integer id, Integer patientID, String fullName, String gender
+    public PatientsData(Integer id, Integer patientID, String name, String gender
             , String description, String diagnosis, String treatment
             , String doctor, Date date){
         this.id = id;
         this.patientID = patientID;
-        this.fullName = fullName;
+        this.name = name;
         this.gender = gender;
         this.description = description;
         this.diagnosis = diagnosis;
@@ -93,8 +121,8 @@ public class PatientsData {
         return patientID;
     }
 
-    public String getFullName(){
-        return fullName;
+    public String getName(){
+        return name;
     }
     public String getGender(){
         return gender;

@@ -6,7 +6,13 @@ public class DoctorData {
 
     private String doctorID;
     private String password;
-    private String fullName;
+    private String name;
+
+    public String getSurname() {
+        return surname;
+    }
+
+    private String surname;
     private String email;
     private String gender;
     private Long mobileNumber;
@@ -18,12 +24,12 @@ public class DoctorData {
     private Date dateDelete;
     private String status;
 
-    public DoctorData(String doctorID, String password, String fullName, String email,
+    public DoctorData(String doctorID, String password, String name, String email,
                       String gender, Long mobileNumber, String specialized, String address,
                       String image, Date date, Date dateModify, String status) {
         this.doctorID = doctorID;
         this.password = password;
-        this.fullName = fullName;
+        this.name = name;
         this.email = email;
         this.gender = gender;
         this.mobileNumber = mobileNumber;
@@ -35,12 +41,13 @@ public class DoctorData {
         this.status = status;
     }
 
-    public DoctorData(String doctorID, String password, String fullName,
+    public DoctorData(String doctorID, String password, String name, String surname,
                       String email, String gender, Long mobileNumber, String specialized, String address,
                       String image, Date date, Date dateModify, Date dateDelete, String status) {
         this.doctorID = doctorID;
         this.password = password;
-        this.fullName = fullName;
+        this.name = name;
+        this.surname = surname;
         this.email = email;
         this.gender = gender;
         this.mobileNumber = mobileNumber;
@@ -53,9 +60,10 @@ public class DoctorData {
         this.status = status;
     }
 
-    public DoctorData(String doctorID, String fullName, String specialized, String status) {
+    public DoctorData(String doctorID, String name, String surname, String specialized, String status) {
         this.doctorID = doctorID;
-        this.fullName = fullName;
+        this.name = name;
+        this.surname = surname;
         this.specialized = specialized;
         this.status = status;
     }
@@ -69,8 +77,8 @@ public class DoctorData {
         return password;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
     }
 
     public String getEmail() {

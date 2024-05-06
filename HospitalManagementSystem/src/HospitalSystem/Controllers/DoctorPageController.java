@@ -62,6 +62,9 @@ public class DoctorPageController implements Initializable {
     private TextField register_fullName;
 
     @FXML
+    private TextField register_surname;
+
+    @FXML
     private TextField register_email;
 
     @FXML
@@ -128,7 +131,8 @@ public class DoctorPageController implements Initializable {
                     if (result.next()) {
 
                         Data.doctor_id = result.getString("doctor_id");
-                        Data.doctor_name = result.getString("full_name");
+                        Data.doctor_name = result.getString("name");
+                        Data.doctor_surname = result.getString("surname");
 
                         alert.successMessage("Віхд успішний!");
 
@@ -173,6 +177,7 @@ public class DoctorPageController implements Initializable {
 
         if (register_fullName.getText().isEmpty()
                 || register_email.getText().isEmpty()
+                || register_surname.getText().isEmpty()
                 || register_doctorID.getText().isEmpty()
                 || register_password.getText().isEmpty()) {
             alert.errorMessage("Будь ласка, заповніть усі порожні поля");
@@ -204,8 +209,8 @@ public class DoctorPageController implements Initializable {
                     alert.errorMessage("Недійсний пароль, потрібно щонайменше 8 символів");
                 } else {
 
-                    String insertData = "INSERT INTO doctor (full_name, email, doctor_id, password, date, status) "
-                            + "VALUES(?,?,?,?,?,?)";
+                    String insertData = "INSERT INTO doctor (name, surname, email, doctor_id, password, date, status) "
+                            + "VALUES(?,?,?,?,?,?,?)";
 
                     prepare = connect.prepareStatement(insertData);
 
@@ -213,11 +218,12 @@ public class DoctorPageController implements Initializable {
                     java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
                     prepare.setString(1, register_fullName.getText());
-                    prepare.setString(2, register_email.getText());
-                    prepare.setString(3, register_doctorID.getText());
-                    prepare.setString(4, register_password.getText());
-                    prepare.setString(5, String.valueOf(sqlDate));
-                    prepare.setString(6, "Підтвердження");
+                    prepare.setString(2, register_surname.getText());
+                    prepare.setString(3, register_email.getText());
+                    prepare.setString(4, register_doctorID.getText());
+                    prepare.setString(5, register_password.getText());
+                    prepare.setString(6, String.valueOf(sqlDate));
+                    prepare.setString(7, "Підтвердження");
 
                     prepare.executeUpdate();
 

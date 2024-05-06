@@ -69,6 +69,10 @@ public class AdminMainFormController implements Initializable {
     private Label patients_PI_patientName;
 
     @FXML
+    private Label patients_PI_patientSurname;
+
+
+    @FXML
     private Circle top_profile;
 
     @FXML
@@ -156,6 +160,9 @@ public class AdminMainFormController implements Initializable {
     private TableColumn<AppointmentData, String> dashboad_col_name;
 
     @FXML
+    private TableColumn<AppointmentData, String> dashboad_col_surname;
+
+    @FXML
     private TableColumn<AppointmentData, String> dashboad_col_status;
 
     @FXML
@@ -167,6 +174,8 @@ public class AdminMainFormController implements Initializable {
     private TableColumn<RecordData, String> record_col_patientID;
     @FXML
     private TableColumn<RecordData, String> record_col_patientName;
+    @FXML
+    private TableColumn<RecordData, String> record_col_patientSurname;
     @FXML
     private TableColumn<RecordData, String> record_col_date;
     @FXML
@@ -180,6 +189,9 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     private TextField patients_patientName;
+
+    @FXML
+    private TextField patients_patientSurname;
 
     @FXML
     private TextArea patients_address;
@@ -241,6 +253,8 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     private TableColumn<DoctorData, String> doctors_col_name;
+    @FXML
+    private TableColumn<DoctorData, String> doctors_col_surname;
 
     @FXML
     private TableColumn<DoctorData, String> doctors_col_gender;
@@ -268,6 +282,9 @@ public class AdminMainFormController implements Initializable {
 
     @FXML
     private TableColumn<PatientsData, String> patients_col_name;
+
+    @FXML
+    private TableColumn<PatientsData, String> patients_col_surname;
 
     @FXML
     private TableColumn<PatientsData, String> patients_col_gender;
@@ -345,7 +362,9 @@ public class AdminMainFormController implements Initializable {
 
         ObservableList<RecordData> listData = FXCollections.observableArrayList();
 
-        String sql = "SELECT * FROM record";
+        String sql = "SELECT record.*, patient.name, patient.surname " +
+                "FROM record " +
+                "JOIN patient ON record.patient_id = patient.patient_id";
 
         connect = Database.connectDB();
 
@@ -354,22 +373,26 @@ public class AdminMainFormController implements Initializable {
             prepare = connect.prepareStatement(sql);
             result = prepare.executeQuery();
 
-            RecordData recordData;
-
             while (result.next()) {
-
-                recordData = new RecordData(result.getInt("id"), result.getInt("patient_id"),
-                        result.getString("patient_name"), result.getDate("date"),
-                        result.getString("time"), result.getString("status"),
-                        result.getString("doctor_id"));
+                RecordData recordData = new RecordData(result.getInt("id"),
+                        result.getInt("patient_id"),
+                        result.getDate("date"),
+                        result.getString("time"),
+                        result.getString("status"),
+                        result.getString("doctor_id"),
+                        result.getString("name"),
+                        result.getString("surname"));
                 listData.add(recordData);
             }
+
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listData;
     }
+
+
 
     public ObservableList<RecordData> recordListData;
 
@@ -379,6 +402,7 @@ public class AdminMainFormController implements Initializable {
         record_col_recordId.setCellValueFactory(new PropertyValueFactory<>("id"));
         record_col_patientID.setCellValueFactory(new PropertyValueFactory<>("patientId"));
         record_col_patientName.setCellValueFactory(new PropertyValueFactory<>("patientName"));
+        record_col_patientSurname.setCellValueFactory(new PropertyValueFactory<>("patientSurname"));
         record_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
         record_col_time.setCellValueFactory(new PropertyValueFactory<>("time"));
         record_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
@@ -495,7 +519,7 @@ public class AdminMainFormController implements Initializable {
 
             while (result.next()) {
                 dData = new DoctorData(result.getString("doctor_id"),
-                        result.getString("full_name"), result.getString("specialized"),
+                        result.getString("name"), result.getString("surname"), result.getString("specialized"),
                         result.getString("status"));
 
                 listData.add(dData);
@@ -513,7 +537,8 @@ public class AdminMainFormController implements Initializable {
         dashboardGetDoctorListData = dashboardGetDoctorData();
 
         dashboad_col_doctorID.setCellValueFactory(new PropertyValueFactory<>("doctorID"));
-        dashboad_col_name.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        dashboad_col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        dashboad_col_surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         dashboad_col_specialized.setCellValueFactory(new PropertyValueFactory<>("specialized"));
         dashboad_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
 
@@ -584,7 +609,7 @@ public class AdminMainFormController implements Initializable {
             DoctorData dData;
             while (result.next()) {
                 dData = new DoctorData( result.getString("doctor_id"),
-                        result.getString("password"), result.getString("full_name"),
+                        result.getString("password"), result.getString("name"), result.getString("surname"),
                         result.getString("email"), result.getString("gender"),
                         result.getLong("mobile_number"), result.getString("specialized"),
                         result.getString("address"), result.getString("image"),
@@ -605,8 +630,8 @@ public class AdminMainFormController implements Initializable {
         doctorListData = doctorGetData();
 
         doctors_col_doctorID.setCellValueFactory(new PropertyValueFactory<>("doctorID"));
-        doctors_col_name.setCellValueFactory(new PropertyValueFactory<>("fullName"));
-        doctors_col_gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        doctors_col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        doctors_col_surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         doctors_col_contactNumber.setCellValueFactory(new PropertyValueFactory<>("mobileNumber"));
         doctors_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
         doctors_col_specialization.setCellValueFactory(new PropertyValueFactory<>("specialized"));
@@ -665,9 +690,9 @@ public class AdminMainFormController implements Initializable {
                                     alert.errorMessage("Будь ласка, спочатку виберіть запис");
                                     return;
                                 }
-
+                                Data.temp_doctorSurname = pData.getSurname();
                                 Data.temp_doctorID = pData.getDoctorID();
-                                Data.temp_doctorName = pData.getFullName();
+                                Data.temp_doctorName = pData.getName();
                                 Data.temp_doctorEmail = pData.getEmail();
                                 Data.temp_doctorPassword = pData.getPassword();
                                 Data.temp_doctorSpecialized = pData.getSpecialized();
@@ -750,7 +775,7 @@ public class AdminMainFormController implements Initializable {
 
             while (result.next()) {
                 pData = new PatientsData(result.getInt("patient_id"),
-                        result.getString("full_name"),
+                        result.getString("name"), result.getString("surname"),
                         result.getLong("mobile_number"), result.getString("gender"),
                         result.getString("address"),
                         result.getString("doctor"),
@@ -773,8 +798,8 @@ public class AdminMainFormController implements Initializable {
         patientListData = patientGetData();
 
         patients_col_patientID.setCellValueFactory(new PropertyValueFactory<>("patientID"));
-        patients_col_name.setCellValueFactory(new PropertyValueFactory<>("fullName"));
-        patients_col_gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        patients_col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        patients_col_surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         patients_col_contactNumber.setCellValueFactory(new PropertyValueFactory<>("mobileNumber"));
         patients_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
         patients_col_dateModify.setCellValueFactory(new PropertyValueFactory<>("dateModify"));
@@ -824,10 +849,10 @@ public class AdminMainFormController implements Initializable {
                                     alert.errorMessage("Будь ласка, спочатку виберіть запис");
                                     return;
                                 }
-
+                                Data.temp_surname = pData.getSurname();
                                 Data.temp_PatientID = pData.getPatientID();
                                 Data.temp_address = pData.getAddress();
-                                Data.temp_name = pData.getFullName();
+                                Data.temp_name = pData.getName();
                                 Data.temp_gender = pData.getGender();
                                 Data.temp_number = pData.getMobileNumber();
                                 Data.temp_status = pData.getStatus();
@@ -1355,6 +1380,7 @@ public void recordActionButton() {
         if (patients_patientID.getText().isEmpty()
                 || patients_doctor.getSelectionModel().getSelectedItem() == null
                 || patients_patientName.getText().isEmpty()
+                || patients_patientSurname.getText().isEmpty()
                 || patients_gender.getSelectionModel().getSelectedItem() == null
                 || patients_mobileNumber.getText().isEmpty()
                 || patients_address.getText().isEmpty()) {
@@ -1368,6 +1394,7 @@ public void recordActionButton() {
 
             patients_PI_doctorID.setText((String) patients_doctor.getSelectionModel().getSelectedItem());
             patients_PI_patientName.setText(patients_patientName.getText());
+            patients_PI_patientSurname.setText(patients_patientSurname.getText());
             patients_PI_gender.setText((String) patients_gender.getSelectionModel().getSelectedItem());
             patients_PI_mobileNumber.setText(patients_mobileNumber.getText());
             patients_PI_address.setText(patients_address.getText());
@@ -1375,45 +1402,29 @@ public void recordActionButton() {
 
     }
 
-    public void createRecordBtn(){
+    public void createRecordBtn() {
         if (patients_Id.getItems().isEmpty()
                 || record_time_select.getItems().isEmpty()
-                || record_date_picker.getValue() == null)
-                {
+                || record_date_picker.getValue() == null) {
             alert.errorMessage("Щось пішло не так");
         } else {
-
-            Database.connectDB();
             try {
-                String patientName = "";
-                String doctorId = "";
+                String patientId = (String) patients_Id.getSelectionModel().getSelectedItem();
 
-                String getDoctor = "SELECT doctor, full_name FROM patient WHERE patient_id = '"
-                        + (String) patients_Id.getSelectionModel().getSelectedItem() + "'";
+                String insertData = "INSERT INTO record (patient_id, date, "
+                        + "time, status, doctor_id) " +
+                        "SELECT ?, ?, ?, 'Незавершено', patient.doctor " +
+                        "FROM patient WHERE patient.patient_id = ?";
 
-                statement = connect.createStatement();
-                result = statement.executeQuery(getDoctor);
+                connect = Database.connectDB();
+                prepare = connect.prepareStatement(insertData);
+                prepare.setString(1, patientId);
+                prepare.setString(2, record_date_picker.getValue().toString());
+                prepare.setString(3, (String) record_time_select.getSelectionModel().getSelectedItem());
+                prepare.setString(4, patientId);
 
-                if (result.next()) {
-                    doctorId = result.getString("doctor");
-                    patientName = result.getString("full_name");
-                }
-
-                    String insertData = "INSERT INTO record (patient_id, patient_name, date, "
-                            + "time, status, doctor_id) "
-                            + "VALUES(?,?,?,?,?,?)";
-                    prepare = connect.prepareStatement(insertData);
-                    prepare.setString(1, (String) patients_Id.getSelectionModel().getSelectedItem());
-                    prepare.setString(2, patientName);
-                    prepare.setString(3, "" + record_date_picker.getValue());
-                    prepare.setString(4, (String) record_time_select.getSelectionModel().getSelectedItem());
-                    prepare.setString(5, "Незавершено");
-                    prepare.setString(6, doctorId);
-
-                    prepare.executeUpdate();
-
-                    alert.successMessage("Додавання успішне!");
-
+                prepare.executeUpdate();
+                alert.successMessage("Додавання успішне!");
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -1423,8 +1434,8 @@ public void recordActionButton() {
         record_time_select.getSelectionModel().clearSelection();
         record_date_picker.setValue(null);
         recordShowData();
-
     }
+
 
     public void patientsIdRecordList(){
         String sql = "SELECT * FROM patient WHERE date_delete IS NULL and status = 'Активний'";
@@ -1499,6 +1510,7 @@ public void recordActionButton() {
 
         if (patients_PA_patientID.getText().isEmpty()
                 || patients_PI_doctorID.getText().isEmpty()
+                || patients_PI_patientSurname.getText().isEmpty()
                 || patients_PA_dateCreated.getText().isEmpty()
                 || patients_PI_patientName.getText().isEmpty()
                 || patients_PI_gender.getText().isEmpty()
@@ -1518,21 +1530,22 @@ public void recordActionButton() {
                 if (result.next()) {
                     alert.errorMessage(patients_PA_patientID.getText() + " вже існує");
                 } else {
-                    String insertData = "INSERT INTO patient (patient_id, full_name, mobile_number, "
+                    String insertData = "INSERT INTO patient (patient_id, name, surname, mobile_number, "
                             + "address, doctor, date, gender, "
                             + "status) "
-                            + "VALUES(?,?,?,?,?,?,?,?,)";
+                            + "VALUES(?,?,?,?,?,?,?,?,?)";
                     Date date = new Date();
                     java.sql.Date sqlDate = new java.sql.Date(date.getTime());
                     prepare = connect.prepareStatement(insertData);
                     prepare.setString(1, patients_PA_patientID.getText());
                     prepare.setString(2, patients_PI_patientName.getText());
-                    prepare.setString(3, patients_PI_mobileNumber.getText());
-                    prepare.setString(4, patients_PI_address.getText());
-                    prepare.setString(5, patients_PI_doctorID.getText());
-                    prepare.setString(6, "" + sqlDate);
-                    prepare.setString(7, (String) patients_gender.getSelectionModel().getSelectedItem());
-                    prepare.setString(8, "Активний");
+                    prepare.setString(3, patients_PI_patientSurname.getText());
+                    prepare.setString(4, patients_PI_mobileNumber.getText());
+                    prepare.setString(5, patients_PI_address.getText());
+                    prepare.setString(6, patients_PI_doctorID.getText());
+                    prepare.setString(7, "" + sqlDate);
+                    prepare.setString(8, (String) patients_gender.getSelectionModel().getSelectedItem());
+                    prepare.setString(9, "Активний");
 
                     prepare.executeUpdate();
 
@@ -1550,6 +1563,7 @@ public void recordActionButton() {
     public void patientClearFields() {
         patients_patientID.clear();
         patients_patientName.clear();
+        patients_patientSurname.clear();
         patients_gender.getSelectionModel().clearSelection();
         patients_mobileNumber.clear();
         patients_address.clear();
@@ -1561,6 +1575,7 @@ public void recordActionButton() {
         patients_PA_dateCreated.setText("");
 
         patients_PI_patientName.setText("");
+        patients_PI_patientSurname.setText("");
         patients_PI_gender.setText("");
         patients_PI_mobileNumber.setText("");
         patients_PI_address.setText("");

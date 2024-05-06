@@ -13,9 +13,9 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HospitalSystem.Controllers.EditPatientFormController">
    <children>
-      <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane fx:id="main_form" prefHeight="340.0" prefWidth="650.0">
          <children>
-            <AnchorPane layoutX="12.0" layoutY="12.0" prefHeight="427.0" prefWidth="627.0" stylesheets="@../../Design/DoctorMainFormDesign.css">
+            <AnchorPane layoutX="12.0" layoutY="12.0" prefHeight="349.0" prefWidth="635.0" stylesheets="@../../Design/DoctorMainFormDesign.css">
                <styleClass>
                   <String fx:value="white-bg" />
                   <String fx:value="shadow" />
@@ -28,50 +28,56 @@
                      </font>
                   </Label>
                   <FontAwesomeIcon glyphName="EDIT" layoutX="122.0" layoutY="35.0" size="1.5em" />
-                  <Label layoutX="86.0" layoutY="78.0" text="Пацієнт ID:">
+                  <Label layoutX="86.0" layoutY="94.0" text="Пацієнт ID:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="edit_patientID" disable="true" layoutX="156.0" layoutY="75.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
-                  <Label layoutX="123.0" layoutY="114.0" text="Ім'я:">
+                  <TextField fx:id="edit_patientID" disable="true" layoutX="156.0" layoutY="91.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                  <Label layoutX="123.0" layoutY="130.0" text="Ім'я:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="edit_name" layoutX="156.0" layoutY="111.0" prefHeight="25.0" prefWidth="179.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
-                  <Label layoutX="113.0" layoutY="155.0" text="Стать:">
+                  <TextField fx:id="edit_name" layoutX="156.0" layoutY="127.0" prefHeight="25.0" prefWidth="179.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                  <Label layoutX="113.0" layoutY="209.0" text="Стать:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="edit_gender" layoutX="156.0" layoutY="152.0" prefHeight="25.0" prefWidth="179.0" promptText="Вибрати" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
-                  <Label layoutX="44.0" layoutY="192.0" text="Номер телефону:">
+                  <ComboBox fx:id="edit_gender" layoutX="156.0" layoutY="206.0" prefHeight="25.0" prefWidth="179.0" promptText="Вибрати" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                  <Label layoutX="44.0" layoutY="246.0" text="Номер телефону:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="edit_contactNumber" layoutX="156.0" layoutY="189.0" prefHeight="25.0" prefWidth="179.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
-                  <Label layoutX="100.0" layoutY="233.0" text="Адреса:">
+                  <TextField fx:id="edit_contactNumber" layoutX="156.0" layoutY="243.0" prefHeight="25.0" prefWidth="179.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                  <Label layoutX="100.0" layoutY="279.0" text="Адреса:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="edit_address" layoutX="156.0" layoutY="233.0" prefHeight="86.0" prefWidth="200.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
-                  <Label layoutX="365.0" layoutY="78.0" text="Статус:">
+                  <TextArea fx:id="edit_address" layoutX="156.0" layoutY="279.0" prefHeight="86.0" prefWidth="200.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                  <Label layoutX="365.0" layoutY="94.0" text="Статус:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="edit_status" layoutX="412.0" layoutY="75.0" prefHeight="25.0" prefWidth="179.0" promptText="Вибрати" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
-                  <FontAwesomeIcon fill="#188ba7" glyphName="EDIT" layoutX="365.0" layoutY="380.0" opacity="0.28" size="20em" />
-                  <Button fx:id="edit_updateBtn" layoutX="220.0" layoutY="373.0" mnemonicParsing="false" onAction="#updateBtn" prefHeight="40.0" prefWidth="230.0" styleClass="btn-1" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Оновити" />
-                  <ComboBox fx:id="edit_doctor" layoutX="412.0" layoutY="124.0" prefHeight="25.0" prefWidth="179.0" promptText="Вибрати" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
-                  <Label layoutX="365.0" layoutY="127.0" text="Лікар:">
+                  <ComboBox fx:id="edit_status" layoutX="412.0" layoutY="91.0" prefHeight="25.0" prefWidth="179.0" promptText="Вибрати" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                  <FontAwesomeIcon fill="#188ba7" glyphName="EDIT" layoutX="382.0" layoutY="400.0" opacity="0.28" size="20em" />
+                  <Button fx:id="edit_updateBtn" layoutX="210.0" layoutY="374.0" mnemonicParsing="false" onAction="#updateBtn" prefHeight="40.0" prefWidth="230.0" styleClass="btn-1" stylesheets="@../../Design/DoctorMainFormDesign.css" text="Оновити" />
+                  <ComboBox fx:id="edit_doctor" layoutX="412.0" layoutY="140.0" prefHeight="25.0" prefWidth="179.0" promptText="Вибрати" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
+                  <Label layoutX="365.0" layoutY="143.0" text="Лікар:">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
+                  <Label layoutX="92.0" layoutY="172.0" text="Прізвище:">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="edit_surname" layoutX="156.0" layoutY="169.0" prefHeight="25.0" prefWidth="179.0" styleClass="textfield-2" stylesheets="@../../Design/DoctorMainFormDesign.css" />
                </children>
             </AnchorPane>
          </children>
